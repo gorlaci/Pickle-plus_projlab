@@ -111,6 +111,11 @@
 <ref refid="3ea20a97-d4eb-11ee-b1d0-48e7dac457c8"/>
 </reflist>
 </ownedAttribute>
+<ownedOperation>
+<reflist>
+<ref refid="7699665c-d4ee-11ee-b123-48e7dac457c8"/>
+</reflist>
+</ownedOperation>
 <package>
 <ref refid="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed"/>
 </package>
@@ -427,7 +432,7 @@
 <ref refid="0f2caf3e-d4e5-11ee-aec6-48e7dac457c8"/>
 </class_>
 <name>
-<val>move</val>
+<val>enterRoom</val>
 </name>
 </Operation>
 <Operation id="d7d5ca60-d4e5-11ee-87e3-48e7dac457c8">
@@ -459,7 +464,7 @@
 <ref refid="0f2caf3e-d4e5-11ee-aec6-48e7dac457c8"/>
 </class_>
 <name>
-<val></val>
+<val>shocked</val>
 </name>
 </Property>
 <AssociationItem id="6c0b588d-d4e6-11ee-a4bc-48e7dac457c8">
@@ -1684,8 +1689,28 @@
 <class_>
 <ref refid="bb9d1e6f-d4e4-11ee-b73e-48e7dac457c8"/>
 </class_>
+<lowerValue>
+<val>1</val>
+</lowerValue>
+<lowerValue>
+<val>1</val>
+</lowerValue>
 <type>
 <ref refid="bb9d1e6f-d4e4-11ee-b73e-48e7dac457c8"/>
 </type>
+<upperValue>
+<val>*</val>
+</upperValue>
+<upperValue>
+<val>*</val>
+</upperValue>
 </Property>
+<Operation id="7699665c-d4ee-11ee-b123-48e7dac457c8">
+<class_>
+<ref refid="bb9d1e6f-d4e4-11ee-b73e-48e7dac457c8"/>
+</class_>
+<name>
+<val>failStudents</val>
+</name>
+</Operation>
 </gaphor>
