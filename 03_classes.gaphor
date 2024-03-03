@@ -1856,6 +1856,7 @@
 <ownedParameter>
 <reflist>
 <ref refid="cc5174af-d8ca-11ee-8363-48e7dac457c8"/>
+<ref refid="6e74ccd6-d99c-11ee-b927-48e7dac457c8"/>
 </reflist>
 </ownedParameter>
 </Operation>
@@ -2712,6 +2713,11 @@
 <ref refid="a1755c9e-d8d4-11ee-860f-48e7dac457c8"/>
 </reflist>
 </ownedAttribute>
+<ownedOperation>
+<reflist>
+<ref refid="32800e47-d995-11ee-a332-48e7dac457c8"/>
+</reflist>
+</ownedOperation>
 <package>
 <ref refid="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed"/>
 </package>
@@ -2739,7 +2745,7 @@
 <val>152.0</val>
 </width>
 <height>
-<val>91.0</val>
+<val>108.0</val>
 </height>
 <diagram>
 <ref refid="f4fe1860-d4e7-11ee-8dcc-48e7dac457c8"/>
@@ -2793,7 +2799,7 @@
 <val>(1.0, 0.0, 0.0, 1.0, 620.8317200545521, 343.1023228709899)</val>
 </matrix>
 <points>
-<val>[(164.16827994544792, -1.5556430996325048), (91.16827994544792, -1.5556430996325048)]</val>
+<val>[(164.16827994544792, 5.738791582928741), (91.16827994544792, -1.5556430996325048)]</val>
 </points>
 <head-connection>
 <ref refid="74dce445-d8d4-11ee-9621-48e7dac457c8"/>
@@ -2832,7 +2838,7 @@
 <val>(1.0, 0.0, 0.0, 1.0, 854.8317200545521, 345.1023228709899)</val>
 </matrix>
 <points>
-<val>[(221.9547905059259, -117.1023228709899), (82.16827994544792, -27.0)]</val>
+<val>[(221.9547905059259, -117.1023228709899), (82.16827994544792, -24.08528034278214)]</val>
 </points>
 <head-connection>
 <ref refid="6e4caccf-d4e8-11ee-a7ba-48e7dac457c8"/>
@@ -2871,7 +2877,7 @@
 <val>(1.0, 0.0, 0.0, 1.0, 863.8317200545521, 340.1023228709899)</val>
 </matrix>
 <points>
-<val>[(198.66827994544792, 1.4443569003674952), (73.16827994544792, 1.4443569003674952)]</val>
+<val>[(198.66827994544792, 1.4443569003674952), (73.16827994544792, 8.73879158292874)]</val>
 </points>
 <head-connection>
 <ref refid="65ff9e5b-d4e8-11ee-98ac-48e7dac457c8"/>
@@ -2910,7 +2916,7 @@
 <val>(1.0, 0.0, 0.0, 1.0, 854.8317200545521, 358.1023228709899)</val>
 </matrix>
 <points>
-<val>[(212.16827994544792, 114.0), (82.16827994544792, 19.945519963631966)]</val>
+<val>[(212.16827994544792, 114.0), (82.16827994544792, 34.058853240429414)]</val>
 </points>
 <head-connection>
 <ref refid="8a8c831c-d4e8-11ee-b4c4-48e7dac457c8"/>
@@ -3113,6 +3119,41 @@
 </name>
 <ownerFormalParam>
 <ref refid="31abbd76-d993-11ee-b13d-48e7dac457c8"/>
+</ownerFormalParam>
+</Parameter>
+<Operation id="32800e47-d995-11ee-a332-48e7dac457c8">
+<class_>
+<ref refid="74dc6ef1-d8d4-11ee-b773-48e7dac457c8"/>
+</class_>
+<name>
+<val>activate</val>
+</name>
+<ownedParameter>
+<reflist>
+<ref refid="32836a3c-d995-11ee-a5a1-48e7dac457c8"/>
+</reflist>
+</ownedParameter>
+</Operation>
+<Parameter id="32836a3c-d995-11ee-a5a1-48e7dac457c8">
+<direction>
+<val>return</val>
+</direction>
+<ownerFormalParam>
+<ref refid="32800e47-d995-11ee-a332-48e7dac457c8"/>
+</ownerFormalParam>
+<typeValue>
+<val>bool</val>
+</typeValue>
+</Parameter>
+<Parameter id="6e74ccd6-d99c-11ee-b927-48e7dac457c8">
+<direction>
+<val>in</val>
+</direction>
+<name>
+<val>Person</val>
+</name>
+<ownerFormalParam>
+<ref refid="cc4f525a-d8ca-11ee-8100-48e7dac457c8"/>
 </ownerFormalParam>
 </Parameter>
 </gaphor>
