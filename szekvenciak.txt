@@ -1,0 +1,79 @@
+Kontroller entry point:
+	Personra hívja kontroller:
+	- addItem
+	- enterRoom
+	- dropItem
+
+	Studentre hívja kontroller:
+	- activateItem
+
+	Roomra hívja kontroller:
+	- split
+	- requestMerge
+	- timeElapsed
+
+
+
+Öröklés entry point:
+	Person leszármazottai:
+	- meet ???
+	- kill
+	- slip
+	
+	Item leszármazottai:
+	- activate
+	- saveFromDeath
+	- saveFromGas
+	- meet
+	
+10. jön
+
+Szekvenciák:
+- Person.addItem( i )
+- Person.enterRoom( r ) 1.
+- Person.dropItem( i )
+- Student.activateItem( i )
+- Room.split() 9.
+- Room.requestMerge( r2 ) 8.
+- Room.timeElapsed( n )
+- IntervalItem.timeElapsed( n )
+  - végig
+- Student.meet( p ) 2.
+- Teacher.meet( p ) 3.
+- Student.greet( p ) 4.
+- Teacher.greet( p ) 5.
+- Student.kill( p ) 6.
+- Teacher.kill( p ) 7.
+- Student.slip()
+- Teacher.slip()
+- Student.pickedUpSlideRule( sr )
+- Teacher.pickedUpSlideRule( sr )
+- SlideRule.activate()
+- TVSZ.activate()
+- Camambert.activate()
+- Transistor.activate()
+- Rag.activate()
+- BeerGlass.activate()
+- Mask.activate()
+- SlideRule.saveFromDeath( p )
+- TVSZ.saveFromDeath( p )
+- Camambert.saveFromDeath( p )
+- Transistor.saveFromDeath( p )
+- Rag.saveFromDeath( p )
+- BeerGlass.saveFromDeath( p )
+- Mask.saveFromDeath( p )
+- SlideRule.saveFromGas()
+- TVSZ.saveFromGas()
+- Camambert.saveFromGas()
+- Transistor.saveFromGas()
+- Rag.saveFromGas()
+- BeerGlass.saveFromGas()
+- Mask.saveFromGas()
+- SlideRule.meet( p )
+- TVSZ.meet( p )
+- Camambert.meet( p )
+- Transistor.meet( p )
+- Rag.meet( p )
+- BeerGlass.meet( p )
+- Mask.meet( p )
+- SlideRule.setLocation( r, p )
