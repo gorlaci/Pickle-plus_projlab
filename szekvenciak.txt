@@ -26,23 +26,24 @@ Kontroller entry point:
 	- saveFromGas
 	- meet
 	
+10. jön
 
 Szekvenciák:
 - Person.addItem( i )
-- Person.enterRoom( r )
+- Person.enterRoom( r ) 1.
 - Person.dropItem( i )
 - Student.activateItem( i )
-- Room.split()
-- Room.requestMerge( r2 )
+- Room.split() 9.
+- Room.requestMerge( r2 ) 8.
 - Room.timeElapsed( n )
 - IntervalItem.timeElapsed( n )
   - végig
-- Student.meet( p )
-- Teacher.meet( p )
-- Student.greet( p )
-- Teacher.greet( p )
-- Student.kill( p )
-- Teacher.kill( p )
+- Student.meet( p ) 2.
+- Teacher.meet( p ) 3.
+- Student.greet( p ) 4.
+- Teacher.greet( p ) 5.
+- Student.kill( p ) 6.
+- Teacher.kill( p ) 7.
 - Student.slip()
 - Teacher.slip()
 - Student.pickedUpSlideRule( sr )
