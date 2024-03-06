@@ -29,14 +29,14 @@ Kontroller entry point:
 10. jön
 
 Szekvenciák:
-- Person.addItem( i )
+- Person.addItem( i ) done
 - Person.enterRoom( r ) 1.
-- Person.dropItem( i )
+- Person.dropItem( i ) done
 - Student.activateItem( i )
 - Room.split() 9.
 - Room.requestMerge( r2 ) 8.
-- Room.timeElapsed( n )
-- IntervalItem.timeElapsed( n )
+- Room.timeElapsed( n ) 10.
+- IntervalItem.timeElapsed( n ) 11.
   - végig
 - Student.meet( p ) 2.
 - Teacher.meet( p ) 3.
