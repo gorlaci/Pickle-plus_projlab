@@ -26,54 +26,54 @@ Kontroller entry point:
 	- saveFromGas
 	- meet
 	
-10. jön
 
 Szekvenciák:
-- Person.addItem( i ) done
+- Person.addItem( i ) 12.
 - Person.enterRoom( r ) 1.
-- Person.dropItem( i ) done
-- Student.activateItem( i )
-- Room.split() 9.
+- Person.dropItem( i ) 13.
+- Student.activateItem( i ) 17.
+- Room.split() 9.			(8-9. menjen első kettőnek)
 - Room.requestMerge( r2 ) 8.
 - Room.timeElapsed( n ) 10.
-- IntervalItem.timeElapsed( n ) 11.
-  - végig
 - Student.meet( p ) 2.
 - Teacher.meet( p ) 3.
 - Student.greet( p ) 4.
 - Teacher.greet( p ) 5.
 - Student.kill( p ) 6.
 - Teacher.kill( p ) 7.
-- Student.slip()
-- Teacher.slip()
-- Student.pickedUpSlideRule( sr )
-- Teacher.pickedUpSlideRule( sr )
-- SlideRule.activate()
-- TVSZ.activate()
-- Camambert.activate()
-- Transistor.activate()
-- Rag.activate()
-- BeerGlass.activate()
-- Mask.activate()
-- SlideRule.saveFromDeath( p )
-- TVSZ.saveFromDeath( p )
-- Camambert.saveFromDeath( p )
-- Transistor.saveFromDeath( p )
-- Rag.saveFromDeath( p )
-- BeerGlass.saveFromDeath( p )
-- Mask.saveFromDeath( p )
-- SlideRule.saveFromGas()
-- TVSZ.saveFromGas()
-- Camambert.saveFromGas()
-- Transistor.saveFromGas()
-- Rag.saveFromGas()
-- BeerGlass.saveFromGas()
-- Mask.saveFromGas()
-- SlideRule.meet( p )
-- TVSZ.meet( p )
-- Camambert.meet( p )
-- Transistor.meet( p )
-- Rag.meet( p )
-- BeerGlass.meet( p )
-- Mask.meet( p )
-- SlideRule.setLocation( r, p )
+- Student.slip() x
+- Teacher.slip() x
+- Student.pickedUpSlideRule( sr ) 16.
+- Teacher.pickedUpSlideRule( sr ) 15.
+- SlideRule.setLocation( r, p ) 14.
+- Camambert.activate() 17.
+- Person.stun() 18.
+- Transistor.activate() 19.	//A tranzisztor hogy kérdezi le azt, hogy van-e másik? transistor pair-hez
+- Rag.activate() x
+- BeerGlass.activate() x
+- Mask.activate() x
+- SlideRule.saveFromDeath( p ) 31 (31-37ig együtt) a 7. után)
+- TVSZ.saveFromDeath( p ) 32
+- Camambert.saveFromDeath( p ) 33
+- Transistor.saveFromDeath( p ) 34
+- Rag.saveFromDeath( p ) 35
+- BeerGlass.saveFromDeath( p ) 36
+- Mask.saveFromDeath( p ) 37
+- SlideRule.saveFromGas() 24 (24-30ig együtt mehetnek a 18 után)
+- TVSZ.saveFromGas()	25
+- Camambert.saveFromGas()  26
+- Transistor.saveFromGas() 27
+- Rag.saveFromGas()  28
+- BeerGlass.saveFromGas() 29
+- Mask.saveFromGas() 30
+- SlideRule.meet( p ) x
+- TVSZ.meet( p ) x
+- Camambert.meet( p ) x
+- Transistor.meet( p ) x
+- Rag.meet( p ) 11.
+- BeerGlass.meet( p ) x
+- Mask.meet( p ) x
+- Mask.timeElapsed(1) 23.	(11. után is mehet)
+- Rag.timeElapsed(1) 21.	(11. után is mehet)
+- BeerGlass.timeElapsed(1) 22. (11. után is mehet)
+
