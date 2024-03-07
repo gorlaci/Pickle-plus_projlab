@@ -1650,7 +1650,7 @@
 <ref refid="e35c012e-d8c7-11ee-9cd0-48e7dac457c8"/>
 </ownerFormalParam>
 <typeValue>
-<val>bool</val>
+<val>void</val>
 </typeValue>
 </Parameter>
 <Association id="1cbc401d-d8c8-11ee-97e2-48e7dac457c8">
@@ -2964,7 +2964,7 @@
 <ref refid="32800e47-d995-11ee-a332-48e7dac457c8"/>
 </ownerFormalParam>
 <typeValue>
-<val>bool</val>
+<val>void</val>
 </typeValue>
 </Parameter>
 <Parameter id="6e74ccd6-d99c-11ee-b927-48e7dac457c8">
