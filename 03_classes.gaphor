@@ -89,8 +89,8 @@
 <ref refid="6e154445-d4e7-11ee-8cba-48e7dac457c8"/>
 <ref refid="bf3c08a2-d8da-11ee-8641-48e7dac457c8"/>
 <ref refid="f87c9194-d8c7-11ee-8668-48e7dac457c8"/>
-<ref refid="7f9f8fde-d4e6-11ee-912b-48e7dac457c8"/>
 <ref refid="3ea20a97-d4eb-11ee-b1d0-48e7dac457c8"/>
+<ref refid="7f9f8fde-d4e6-11ee-912b-48e7dac457c8"/>
 </reflist>
 </ownedAttribute>
 <ownedOperation>
@@ -539,9 +539,21 @@
 <class_>
 <ref refid="bb9d1e6f-d4e4-11ee-b73e-48e7dac457c8"/>
 </class_>
+<lowerValue>
+<val>0</val>
+</lowerValue>
+<lowerValue>
+<val>0</val>
+</lowerValue>
 <type>
 <ref refid="0f2caf3e-d4e5-11ee-aec6-48e7dac457c8"/>
 </type>
+<upperValue>
+<val>*</val>
+</upperValue>
+<upperValue>
+<val>*</val>
+</upperValue>
 </Property>
 <Property id="6e154445-d4e7-11ee-8cba-48e7dac457c8">
 <class_>
