@@ -56,6 +56,9 @@ public class Main {
 
         a1.foo2( b1, b2 );
 
+        boolean answer = Logger.askQuestion( "Működik?" );
+        System.out.println( answer ? "Igen" : "Nem" );
+
         testSkeleton();
     }
 }

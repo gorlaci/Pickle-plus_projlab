@@ -37,3 +37,5 @@ H
 src/main/java/ITest.java,c\5\c5453c3faea048886a2b56d21d659830c1107537
 H
 src/main/java/Test1.java,7\7\77335fd3b1f29bd515f8d393a6e704c60a17446d
+R
+"src/main/java/model/SlideRule.java,e\5\e5c8fcf7c2c5f83fe41bb4e0f5cf1c95b982a9c3

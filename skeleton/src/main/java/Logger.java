@@ -1,10 +1,11 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
 
 public class Logger {
 
-    private static HashMap<Object, String> names = new HashMap<>();
+    private static final HashMap<Object, String> names = new HashMap<>();
     private static int indent = 0;
 
     private static void writeIndent(){
@@ -66,5 +67,21 @@ public class Logger {
         indent--;
         writeIndent();
         System.out.println( "<-" + object.getClass().getName() );
+    }
+
+    private static final Scanner in = new Scanner( System.in );
+    public static boolean askQuestion( String question ){
+        System.out.print( question + " [y/n]" );
+        while( in.hasNext() ) {
+            String answer = in.next();
+            if( answer.equals( "y" ) ){
+                return true;
+            } else if( answer.equals( "n" ) ){
+                return false;
+            } else {
+                System.out.print( question + " [y/n]" );
+            }
+        }
+        return false;
     }
 }
