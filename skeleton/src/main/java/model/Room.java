@@ -17,7 +17,7 @@ public class Room implements ItemHandler, TimeSensitive{
 
     }
 
-    public boolean AcceptPerson( Person p ){
+    public boolean acceptPerson( Person p ){
         return true;
     }
 

@@ -21,4 +21,5 @@ public class TestA {
 
         Logger.exit(this, "foo2");
     }
+
 }
