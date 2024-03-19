@@ -5,6 +5,12 @@ import testing.Logger;
 import java.util.List;
 
 public class TVSZ extends Item{
+
+    public TVSZ(){
+        Logger.create(this);
+        Logger.exitCreate(this);
+    }
+
     @Override
     public void activate() {
 

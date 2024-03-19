@@ -1,8 +1,6 @@
 
 7
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
-I
-src/main/java/Logger.java,9\3\930d9b913afb3c10010af7509a6a2260cbbd2765
 G
 src/main/java/Main.java,e\4\e44a8606ce010ad9b89aafdfcee2ab49afbf6d10
 H
@@ -33,11 +31,15 @@ M
 src/main/java/model/Mask.java,1\d\1de694a3768e366799444a722fdded4a92425add
 H
 src/main/java/TestB.java,8\5\8583a172abb7951ee73e25b977e47fbf1579d841
-H
-src/main/java/ITest.java,c\5\c5453c3faea048886a2b56d21d659830c1107537
-H
-src/main/java/Test1.java,7\7\77335fd3b1f29bd515f8d393a6e704c60a17446d
 R
 "src/main/java/model/SlideRule.java,e\5\e5c8fcf7c2c5f83fe41bb4e0f5cf1c95b982a9c3
 Q
 !src/main/java/testing/Logger.java,1\0\102a9c77fb0dd76a507f7771a1b487c2fe494925
+L
+src/main/java/model/Rag.java,6\c\6cc15b68656358a43d8d687e47edf92536641f67
+S
+#src/main/java/model/Transistor.java,c\e\cee4dec52b0bc06f934d2ee6d64c0ef59ac93592
+P
+ src/main/java/testing/Test1.java,6\4\6401bc986713dd34d91d40bbac11f18c81af1de1
+P
+ src/main/java/testing/ITest.java,6\3\63a2c0a9d45eb872f8c063cdf214cd900400c107

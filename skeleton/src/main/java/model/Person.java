@@ -10,9 +10,18 @@ public abstract class Person implements ItemHandler, TimeSensitive{
     protected Room location;
     protected final List<Item> itemsInHand = new ArrayList<>();
 
+    public void setLocation( Room room ){
+        Logger.enter(this, "setLocation", List.of( room ));
+        location = room;
+        Logger.exit(this, "setLocation");
+    }
+
     @Override
     public void addItem(Item item) {
-
+        Logger.enter(this, "addItem", List.of(item));
+        itemsInHand.add(item);
+        //TODO
+        Logger.exit(this, "addItem");
     }
 
     @Override
@@ -78,7 +87,4 @@ public abstract class Person implements ItemHandler, TimeSensitive{
 
     public abstract void greet( Person greeter );
 
-    public void setLocation( Room room ){
-        location = room;
-    }
 }

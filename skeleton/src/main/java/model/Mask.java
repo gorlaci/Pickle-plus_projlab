@@ -5,6 +5,12 @@ import testing.Logger;
 import java.util.List;
 
 public class Mask extends IntervalItem{
+
+    public Mask(){
+        Logger.create(this);
+        Logger.exitCreate(this);
+    }
+
     @Override
     public void meet(Person person) {
         

@@ -5,6 +5,12 @@ import testing.Logger;
 import java.util.List;
 
 public class Teacher extends Person{
+
+    public Teacher(){
+        Logger.create(this);
+        Logger.exitCreate(this);
+    }
+
     @Override
     public void meet(Person person) {
 

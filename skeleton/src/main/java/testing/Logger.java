@@ -73,7 +73,8 @@ public class Logger {
 
     private static final Scanner in = new Scanner( System.in );
     public static boolean askQuestion( String question ){
-        System.out.print( question + " [y/n]" );
+        writeIndent();
+        System.out.print( question + " [y/n] " );
         while( in.hasNext() ) {
             String answer = in.next();
             if( answer.equals( "y" ) ){
@@ -81,7 +82,8 @@ public class Logger {
             } else if( answer.equals( "n" ) ){
                 return false;
             } else {
-                System.out.print( question + " [y/n]" );
+                writeIndent();
+                System.out.print( question + " [y/n] " );
             }
         }
         return false;

@@ -1,5 +1,6 @@
 import testing.ITest;
 import testing.Logger;
+import testing.Test1;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -27,6 +28,7 @@ public class Main {
                 int testNum = Integer.parseInt(line);
                 ITest test = tests.get(testNum);
                 if (test != null) {
+                    Logger.startNew();
                     test.run();
                     System.out.println("Test Over.");
                 }

@@ -1,6 +1,14 @@
 package model;
 
+import testing.Logger;
+
 public class Rag extends IntervalItem{
+
+    public Rag(){
+        Logger.create(this);
+        Logger.exitCreate(this);
+    }
+
     @Override
     public void meet(Person person) {
 

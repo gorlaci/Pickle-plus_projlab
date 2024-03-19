@@ -1,6 +1,14 @@
 package model;
 
+import testing.Logger;
+
 public class Camembert extends Item{
+
+    public Camembert(){
+        Logger.create(this);
+        Logger.exitCreate(this);
+    }
+
     @Override
     public void activate() {
 
