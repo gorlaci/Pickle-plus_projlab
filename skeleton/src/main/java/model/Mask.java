@@ -1,5 +1,9 @@
 package model;
 
+import testing.Logger;
+
+import java.util.List;
+
 public class Mask extends IntervalItem{
     @Override
     public void meet(Person person) {
@@ -8,12 +12,16 @@ public class Mask extends IntervalItem{
 
     @Override
     public boolean saveFromDeath(Person killer) {
+        Logger.enter( this, "saveFromDeath", List.of(killer) );
+        Logger.exit( this, "saveFromDeath", "false" );
         return false;
     }
 
     @Override
     public boolean saveFromGas() {
-        return false;
+        Logger.enter( this, "saveFromGas" );
+        Logger.exit( this, "saveFromGas", "true" );
+        return true;
     }
 
     @Override

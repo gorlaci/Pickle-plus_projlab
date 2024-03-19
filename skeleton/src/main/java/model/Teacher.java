@@ -1,5 +1,9 @@
 package model;
 
+import testing.Logger;
+
+import java.util.List;
+
 public class Teacher extends Person{
     @Override
     public void meet(Person person) {
@@ -23,6 +27,10 @@ public class Teacher extends Person{
 
     @Override
     public void greet(Person greeter) {
+        Logger.enter(this, "greet", List.of(greeter));
 
+        greeter.kill(this);
+
+        Logger.exit(this, "greet");
     }
 }

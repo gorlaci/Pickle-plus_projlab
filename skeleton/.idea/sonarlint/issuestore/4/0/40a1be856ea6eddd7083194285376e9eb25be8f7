@@ -1,21 +1,21 @@
 
-Â
-java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(—­¿¦ÿÿÿÿÿJ$55b01723-e8c3-4ea4-a9d7-4d1c10b9a867
-Â
-java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ïî£¬ûÿÿÿÿJ$14ff80dc-fcbb-426b-b9fc-e58dced46732
-¼
-java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ó¨ú#J$62441453-19b9-4b9c-be6a-43d25b7e7e84
-½
-java:S1186$"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ö§ù‡J$d8829552-49e4-4eca-a11a-e03fcae2145f
-¼
-java:S1186("€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(£·€KJ$e27a3efd-a5c9-4885-ad54-dd59d7cd2de7
-d
-java:S1172"(Remove this unused method parameter "p".(Õ¢˜±J$ca72a8ba-6a97-46e4-b197-eeaabfa4537f
-d
-java:S1172"(Remove this unused method parameter "r".(Ûİº­J$9e11f8c8-c939-4866-bb76-c1d2ad3d6c56
-c
-java:S1172 "(Remove this unused method parameter "r".(ü™¶J$dc2a3fdb-d3b7-49c5-81a8-e56391e9f794
-q
-java:S1172,"0Remove these unused method parameters "p", "to".(ßÓÑäıÿÿÿÿJ$daa948a3-cf6b-4193-baf9-fb0f42f1634c
-e
-java:S1144 "*Remove this unused private "merge" method.(ü™¶J$ae763ba9-07c1-4756-bb0e-a8d1348c7329
+
+java:S1192 "FDefine a constant instead of duplicating this literal "false" 3 times.(öã¹úÿÿÿÿ8Ôèš¾å1J$bd49a3f7-ed71-4fe8-8c9e-e2fa548d6768
+
+java:S1192"MDefine a constant instead of duplicating this literal "acceptPerson" 3 times.(ıüŞb8Ôèš¾å1J$ebe0b161-ffae-42ab-8860-01b73bc07535
+
+java:S1192P"KDefine a constant instead of duplicating this literal "movePerson" 3 times.(³‹Éí8Õèš¾å1J$b5fb4eb4-4ff5-4029-ba03-e918616b47f0
+Ä
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÚÖÆò8Úèš¾å1J$cabbc99d-44de-4a62-a920-45a8453f7c17
+Ä
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(òûƒá8Úèš¾å1J$08ba7fef-1f11-4463-9159-dfe562b2d243
+Ä
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¯‡œ›8Ûèš¾å1J$f7d141be-cd8b-4993-92c7-34733d78d014
+Ä
+java:S1186C"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ö§ù‡8Ûèš¾å1J$03673916-2823-46b3-bfb7-8d04b5a34a1f
+n
+java:S1172;"+Remove this unused method parameter "room".(‘óö8áèš¾å1J$96f5ea08-55f3-44b5-b1b6-22b3f65adefa
+n
+java:S1172?"+Remove this unused method parameter "room".(Œ½Ô8âèš¾å1J$ec861360-df4d-4487-9efd-3824c8654f61
+m
+java:S1144?"*Remove this unused private "merge" method.(Œ½Ô8æèš¾å1J$17be3b21-2044-44dc-b1b6-85e11065917b

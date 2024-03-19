@@ -1,3 +1,5 @@
+package testing;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -83,5 +85,11 @@ public class Logger {
             }
         }
         return false;
+    }
+
+    public static boolean askQuestion( String question, Object object ){
+        String name = names.get( object );
+        String fullQuestion = question.replace( "#", name );
+        return askQuestion( fullQuestion );
     }
 }
