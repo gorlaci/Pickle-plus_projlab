@@ -1,21 +1,21 @@
 
-œ
-java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(—­¿¦ÿÿÿÿÿ
-œ
-java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ïî£¬ûÿÿÿÿ
-–
-java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ó¨ú#
-—
-java:S1186$"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ö§ù‡
-–
-java:S1186("€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(£·€K
->
-java:S1172"(Remove this unused method parameter "p".(Õ¢˜±
->
-java:S1172"(Remove this unused method parameter "r".(Ûİº­
-=
-java:S1172 "(Remove this unused method parameter "r".(ü™¶
-K
-java:S1172,"0Remove these unused method parameters "p", "to".(ßÓÑäıÿÿÿÿ
-?
-java:S1144 "*Remove this unused private "merge" method.(ü™¶
+h
+java:S11926"FDefine a constant instead of duplicating this literal "false" 3 times.(öã¹úÿÿÿÿ8ÈÂÛÀå1
+i
+java:S11923"MDefine a constant instead of duplicating this literal "acceptPerson" 3 times.(ıüŞb8ÉÂÛÀå1
+h
+java:S1192g"KDefine a constant instead of duplicating this literal "movePerson" 3 times.(³‹Éí8ÉÂÛÀå1
+
+java:S1186)"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(òûƒá8ÔÂÛÀå1
+
+java:S1186."€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¯‡œ›8ÔÂÛÀå1
+
+java:S1186Z"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ö§ù‡8ÔÂÛÀå1
+O
+java:S1135$"2Complete the task associated to this TODO comment.(…ïœ†8ÚÂÛÀå1
+H
+java:S1172R"+Remove this unused method parameter "room".(‘óö8ŞÂÛÀå1
+H
+java:S1172V"+Remove this unused method parameter "room".(Œ½Ô8ŞÂÛÀå1
+G
+java:S1144V"*Remove this unused private "merge" method.(Œ½Ô8áÂÛÀå1

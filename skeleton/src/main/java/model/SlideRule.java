@@ -1,6 +1,14 @@
 package model;
 
+import testing.Logger;
+
 public class SlideRule extends Item{
+
+    public SlideRule(){
+        Logger.create(this);
+        Logger.exitCreate(this);
+    }
+
     @Override
     public void timeElapsed(int t) {
 

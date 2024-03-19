@@ -1,3 +1,7 @@
+import testing.ITest;
+import testing.Logger;
+import testing.Test1;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -24,6 +28,7 @@ public class Main {
                 int testNum = Integer.parseInt(line);
                 ITest test = tests.get(testNum);
                 if (test != null) {
+                    Logger.startNew();
                     test.run();
                     System.out.println("Test Over.");
                 }
@@ -55,6 +60,9 @@ public class Main {
         Logger.register( b2, "b2");
 
         a1.foo2( b1, b2 );
+
+        boolean answer = Logger.askQuestion( "Működik?" );
+        System.out.println( answer ? "Igen" : "Nem" );
 
         testSkeleton();
     }

@@ -1,3 +1,5 @@
+import testing.Logger;
+
 import java.util.List;
 
 public class TestA {

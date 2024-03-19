@@ -1,6 +1,14 @@
 package model;
 
+import testing.Logger;
+
 public class Transistor extends Item{
+
+    public Transistor(){
+        Logger.create(this);
+        Logger.exitCreate(this);
+    }
+
     @Override
     public void activate() {
 
