@@ -40,6 +40,41 @@ L
 S
 #src/main/java/model/Transistor.java,c\e\cee4dec52b0bc06f934d2ee6d64c0ef59ac93592
 P
+ src/main/java/testing/ITest.java,6\3\63a2c0a9d45eb872f8c063cdf214cd900400c107
+P
  src/main/java/testing/Test1.java,6\4\6401bc986713dd34d91d40bbac11f18c81af1de1
 P
- src/main/java/testing/ITest.java,6\3\63a2c0a9d45eb872f8c063cdf214cd900400c107
+ src/main/java/testing/Test2.java,c\5\c54df6c13db00709aeb35624ceafc1990823edc3
+P
+ src/main/java/testing/Test3.java,f\a\faf8f88027771251495fc6ab731ee85eac0b8ad6
+P
+ src/main/java/testing/Test4.java,d\0\d0179ef5707bcb216122bc3cddc3a50724793653
+P
+ src/main/java/testing/Test5.java,3\b\3bedfd0b42af3ced6c7297f0cda158a4de27a4e1
+P
+ src/main/java/testing/Test6.java,1\2\12a752cbb93d4a52d274bbb4b30537d87972c451
+P
+ src/main/java/testing/Test7.java,b\7\b75ac825f7506e7f69fde1171f2561cb3b963714
+P
+ src/main/java/testing/Test9.java,4\7\470fca051929d3b5ed38889272a7ac90c887bece
+P
+ src/main/java/testing/Test8.java,9\6\96453d93744bd7da1648227223182376cb9e3d92
+Q
+!src/main/java/testing/Test10.java,b\7\b7947736fbf40154723840a475a5f9672b4f239a
+Q
+!src/main/java/testing/Test11.java,a\4\a44521d55431cee36598698b23d9d2c735c581e1
+Q
+!src/main/java/testing/Test12.java,1\5\159aeb029601a4bed15463dfada9758be33a374f
+Q
+!src/main/java/testing/Test13.java,6\d\6d50dd47421c9e2f6ca263b3d7454d9fdcd40754
+Q
+!src/main/java/testing/Test14.java,2\4\24772972843be57aea646d6922897efb92f75565
+Q
+!src/main/java/testing/Test15.java,3\4\34d5d0d235d98018a500e0bd8c5e645f2820a750
+Q
+!src/main/java/testing/Test16.java,6\6\66d96d5aeb060974058f497cc54995386f094c2a
+Q
+!src/main/java/testing/Test17.java,3\1\310649b817f932941a3f94492c904228639d6fa4
+:
+
+.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302

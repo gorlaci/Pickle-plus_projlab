@@ -13,7 +13,8 @@ public class BeerGlass extends IntervalItem{
 
     @Override
     public void meet(Person person) {
-
+        Logger.enter( this, "meet", List.of(person) );
+        Logger.exit( this, "meet");
     }
 
     @Override
@@ -26,11 +27,26 @@ public class BeerGlass extends IntervalItem{
 
     @Override
     public boolean saveFromGas() {
+        Logger.enter(this, "saveFromGas");
+        Logger.exit(this, "saveFromGas", "false");
         return false;
     }
 
     @Override
     public void timeElapsed(int time) {
-
+        Logger.enter(this, "timeElapsed", List.of(time));
+        boolean isActivated = Logger.askQuestion( "Is # activated?", this );
+        if(isActivated) {
+            boolean isTimeRemaining = Logger.askQuestion("Is there any time remaining for #?", this);
+            if(!isTimeRemaining) {
+                if (holder != null) {
+                    holder.removeItem(this);
+                }
+                else {
+                    location.removeItem(this);
+                }
+            }
+        }
+        Logger.exit(this, "timeElapsed");
     }
 }

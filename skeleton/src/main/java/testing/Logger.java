@@ -7,6 +7,10 @@ import java.util.Scanner;
 
 public class Logger {
 
+    private Logger(){
+
+    }
+
     private static final HashMap<Object, String> names = new HashMap<>();
     private static int indent = 0;
 
@@ -22,13 +26,14 @@ public class Logger {
     }
 
     public static void register( Object object, String name ){
+        writeIndent();
         names.put( object, name);
         System.out.println( name + " created" );
     }
 
     public static void create( Object object ){
         writeIndent();
-        System.out.println( "->" + object.getClass().getName() + "()" );
+        System.out.println( "->" + object.getClass().getSimpleName() + "()" );
         indent++;
     }
 
@@ -36,7 +41,14 @@ public class Logger {
         writeIndent();
         System.out.print( "->" + names.get(object) + "." + func + "(" );
         for( int i = 0 ; i < args.size() ; i++ ){
-            System.out.print( names.get(args.get(i)) );
+            if( args.get( i ) == null ){
+                System.out.print( "null" );
+            } else if( args.get( i ).getClass() == Integer.class ){
+                System.out.print( args.get( i ) );
+            } else {
+                System.out.print(names.get(args.get(i)));
+            }
+
             if( i < args.size() - 1 ){
                 System.out.print( ", ");
             }
@@ -68,7 +80,7 @@ public class Logger {
     public static void exitCreate( Object object ){
         indent--;
         writeIndent();
-        System.out.println( "<-" + object.getClass().getName() );
+        System.out.println( "<-" + object.getClass().getSimpleName() );
     }
 
     private static final Scanner in = new Scanner( System.in );

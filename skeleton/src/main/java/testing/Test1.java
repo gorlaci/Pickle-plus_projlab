@@ -19,15 +19,18 @@ public class Test1 implements ITest {
         Logger.register( m, "m" );
         BeerGlass b = new BeerGlass();
         Logger.register(b, "b");
-        s.setLocation(r2);
         r2.addPerson(s);
+        s.setLocation(r2);
         r2.addNeighbour(r1);
         r1.addNeighbour(r2);
-        r1.addItem(tv);
-        t.setLocation(r1);
+        r1.initItem(tv);
+        tv.initLocation(r1, null);
         r1.addPerson(t);
-        s.addItem(m);
-        s.addItem(b);
+        t.setLocation(r1);
+        s.initItem(m);
+        m.initLocation(r2, s);
+        s.initItem(b);
+        b.initLocation(r2, s);
         s.enterRoom(r1);
     }
 }

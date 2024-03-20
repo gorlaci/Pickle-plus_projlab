@@ -13,7 +13,8 @@ public class TVSZ extends Item{
 
     @Override
     public void activate() {
-
+        Logger.enter( this, "activate");
+        Logger.exit( this, "activate");
     }
 
     @Override
@@ -24,16 +25,24 @@ public class TVSZ extends Item{
 
     @Override
     public boolean saveFromDeath(Person killer) {
-        return false;
+        Logger.enter( this, "saveFromDeath", List.of(killer) );
+        if( !Logger.askQuestion( "Are there charges remaining of #?", this ) ){
+            holder.removeItem( this );
+        }
+        Logger.exit( this, "saveFromDeath", "true" );
+        return true;
     }
 
     @Override
     public boolean saveFromGas() {
+        Logger.enter(this, "saveFromGas");
+        Logger.exit(this, "saveFromGas", "false");
         return false;
     }
 
     @Override
     public void timeElapsed(int time) {
-
+        Logger.enter(this, "timeElapsed");
+        Logger.exit(this, "timeElapsed");
     }
 }

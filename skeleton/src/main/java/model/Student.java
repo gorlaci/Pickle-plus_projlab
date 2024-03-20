@@ -39,20 +39,25 @@ public class Student extends Person{
 
     @Override
     public void slip() {
-
+        Logger.enter(this, "slip");
+        Logger.exit(this, "slip");
     }
 
     @Override
     public void pickedUpSlideRule(SlideRule slideRule) {
-
+        Logger.enter(this, "pickedUpSlideRule");
+        Logger.exit(this, "pickedUpSlideRule");
     }
 
     @Override
     public void greet(Person greeter) {
-
+        Logger.enter(this, "greet");
+        Logger.exit(this, "greet");
     }
 
     public void activateItem( Item item ){
-
+        Logger.enter(this, "activateItem");
+        item.activate();
+        Logger.exit(this, "activateItem");
     }
 }

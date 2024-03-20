@@ -16,22 +16,45 @@ public abstract class Person implements ItemHandler, TimeSensitive{
         Logger.exit(this, "setLocation");
     }
 
+    public void initItem( Item item ) {
+        Logger.enter(this, "initItem", List.of( item ));
+        itemsInHand.add(item);
+        Logger.exit(this, "initItem");
+    }
+
     @Override
     public void addItem(Item item) {
         Logger.enter(this, "addItem", List.of(item));
-        itemsInHand.add(item);
-        //TODO
+
+        if( Logger.askQuestion( "Can # pick up item?", this ) ){
+            itemsInHand.add(item);
+            location.removeItem( item );
+            item.setLocation( location, this );
+        }
+
         Logger.exit(this, "addItem");
     }
 
     @Override
     public void removeItem(Item item) {
+        Logger.enter(this, "removeItem", List.of(item));
 
+        itemsInHand.remove( item );
+
+        Logger.exit( this, "removeItem" );
     }
 
     @Override
     public void timeElapsed(int time) {
+        Logger.enter( this, "timeElapsed", List.of( time ) );
 
+        List<Item> itemsInHandCopy = new ArrayList<>(itemsInHand);
+
+        for( Item item : itemsInHandCopy ){
+            item.timeElapsed( time );
+        }
+
+        Logger.exit( this, "timeElapsed" );
     }
 
     public void enterRoom( Room roomTo ){
@@ -54,10 +77,14 @@ public abstract class Person implements ItemHandler, TimeSensitive{
     }
 
     public void dropItem( Item item ){
+        Logger.enter( this, "dropItem", List.of(item));
 
+        itemsInHand.remove( item );
+        location.addItem( item );
+
+        Logger.exit( this, "dropItem" );
     }
 
-    // Ellenőrizni kell majd, hogy nem önmaga
     public abstract void meet( Person person );
 
     public void stun(){

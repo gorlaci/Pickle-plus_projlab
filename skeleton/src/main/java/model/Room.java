@@ -5,7 +5,7 @@ import testing.Logger;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Room implements ItemHandler, TimeSensitive{
+public class Room implements ItemHandler, TimeSensitive {
 
     private final List<Person> peopleInRoom = new ArrayList<>();
     private final List<Item> itemsInRoom = new ArrayList<>();
@@ -29,22 +29,58 @@ public class Room implements ItemHandler, TimeSensitive{
         Logger.exit(this, "addPerson");
     }
 
+    public void initItem(Item item) {
+        Logger.enter(this, "initItem", List.of(item));
+        itemsInRoom.add(item);
+        Logger.exit(this, "initItem");
+    }
+
     @Override
     public void addItem(Item item) {
         Logger.enter(this, "addItem", List.of(item));
         itemsInRoom.add(item);
-        //TODO
+        item.setLocation( this, null );
         Logger.exit(this, "addItem");
     }
 
     @Override
     public void removeItem(Item item) {
+        Logger.enter( this, "removeItem", List.of(item));
 
+        itemsInRoom.remove( item );
+
+        Logger.exit( this, "removeItem" );
     }
 
     @Override
     public void timeElapsed(int time) {
+        Logger.enter( this, "timeElapsed", List.of( time ) );
 
+        List<Item> itemsInRoomCopy = new ArrayList<>(itemsInRoom);
+        for( Item item : itemsInRoomCopy ){
+            item.timeElapsed( time );
+        }
+        for( Person person : peopleInRoom ){
+            person.timeElapsed( time );
+        }
+        if( Logger.askQuestion( "Is # gassed?", this ) ){
+            for( Person person : peopleInRoom ){
+                person.stun();
+            }
+        }
+        for( Person person : peopleInRoom ){
+            for( Item item : itemsInRoom ) {
+                item.meet( person );
+            }
+        }
+        List<Person> peopleInRoomCopy = new ArrayList<>(peopleInRoom);
+        for( int i = 0 ; i < peopleInRoomCopy.size() ; i++ ){
+            for( int j = i + 1 ; j < peopleInRoomCopy.size() ; j++ ){
+                peopleInRoomCopy.get( i ).meet( peopleInRoomCopy.get( j ) );
+            }
+        }
+
+        Logger.exit( this, "timeElapsed" );
     }
 
     public boolean acceptPerson( Person person ){
@@ -76,19 +112,62 @@ public class Room implements ItemHandler, TimeSensitive{
     }
 
     public Room split(){
-        return new Room();
+        Logger.enter( this, "split" );
+
+        if( Logger.askQuestion( "Is anyone in #?", this ) ){
+            Logger.exit( this, "split", "null");
+            return null;
+        }
+        Room r2 = new Room();
+        Logger.register( r2, "r2" );
+
+        int desiredSize = itemsInRoom.size() / 2;
+
+        while( itemsInRoom.size() > desiredSize ){
+            r2.addItem( itemsInRoom.get( 0 ) );
+            itemsInRoom.remove( 0 );
+        }
+
+        Logger.exit( this, "split", "r2" );
+        return r2;
     }
 
-    public Room requestMerge( Room room ){
-        return new Room();
+    public Room requestMerge( Room room2 ){
+        Logger.enter( this, "requestMerge", List.of(room2));
+        if( Logger.askQuestion( "Is anyone in #?", this ) ){
+            Logger.exit( this, "requestMerge", "null");
+            return null;
+        }
+        Room r3 = room2.merge(this);
+        if(r3==null) {
+            Logger.exit( this, "requestMerge", "null");
+            return null;
+        }
+        for(Item item: this.itemsInRoom) {
+            r3.addItem(item);
+        }
+        Logger.exit( this, "requestMerge", "r3");
+        return r3;
     }
 
-    private Room merge( Room room ){
-        return new Room();
+    private Room merge( Room room1 ){
+        Logger.enter( this, "merge", List.of(room1));
+        if( Logger.askQuestion( "Is anyone in #?", this ) ){
+            Logger.exit( this, "merge", "null");
+            return null;
+        }
+        Room r3 = new Room();
+        Logger.register(r3, "r3");
+        for(Item item: itemsInRoom) {
+            r3.addItem(item);
+        }
+        Logger.exit( this, "merge", "r3");
+        return r3;
     }
 
     public void createGas(){
-
+        Logger.enter( this, "createGas" );
+        Logger.exit( this, "createGas" );
     }
 
     public void removePerson( Person person ){
