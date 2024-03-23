@@ -3,6 +3,20 @@ package testing;
 import model.*;
 
 public class Test1 implements ITest {
+    /**
+     * Létrehoz egy hallgatót, egy söröspoharat, egy TVSZ-t, egy maszkot egy
+     * tanárt és két szobát, melyek szomszédosak, majd a hallgatót
+     * és a tanárt elhelyezi egy-egy szobában. A söröspoharat és a
+     * maszkot a hallgató kezébe adja, a TVSZ-t a tanár szobájába
+     * rakja. Ezután az egyik szobából a hallgatót átlépteti a
+     * másikba, amennyiben a hallgató nincs elkábítva és a jelenlegi
+     * szobája jelenleg nem elátkozott. Itt megkérdezi a
+     * felhasználót, hogy a szoba tele van-e, és ha igen, a hallgató
+     * nem tud belépni, ha nem, megkérdezi, aktiválva van-e a
+     * söröspohár, és ha nem, a hallgató megbukik a tanár által.
+     * Egyébként átlép.
+     * A változók neveit regisztrálja.
+     */
     @Override
     public void run() {
         Student s = new Student();

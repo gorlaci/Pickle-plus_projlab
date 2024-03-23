@@ -5,6 +5,13 @@ import model.Student;
 import model.TVSZ;
 
 public class Test6 implements ITest {
+    /**
+     * Létrehoz egy hallgatót, egy szobát és egy maszkot, amit a hallgató kezébe
+     * ad. Ezután a hallgatót a szobába rakja, és eldobatja a tárgyat.
+     * Az eldobott tárgy a hallgató kezéből eltűnik és a szobába
+     * kerül.
+     * A változóneveket regisztrálja.
+     */
     @Override
     public void run() {
         Room r = new Room();

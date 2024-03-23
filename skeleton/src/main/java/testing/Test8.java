@@ -7,6 +7,15 @@ import model.TVSZ;
 
 
 public class Test8 implements ITest {
+    /**
+     * Létrehoz két hallgatót és egy szobát, aminek a kapacitása legalább 2, majd
+     * mindkét hallgatót a szobába rakja. Az egyik hallgatónak
+     * ezután ad egy Camembert-et, és aktiváltatja vele. A hallgató
+     * megpróbál védekezni, de a TVSZ nem védi meg a gáztól.
+     * Mivel egyik hallgatónál sincs olyan tárgy, ami megvédené
+     * őket a keletkező gáztól, mindkettő elkábul.
+     * A váltózóneveket regisztrálja.
+     */
     @Override
     public void run() {
         Room r = new Room();

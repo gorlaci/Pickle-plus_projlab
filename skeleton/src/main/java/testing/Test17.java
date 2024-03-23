@@ -5,6 +5,12 @@ import model.SlideRule;
 import model.Teacher;
 
 public class Test17 implements ITest {
+    /**
+     * Létrehoz egy oktatót, egy szobát és egy
+     * logarlécet. Egy oktató felveszi a logarlécet. Ezután el is dobja
+     * azonnal.
+     * A váltózóneveket regisztrálja.
+     */
     @Override
     public void run() {
         Room r = new Room();

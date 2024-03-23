@@ -6,6 +6,13 @@ import model.Mask;
 
 
 public class Test9 implements ITest {
+    /**
+     * Létrehoz egy hallgatót és egy maszkot, amit a hallgató kezébe ad. Ezután a
+     * maszkot aktiváltatja és megfelelő számú alkalommal
+     * meghívja rajta a timeElapsed-et, ami ennek hatására lejár és
+     * törlődik.
+     * A váltózóneveket regisztrálja.
+     */
     @Override
     public void run() {
         Student s = new Student();

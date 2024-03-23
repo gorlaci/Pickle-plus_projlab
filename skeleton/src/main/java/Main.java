@@ -5,8 +5,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 
-public class Main {
 
+public class Main {
+    /**
+     * A szkeleton program menüje.
+     * Egyszerű konzolos menü, ahol a felhasználó a teszteset sorszámának
+     * bevitelével tudja elindítani az egyes teszteseteket.
+     */
     private static void testSkeleton() {
         final HashMap<Integer, ITest> tests=new HashMap<>();
         final HashMap<Integer, String> testNames=new HashMap<>();

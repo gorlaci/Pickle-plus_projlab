@@ -3,6 +3,17 @@ package testing;
 import model.*;
 
 public class Test13 implements ITest {
+    /**
+     * Létrehoz egy hallgatót és két szobát, illetve két tranzisztort. A
+     * tranzisztorokat összepárosítja és az egyiket elhelyezi az egyik
+     * szobában, míg a másikat a hallgató kezébe adja és hallgatót
+     * elhelyezi a másik szobában. A hallgatónál lévő tranzisztort
+     * aktiválva a hallgató eldobja a tranzisztorát a szobában és
+     * átteleportál a másik szobába, ahol a másik tranzisztor van. A
+     * felhasználó felelőssége a teszteset helyes működése
+     * érdekében a páros működés kiválasztása.
+     * A váltózóneveket regisztrálja.
+     */
     @Override
     public void run() {
         Room r1 = new Room();

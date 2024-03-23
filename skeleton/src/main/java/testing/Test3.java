@@ -3,6 +3,11 @@ package testing;
 import model.Student;
 
 public class Test3 implements ITest {
+    /**
+     * Létrehoz két
+     * hallgatót, akik találkoznak.
+     * A változóneveket regisztrálja.
+     */
     @Override
     public void run() {
         Student s1 = new Student();

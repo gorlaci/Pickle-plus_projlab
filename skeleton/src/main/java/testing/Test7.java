@@ -8,6 +8,14 @@ import model.TVSZ;
 
 
 public class Test7 implements ITest {
+    /**
+     * Létrehoz egy szobát és egy hallgatót és a kezébe ad egy Camembert-et, egy
+     * TVSZ-t és egy maszkot, majd belehelyezi a szobába. Ezután
+     * a hallgató használja a Camembert-et, ami elgázosítja a szobát.
+     * Amikor a hallgató elkábulna a gáztól, használja a maszkot,
+     * ami megmenti őt az elkábulástól.
+     * A változók neveit regisztrálja.
+     */
     @Override
     public void run() {
         Room r = new Room();
