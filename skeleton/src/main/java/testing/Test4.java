@@ -5,6 +5,11 @@ import model.Student;
 import model.Teacher;
 
 public class Test4 implements ITest {
+    /**
+     * Létrehoz egy hallgatót, egy oktatót és egy szobát, ahova mindkettőjüket
+     * belerakja. Az oktató ezután megbuktatja a hallgatót.
+     * A változóneveket regisztrálja.
+     */
     @Override
     public void run() {
         Teacher t = new Teacher();
