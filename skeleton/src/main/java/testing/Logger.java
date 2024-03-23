@@ -51,8 +51,9 @@ public class Logger {
     }
 
     /**
-     *
-     * @param object
+     * Új objektum létrehozásának kezdetét logolja.
+     * A megefelelő behúzás után az objektum konstruktorának nevét írja ki egy jobbra mutató nyíl után.
+     * @param object az új objektum
      */
     public static void create( Object object ){
         writeIndent();
@@ -134,8 +135,9 @@ public class Logger {
     }
 
     /**
-     *
-     * @param object
+     * Új objektum létrehozásának végét logolja.
+     * A megefelelő behúzás után az objektum konstruktorának nevét írja ki egy balra mutató nyíl után.
+     * @param object az új objektum
      */
     public static void exitCreate( Object object ){
         indent--;
