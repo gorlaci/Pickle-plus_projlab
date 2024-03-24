@@ -59,6 +59,10 @@ b -->> s : true
 else
     b -->> s : false
     deactivate b
+    s -> m : saveFromDeath(t)
+    activate m
+    m -->> s : false
+    deactivate m
     s -> r1 : removePerson(s)
     activate r1
     r1 -->> s
