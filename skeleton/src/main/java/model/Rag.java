@@ -28,6 +28,9 @@ public class Rag extends IntervalItem{
     @Override
     public void meet(Person person) {
         Logger.enter( this, "meet", List.of(person) );
+        boolean success = Logger.askQuestion( "Is # activated?", this );
+        if(success)
+            person.slip();
         Logger.exit( this, "meet");
     }
 
