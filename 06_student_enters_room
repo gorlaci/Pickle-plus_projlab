@@ -1,0 +1,102 @@
+@startuml
+participant Main
+participant s as "s: Student"
+participant r1 as "r1: Room"
+participant t as "t: Teacher"
+participant tv as "tv: TVSZ"
+participant r2 as "r2: Room"
+participant m as "m: Mask"
+participant b as "b: BeerGlass"
+activate Main
+Main -> s : enterRoom(r1)
+activate s
+opt p1 not stunned
+s -> r2 : movePerson(s,r1)
+activate r2
+alt r2.curseInactive
+r2 -> r1 : acceptPerson(s)
+activate r1
+alt r1 not full
+r1 -> s : setLocation(r1)
+activate s
+s -->> r1
+deactivate s
+opt r1 gassed
+r1 -> s : stun()
+activate s
+s -> m : saveFromGas()
+activate m
+opt m is not activated
+m -> m : activate()
+activate m
+m -->> m
+deactivate m
+end
+m -->> s : true
+deactivate m
+s -->> r1
+deactivate s
+end
+r1 -> tv : meet(s)
+activate tv
+tv -->> r1
+deactivate tv
+r1 -> s : meet(t)
+activate s
+s -> t : greet(s)
+activate t
+opt t not stunned
+t -> s : kill(t)
+activate s
+s -> m : saveFromDeath(t)
+activate m
+m -->> s : false
+deactivate m
+s -> b : saveFromDeath(t)
+activate b
+alt b is activated
+b -->> s : true
+else
+    b -->> s : false
+    deactivate b
+    s -> r1 : removePerson(s)
+    activate r1
+    r1 -->> s
+    deactivate r1
+    end
+s -->> t
+deactivate s
+end
+t -->> s
+deactivate t
+s -->> r1
+deactivate s
+r1 -->> r2 : true
+r2 -> r2 : removePerson(s)
+activate r2
+r2 -->> r2
+deactivate r2
+r2 -->> s : true
+s -> m : setLocation(r1, s)
+activate m
+m -->> s
+deactivate m
+s -> b : setLocation(r1, s)
+activate b
+b -->> s
+deactivate b
+else
+    r1 -->> r2 : false
+    deactivate r1
+    r2 -->> s : false
+    s --> Main
+    end
+else
+    r2 -->> s : false
+    deactivate r2
+    s --> Main
+    end
+end
+s-->Main
+deactivate s
+@enduml
