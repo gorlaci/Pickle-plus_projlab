@@ -97,7 +97,7 @@ public class Student extends Person{
      * @param item a használni kívánt tárgy
      */
     public void activateItem( Item item ){
-        Logger.enter(this, "activateItem");
+        Logger.enter(this, "activateItem", List.of(item));
         item.activate();
         Logger.exit(this, "activateItem");
     }

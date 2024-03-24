@@ -3,8 +3,6 @@
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 G
 src/main/java/Main.java,e\4\e44a8606ce010ad9b89aafdfcee2ab49afbf6d10
-H
-src/main/java/TestA.java,2\5\253c817bf9f333916074099b98c5e2f746f5e3ce
 R
 "src/main/java/model/BeerGlass.java,b\b\bb0da71ea66b434675e752dab64107d1360210c5
 M
@@ -29,8 +27,6 @@ R
 "src/main/java/model/Camembert.java,8\6\8614fdbfd6bfede2ddd74fcae294efd805a36f42
 M
 src/main/java/model/Mask.java,1\d\1de694a3768e366799444a722fdded4a92425add
-H
-src/main/java/TestB.java,8\5\8583a172abb7951ee73e25b977e47fbf1579d841
 R
 "src/main/java/model/SlideRule.java,e\5\e5c8fcf7c2c5f83fe41bb4e0f5cf1c95b982a9c3
 Q
