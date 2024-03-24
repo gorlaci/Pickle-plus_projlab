@@ -250,6 +250,11 @@ public class Room implements ItemHandler, TimeSensitive {
      */
     public void createGas(){
         Logger.enter( this, "createGas" );
+
+        for( Person person : peopleInRoom ){
+            person.stun();
+        }
+
         Logger.exit( this, "createGas" );
     }
 
