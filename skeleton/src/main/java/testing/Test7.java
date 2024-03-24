@@ -32,10 +32,10 @@ public class Test7 implements ITest {
         s.setLocation(r);
         s.initItem(c);
         c.initLocation(r, s);
-        s.initItem(m);
-        m.initLocation(r, s);
         s.initItem(tv);
         tv.initLocation(r, s);
+        s.initItem(m);
+        m.initLocation(r, s);
         s.activateItem(c);
     }
 }
