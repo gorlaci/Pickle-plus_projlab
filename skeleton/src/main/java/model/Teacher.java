@@ -28,7 +28,7 @@ public class Teacher extends Person{
     public void meet(Person person) {
         Logger.enter(this, "meet", List.of(person));
 
-        if( Logger.askQuestion( "Is # stunned?" ) ) {
+        if( !Logger.askQuestion( "Is # stunned?", this ) ) {
             person.kill(this);
         }
         Logger.exit(this, "meet");

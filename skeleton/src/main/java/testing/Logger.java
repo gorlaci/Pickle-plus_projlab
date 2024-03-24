@@ -154,7 +154,7 @@ public class Logger {
      * @param question az eldöntendő kérdés
      * @return {@code true} ha a válasz 'y', {@code false} ha a válasz 'n'
      */
-    public static boolean askQuestion( String question ){
+    private static boolean askQuestion( String question ){
         writeIndent();
         System.out.print( question + " [y/n] " );
         while( in.hasNext() ) {

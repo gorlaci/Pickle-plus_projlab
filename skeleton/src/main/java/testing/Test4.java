@@ -18,10 +18,10 @@ public class Test4 implements ITest {
         Logger.register(s, "s");
         Room r = new Room();
         Logger.register(r, "r");
-        r.addPerson(t);
-        t.setLocation(r);
         r.addPerson(s);
         s.setLocation(r);
+        r.addPerson(t);
+        t.setLocation(r);
         t.meet(s);
     }
 }

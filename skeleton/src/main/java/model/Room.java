@@ -107,11 +107,6 @@ public class Room implements ItemHandler, TimeSensitive {
         for( Person person : peopleInRoom ){
             person.timeElapsed( time );
         }
-        if( Logger.askQuestion( "Is # gassed?", this ) ){
-            for( Person person : peopleInRoom ){
-                person.stun();
-            }
-        }
         for( Person person : peopleInRoom ){
             for( Item item : itemsInRoom ) {
                 item.meet( person );

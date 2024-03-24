@@ -23,10 +23,10 @@ public class Test11 implements ITest {
         Logger.register(r, "r");
         BeerGlass b = new BeerGlass();
         Logger.register(b, "b");
-        r.addPerson(t);
-        t.setLocation(r);
         r.addPerson(s);
         s.setLocation(r);
+        r.addPerson(t);
+        t.setLocation(r);
         s.initItem(b);
         b.initLocation(r, s);
         r.timeElapsed(1);

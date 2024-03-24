@@ -41,10 +41,10 @@ public class Test1 implements ITest {
         tv.initLocation(r1, null);
         r1.addPerson(t);
         t.setLocation(r1);
-        s.initItem(m);
-        m.initLocation(r2, s);
         s.initItem(b);
         b.initLocation(r2, s);
+        s.initItem(m);
+        m.initLocation(r2, s);
         s.enterRoom(r1);
     }
 }
