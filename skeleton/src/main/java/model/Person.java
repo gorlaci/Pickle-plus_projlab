@@ -152,8 +152,11 @@ public abstract class Person implements ItemHandler, TimeSensitive{
                 break;
             }
         }
+
+
         if( !saved ){
-            for( Item item : itemsInHand ){
+            List<Item> itemsInHandCopy = new ArrayList<>(itemsInHand);
+            for( Item item : itemsInHandCopy ){
                 dropItem( item );
             }
         }

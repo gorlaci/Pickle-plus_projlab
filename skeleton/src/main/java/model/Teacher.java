@@ -27,7 +27,10 @@ public class Teacher extends Person{
     @Override
     public void meet(Person person) {
         Logger.enter(this, "meet", List.of(person));
-        person.kill(this);
+
+        if( Logger.askQuestion( "Is # stunned?" ) ) {
+            person.kill(this);
+        }
         Logger.exit(this, "meet");
     }
 
