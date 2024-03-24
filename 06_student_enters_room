@@ -10,7 +10,7 @@ participant b as "b: BeerGlass"
 activate Main
 Main -> s : enterRoom(r1)
 activate s
-opt p1 not stunned
+opt s not stunned
 s -> r2 : movePerson(s,r1)
 activate r2
 alt r2.curseInactive
@@ -24,6 +24,10 @@ deactivate s
 opt r1 gassed
 r1 -> s : stun()
 activate s
+s -> b : saveFromGas()
+activate b
+b -->> s : false
+deactivate b
 s -> m : saveFromGas()
 activate m
 opt m is not activated
@@ -48,10 +52,6 @@ activate t
 opt t not stunned
 t -> s : kill(t)
 activate s
-s -> m : saveFromDeath(t)
-activate m
-m -->> s : false
-deactivate m
 s -> b : saveFromDeath(t)
 activate b
 alt b is activated
@@ -77,26 +77,24 @@ activate r2
 r2 -->> r2
 deactivate r2
 r2 -->> s : true
-s -> m : setLocation(r1, s)
-activate m
-m -->> s
-deactivate m
 s -> b : setLocation(r1, s)
 activate b
 b -->> s
 deactivate b
+s -> m : setLocation(r1, s)
+activate m
+m -->> s
+deactivate m
 else
     r1 -->> r2 : false
     deactivate r1
     r2 -->> s : false
-    s --> Main
     end
 else
     r2 -->> s : false
     deactivate r2
-    s --> Main
     end
 end
-s-->Main
+s-->>Main
 deactivate s
 @enduml
