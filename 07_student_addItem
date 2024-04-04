@@ -1,0 +1,25 @@
+@startuml
+actor co as "Controller"
+participant s as "s: Student"
+participant r as "r: Room"
+participant tv as "tv: TVSZ"
+activate co
+co -> s : addItem(tv)
+activate s
+opt stunRemaining == 0 && itemsInHand.size < 5
+s -> r : pickUpItem(tv)
+alt stickiness < 5
+activate r
+s <<-- r : true
+s -> tv : setLocation(r,s)
+activate tv
+s <<-- tv
+deactivate tv
+else
+s <<-- r : false
+deactivate r
+end
+end
+co <<-- s
+deactivate s
+@enduml
