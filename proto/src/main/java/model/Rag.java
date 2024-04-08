@@ -1,9 +1,5 @@
 package model;
 
-import testing.Logger;
-
-import java.util.List;
-
 /**
  * A Rag osztály a nedves táblatörlő rongy működését és viselkedését modellezi.
  * A rongy aodtt ideig bénítja a vele egy helységben lévő oktatókat. A hallgató tudja aktiválni.
