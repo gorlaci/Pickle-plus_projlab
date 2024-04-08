@@ -8,6 +8,9 @@ package model;
  * Az IntervalItem leszármazottja.
  */
 public class Mask extends IntervalItem{
+
+    private int duration;
+
     /**
      * A Mask osztály konstriuktora.
      * Létrehoz és inicializál egy Mask objektumot és ennek tényét logolja.
@@ -56,5 +59,13 @@ public class Mask extends IntervalItem{
      */
     @Override
     public void timeElapsed(int time) {
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
     }
 }

@@ -19,4 +19,20 @@ public abstract class IntervalItem extends Item {
     @Override
     public void activate() {
     }
+
+    public boolean isActivated(){
+        return activated;
+    }
+
+    public void setActivated(boolean activated){
+        this.activated = activated;
+    }
+
+    public int getTimeRemaining() {
+        return timeRemaining;
+    }
+
+    public void setTimeRemaining( int timeRemaining ){
+        this.timeRemaining = timeRemaining;
+    }
 }

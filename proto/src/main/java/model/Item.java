@@ -12,6 +12,10 @@ public abstract class Item implements TimeSensitive {
     protected Room location;
     protected Person holder;
 
+    public Item(){
+
+    }
+
     /**
      * A tárgy kezdeti helyének, illetve birtokosának beéllítására szolgál.
      * A függvényhívást és visszatérést logolja.
@@ -57,4 +61,20 @@ public abstract class Item implements TimeSensitive {
      * @return {@code true} ha védelmet biztosít, {@code false} egyébként
      */
     public abstract  boolean saveFromGas();
+
+    public Room getLocation(){
+        return location;
+    }
+
+    public void setLocation(Room location){
+        this.location = location;
+    }
+
+    public Person getHolder(){
+        return holder;
+    }
+
+    public void setHolder(Person holder) {
+        this.holder = holder;
+    }
 }

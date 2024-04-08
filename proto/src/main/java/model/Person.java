@@ -10,6 +10,8 @@ import java.util.List;
  */
 public abstract class Person implements ItemHandler, TimeSensitive{
 
+    private int stunRemaining;
+
     protected Room location;
     protected final List<Item> itemsInHand = new ArrayList<>();
 
@@ -115,4 +117,19 @@ public abstract class Person implements ItemHandler, TimeSensitive{
      */
     public abstract void greet( Person greeter );
 
+    public int getStunRemaining() {
+        return stunRemaining;
+    }
+
+    public void setStunRemaining(int stunRemaining) {
+        this.stunRemaining = stunRemaining;
+    }
+
+    public Room getLocation(){
+        return location;
+    }
+
+    public List<Item> getItemsInHand() {
+        return itemsInHand;
+    }
 }
