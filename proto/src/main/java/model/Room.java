@@ -19,7 +19,7 @@ public class Room implements ItemHandler, TimeSensitive {
     private int changeCurseIn;
     private static final int CURSESTATEINTERVAL=5;
     private int stickiness;
-    private static final int STICKYLIMIT=3;
+    private static final int STICKYLIMIT=5;
 
     private final List<Person> peopleInRoom = new ArrayList<>();
     private final List<Item> itemsInRoom = new ArrayList<>();
@@ -29,6 +29,11 @@ public class Room implements ItemHandler, TimeSensitive {
     /**
      * A Room osztály konstruktora.
      * Létrehoz és inicializál egy Room objektumot.
+     *
+     * @param capacity a szoba kapacitása
+     * @param gas a szoba gázos-e
+     * @param cursed a szoba el van-e átkozva
+     * @param stickiness az utolsó takarítás óta a szobába belépő személyek száma
      */
     public Room(int capacity, boolean gas, boolean cursed, int stickiness){
         this.capacity = capacity;
@@ -79,6 +84,23 @@ public class Room implements ItemHandler, TimeSensitive {
     public void addItem(Item item) {
         itemsInRoom.add(item);
         item.setLocation(this, null);
+    }
+
+
+    /**
+     * Egy tárgy felvételének kezdeményezése a szobánál.
+     * Amennyiben a stickiness még nem érte el a határértékét,
+     * a removeItem()-hez hasonlóan eltávolítja a tárgyat, majd igazzal visszatér.
+     * Egyébként hamis visszatérési értékkel jelzi a személynek a sikertelen felvételt.
+     * @param item a tárgy amit fel akarnak venni
+     * @return {@code true} ha a tárgy felvehető {@code false} egyébként
+     */
+    public boolean pickUpItem(Item item) {
+        if(stickiness<STICKYLIMIT) {
+            itemsInRoom.remove(item);
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -162,6 +184,44 @@ public class Room implements ItemHandler, TimeSensitive {
     }
 
     /**
+     *Ha a szoba jelenleg nincs aktívan elátkozva, a
+     * paraméterként kapott személy a paraméterként kapott szobába léptetésének igényét továbbítja. A kapott szoba
+     * értesíti ennek sikerességéről és ő is ezzel tér vissza. Ha igazzal tér vissza, akkor
+     * eltávolítja a személyt önmagából. Ha a szoba aktívan elátkozott, rögtön hamissal tér vissza.
+     * @param person a személy, aki át akar lépni
+     * @param roomTo a szoba, ahova át szeretne lépni
+     * @return {@code true} ha sikeresen átlépett, {@code false} egyébként
+     */
+    public boolean movePerson( Person person, Room roomTo ){
+        if(curseActive) return false;
+        boolean moveSucceed=roomTo.acceptPerson(person);
+        if(moveSucceed) {
+            peopleInRoom.remove(person);
+        }
+        return moveSucceed;
+    }
+
+    /**
+     * A szoba takarítása.
+     * Stickiness nullázása. A legutóbb érkezett ember (ez a takarító,
+     * aki a szobába jövetelkor hívta a függvényt) kivételével
+     * összes szobában tartózkodó embert átteszi egy másik szobába, amennyiben teheti.
+     * A szomszédok listájában elölről indul, és ameddig tudja tenni az embereket, addig oda teszi
+     * (meghívja az adott emberre az enterRoom(r3) metódust az adott r3 szomszédot átadva),
+     * ha pedig nem tudja, akkor a következő szomszéddal próbálkozik.
+     * Ha az összes szomszédon végig ment és még mindig maradt ember a szobában, akkor ők ott maradhatnak.
+     */
+    public void clean() {
+        stickiness=0;
+        for(Room neighbour: neighbours) {
+            List<Person> peopleInRoomCopy=new ArrayList<Person>(peopleInRoom);
+            for(int i=0; i<peopleInRoomCopy.size()-1; i++) {
+                peopleInRoomCopy.get(i).enterRoom(neighbour);
+            }
+        }
+    }
+
+    /**
      * Ezzel a függvénnyel kerül indítványozásra a meghívott szobánál, hogy
      * kettéosztódjon. Amennyiben tartózkodik benne személy NULL-t ad vissza. Különben
      * pedig létrehoz egy új szobát, aminek neighbours-ei a saját neighbours-ei fele és saját
@@ -189,19 +249,19 @@ public class Room implements ItemHandler, TimeSensitive {
 
         int desiredItemSize = itemsInRoom.size() / 2;
         while( itemsInRoom.size() > desiredItemSize ){
-            newRoom.addItem( itemsInRoom.getFirst() );
+            newRoom.addItem( itemsInRoom.get(0) );
             itemsInRoom.remove( 0 );
         }
 
         int desiredNeighbourSize = neighbours.size() / 2;
         while( neighbours.size() > desiredNeighbourSize ){
-            Room neighbour=neighbours.getFirst();
+            Room neighbour=neighbours.get(0);
             if(neighbour.neighbours.contains(this)) {
                 neighbour.neighbours.remove(this);
                 neighbour.neighbours.add(newRoom);
             }
             newRoom.neighbours.add( neighbour );
-            neighbours.removeFirst();
+            neighbours.remove(0);
         }
         neighbours.add(newRoom);
         newRoom.neighbours.add(this);
@@ -229,7 +289,7 @@ public class Room implements ItemHandler, TimeSensitive {
                 newRoom.addItem(item);
             }
             while(!neighbours.isEmpty()) {
-                Room neighbour=neighbours.getFirst();
+                Room neighbour=neighbours.get(0);
                 if(neighbour != room2) {
                     if(neighbour.neighbours.contains(this)) {
                         neighbour.neighbours.remove(this);
@@ -237,7 +297,7 @@ public class Room implements ItemHandler, TimeSensitive {
                     }
                     newRoom.neighbours.add(neighbour);
                 }
-                neighbours.removeFirst();
+                neighbours.remove(0);
             }
         }
 
@@ -271,7 +331,7 @@ public class Room implements ItemHandler, TimeSensitive {
         }
 
         while(!neighbours.isEmpty()) {
-            Room neighbour=neighbours.getFirst();
+            Room neighbour=neighbours.get(0);
             if(neighbour != room1) {
                 if(neighbour.neighbours.contains(this)) {
                     neighbour.neighbours.remove(this);
@@ -279,31 +339,11 @@ public class Room implements ItemHandler, TimeSensitive {
                 }
                 newRoom.neighbours.add(neighbour);
             }
-            neighbours.removeFirst();
+            neighbours.remove(0);
         }
 
         return newRoom;
     }
-
-    /**
-     *Ha a szoba jelenleg nincs aktívan elátkozva, a
-     * paraméterként kapott személy a paraméterként kapott szobába léptetésének igényét továbbítja. A kapott szoba
-     * értesíti ennek sikerességéről és ő is ezzel tér vissza. Ha igazzal tér vissza, akkor
-     * eltávolítja a személyt önmagából. Ha a szoba aktívan elátkozott, rögtön hamissal tér vissza.
-     * @param person a személy, aki át akar lépni
-     * @param roomTo a szoba, ahova át szeretne lépni
-     * @return {@code true} ha sikeresen átlépett, {@code false} egyébként
-     */
-    public boolean movePerson( Person person, Room roomTo ){
-        if(curseActive) return false;
-        boolean moveSucceed=roomTo.acceptPerson(person);
-        if(moveSucceed) {
-            peopleInRoom.remove(person);
-        }
-        return moveSucceed;
-    }
-
-    //TODO clean és pickUpItem még hiányzik
 
     /**
      * A szoba gázosítása vagy annak megszüntetése. Amennyiben a kapott paraméter

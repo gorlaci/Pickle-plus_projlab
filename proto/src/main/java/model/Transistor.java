@@ -6,7 +6,7 @@ import java.util.HashMap;
  * A Transistor osztály modellezi a tranzisztorok műkösését és viselkedését a játékban.
  * Ahhoz hogy egy tranzisztort teleportálásra lehessen használni
  * kettő összepárosított tranzisztorra van szükség. A tranzisztor a párját
- * a pair tagváltozójában tartja nyilván. Ha két tranziszto összekapcsolódott, már nem kapcsolódhatnak szét.
+ * a pair tagváltozójában tartja nyilván. Ha két tranzisztor összekapcsolódott, már nem kapcsolódhatnak szét.
  * Az Item absztrakt osztály leszármazottja.
  */
 public class Transistor extends Item{
@@ -17,20 +17,25 @@ public class Transistor extends Item{
 
     /**
      * A Transistor osztály konstruktora.
-     * Létrehoz és inicializál egy Transistor objektumot és ennek tényét logolja.
+     * Létrehoz és inicializál egy Transistor objektumot.
+     *
+     * @param location a szoba, amiben a tárgy van
+     * @param holder a személy, akinél a tárgy van
      */
-    public Transistor(){
+    public Transistor(Room location, Person holder){
+        super(location, holder);
     }
 
     /**
      * A paraméterben kapott tranzisztorral összepárosítja az objektumot.
-     * A függvényhívást és visszatérést logolja.
      * @param transistor a párosítani kívánt tranzisztor
      */
     public void setPair(Transistor transistor) {
+        this.pair = transistor;
     }
 
     /**
+     * Tranzisztor aktiválása: párosítás és teleportálás kivitelezése
      * Két tranzisztor összekapcsolását illetve azok használatát is lehetővé
      * tevő metódus. Amennyiben egy t1 tranzisztort úgy aktiválunk, hogy a hallgatónál még
      * nincs másik aktivált tranzisztor és a t1.pair NULL, akkor a t1 párosítási szándékát
@@ -41,24 +46,36 @@ public class Transistor extends Item{
      * NULL, akkor t1-et eldobja a játékos az eredeti szobájában és a t1 birtokosát átlépteti
      * az enterRoom() metódus segítségével, t2 tartózkodási helyébe, amit paraméterként ad
      * át a személy metódusába.
-     * Azt, hogy párosítva van-e a tranzisztor, a felhasználótól kérdezi meg.
      */
     @Override
     public void activate() {
+        if(pair != null){
+            Person personToMove = holder;
+            personToMove.dropItem( this );
+            personToMove.enterRoom( pair.location );
+        } else{
+            Transistor candidate = pairingRequests.get(holder);
+            if(candidate == null || candidate.holder != holder){
+                pairingRequests.put(holder, this);
+            }else{
+                pair = candidate;
+                candidate.pair = this;
+                pairingRequests.remove(holder);
+            }
+        }
     }
 
     /**
+     * Találkozás emberrel
      * Nem csinál semmit.
-     * A függvényhívást és visszatérést logolja.
      * @param person a személy, akivel találkozik a tárgy
      */
     @Override
-    public void meet(Person person) {
-    }
+    public void meet(Person person) { }
 
     /**
+     * Kibukás elleni védelem kérése
      * Nem véd meg a kibukástól.
-     * A függvényhívást és visszatérést logolja.
      * @param killer a támadó személy
      * @return {@code false} minden esetben
      */
@@ -68,8 +85,8 @@ public class Transistor extends Item{
     }
 
     /**
+     * Mérgező gáz elleni védelem kérése
      * Nem véd meg a gáztól.
-     * A függvényhívást és visszatérést logolja.
      * @return {@code false} minden esetben
      */
     @Override
@@ -78,11 +95,15 @@ public class Transistor extends Item{
     }
 
     /**
+     * Idő telése a tárgyon
      * Nem történik vele semmi.
-     * A függvényhívást és visszatérést logolja.
      * @param time az eltelt idő
      */
     @Override
     public void timeElapsed(int time) {
+    }
+
+    public Transistor getPair() {
+        return pair;
     }
 }

@@ -1,7 +1,7 @@
 package model;
 
 /**
- * Az IntervalItem egy absztrakt alaposztály
+ * Az IntervalItem egy absztrakt osztály
  * olyan tárgyak viselkedésének és működésének modellezésére,
  * amik egy adott ideig fejtik ki hatásukat. Az osztály
  * felelőssége tudni, hogy a tárgy aktiválva van-e és meddig érvényes.
@@ -13,11 +13,26 @@ public abstract class IntervalItem extends Item {
     protected int timeRemaining;
 
     /**
-     * A tárgya aktiválása.
-     * A függvényhívást és visszatérést logolja.
+     * Az IntervalItem osztály konstruktora.
+     * Inicializál egy Item objektumot a megadott értékekkel.
+     *
+     * @param location a szoba, amiben a tárgy van
+     * @param holder a személy, akinél a tárgy van
+     * @param activated a tárgy aktiválva van-e
+     * @param timeRemaining a hátralévő idő, amíg a tárgy aktív
+     */
+    public IntervalItem(Room location, Person holder, boolean activated, int timeRemaining){
+        super(location, holder);
+        this.activated = activated;
+        this.timeRemaining = timeRemaining;
+    }
+
+    /**
+     * A tárgy aktiválása.
      */
     @Override
     public void activate() {
+        activated = true;
     }
 
     public boolean isActivated(){
