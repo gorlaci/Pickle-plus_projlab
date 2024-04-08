@@ -31,3 +31,7 @@ S
 #src/main/java/model/Transistor.java,c\e\cee4dec52b0bc06f934d2ee6d64c0ef59ac93592
 M
 src/main/java/model/TVSZ.java,4\5\459651ccb1d71cedad252c828f04a35cae8934b7
+M
+src/main/java/Interpeter.java,7\b\7b227f847a7b70ab5996c90b19bcc899de1f8437
+P
+ src/main/java/model/Cleaner.java,0\1\01e1bb9ed99012578c23442691f96461ef18376f

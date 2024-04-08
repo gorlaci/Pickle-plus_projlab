@@ -10,6 +10,12 @@ import java.util.List;
  */
 public class Room implements ItemHandler, TimeSensitive {
 
+    private int capacity;
+    private boolean gas;
+    private boolean cursed;
+    private boolean curseActive;
+    private int stickiness;
+
     private final List<Person> peopleInRoom = new ArrayList<>();
     private final List<Item> itemsInRoom = new ArrayList<>();
 
@@ -19,7 +25,12 @@ public class Room implements ItemHandler, TimeSensitive {
      * A Room osztály konstruktora.
      * Létrehoz és inicializás egy Room objektumot és ennek tényét logolja.
      */
-    public Room(){
+    public Room(int capacity, boolean gas, boolean cursed, int stickiness){
+        this.capacity = capacity;
+        this.gas = gas;
+        this.cursed = cursed;
+        this.stickiness = stickiness;
+        this.curseActive = false;
     }
 
     /**
@@ -158,5 +169,57 @@ public class Room implements ItemHandler, TimeSensitive {
      */
     public boolean movePerson( Person person, Room roomTo ){
         return false;
+    }
+
+    public boolean isCursed() {
+        return cursed;
+    }
+
+    public void setCursed(boolean cursed) {
+        this.cursed = cursed;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+
+    public boolean isGas() {
+        return gas;
+    }
+
+    public void setGas(boolean gas) {
+        this.gas = gas;
+    }
+
+    public boolean isCurseActive() {
+        return curseActive;
+    }
+
+    public void setCurseActive(boolean curseActive) {
+        this.curseActive = curseActive;
+    }
+
+    public int getStickiness() {
+        return stickiness;
+    }
+
+    public void setStickiness(int stickiness) {
+        this.stickiness = stickiness;
+    }
+
+    public List<Person> getPeopleInRoom() {
+        return peopleInRoom;
+    }
+
+    public List<Item> getItemsInRoom() {
+        return itemsInRoom;
+    }
+
+    public List<Room> getNeighbours() {
+        return neighbours;
     }
 }

@@ -1,29 +1,21 @@
 
 Ä
-java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÌÈà«8‰È‘‚è1J$3c2d5a75-5e3a-4f50-af7b-0360e497a425
+java:S1186)"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÌÈà«8áêë1J$b33cc71c-a3ae-4883-8627-a56d16a6dba3
 É
-java:S1186&"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(úˆ²Çüÿÿÿÿ8Òê‘‚è1J$f2d82666-7ff5-4d47-857f-ce30685b5328
+java:S11861"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(úˆ²Çüÿÿÿÿ8‘áêë1J$2daa6cb9-cf75-4c00-b3ad-0e512b36b316
 Ä
-java:S1186."€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Îª£²8¦…’‚è1J$9b7fe559-42a8-406a-864a-4d494ffebc61
+java:S11869"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Îª£²8‘áêë1J$3646bba1-8a55-4fbc-b533-490dcac49ef3
 Ä
-java:S11867"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÚÖÆò8¡£’‚è1J$f67b8504-539b-40b8-af72-2f679efdd2ef
+java:S1186B"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÚÖÆò8’áêë1J$63085c05-1472-43d6-a42f-313140ce7121
 Ä
-java:S1186@"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(òûƒá8»¿’‚è1J$9a5cc5c5-5244-480d-9387-0999cf30f9ec
+java:S1186K"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(òûƒá8’áêë1J$166fb27a-e02a-4c28-9fd7-cc2434b16892
 Ä
-java:S1186N"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¯‡œ›8ûï’‚è1J$aea94116-1e6f-45f7-be67-626bff117ce9
+java:S1186Y"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¯‡œ›8’áêë1J$d309acd2-214b-421b-8657-5b9cf2629055
 Å
-java:S1186ˆ"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ö§ù‡8Â—–‚è1J$94b34efc-9b98-467f-b135-f54e1a59064d
+java:S1186“"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ö§ù‡8’áêë1J$af1f9bbf-9204-4416-9db9-f69fdd57d2c0
 Ê
-java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(§¨¦–şÿÿÿÿ8ı»–‚è1J$f86b3726-f188-485e-9a16-290240873635
-Ä
-java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ö¶é¦8¯­‘‚è1J$1e0da0d3-bc90-44fb-a810-cca0c47ec318
+java:S1186›"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(§¨¦–şÿÿÿÿ8“áêë1J$ba8c9efe-ca99-451c-860b-8488e6b4ca58
 p
-java:S1172€",Remove this unused method parameter "room1".(¶ÙÄ¢8ÃÚ•‚è1J$7d9c24a0-b932-407b-9bb6-649cc966d96e
-x
-java:S1068"0Remove this unused "peopleInRoom" private field.(Üš¶úÿÿÿÿ8Š¼–‚è1J$ae588299-69ac-40f4-bd4c-9000b4bc0b44
-r
-java:S1068"/Remove this unused "itemsInRoom" private field.(úêãÀ8ÈÚ•‚è1J$68daba0f-c42d-4116-8c8a-3559fb95d7e6
-v
-java:S1068".Remove this unused "neighbours" private field.(¿Ïèßşÿÿÿÿ8¯È‘‚è1J$097463a0-10ed-4940-a36a-5a4e7da9c193
+java:S1172‹",Remove this unused method parameter "room1".(¶ÙÄ¢8œáêë1J$151c0357-8270-41ab-aaff-0f5472679bc1
 n
-java:S1144€"*Remove this unused private "merge" method.(¶ÙÄ¢8›ã”‚è1J$2a61e401-f5cf-4182-91b2-590b81d24778
+java:S1144‹"*Remove this unused private "merge" method.(¶ÙÄ¢8£áêë1J$9aee6bb6-3365-44be-9842-248b151db86f
