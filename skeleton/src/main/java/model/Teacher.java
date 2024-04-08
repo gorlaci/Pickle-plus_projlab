@@ -76,7 +76,9 @@ public class Teacher extends Person{
     public void greet(Person greeter) {
         Logger.enter(this, "greet", List.of(greeter));
 
-        greeter.kill(this);
+        if( !Logger.askQuestion( "Is # stunned?", this ) ) {
+            greeter.kill(this);
+        }
 
         Logger.exit(this, "greet");
     }
