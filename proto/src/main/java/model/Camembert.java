@@ -27,7 +27,7 @@ public class Camembert extends Item{
     /**
      * Egy személlyel való találkozást kezeli, ha a földön van.
      * Nincsen semmilyen hatása.
-     * A függvényhívást és visszatérést logolja.
+     * 
      * @param person Az a személy, akivel találkozik
      */
     @Override
@@ -36,7 +36,6 @@ public class Camembert extends Item{
 
     /**
      * A tárgy nem nyújt védelmet támadás ellen.
-     * A függvényhívást és visszatérést logolja.
      * @param killer az a személy, aki megtámadta a BeerGlass objektum tulajdonosát
      * @return {@code false} minden esetben
      */
@@ -47,7 +46,6 @@ public class Camembert extends Item{
 
     /**
      * A tárgy nem nyújt védelmet gáz ellen.
-     * A függvényhívást és visszatérést logolja.
      * @return {@code false} minden esetben
      */
     @Override
@@ -57,7 +55,6 @@ public class Camembert extends Item{
 
     /**
      * Az idő műlása nincs rá hastással, mert egyszerhasználatos tárgy.
-     * A függvényhívást és visszatérést logolja.
      * @param time az eltelt idő
      */
     @Override
