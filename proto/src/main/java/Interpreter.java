@@ -2,7 +2,9 @@ import model.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Interpreter {
@@ -511,14 +513,97 @@ public class Interpreter {
             }
         });
 
+        commands.put("status", args -> {
+            if( args.length != 2 ){
+                System.out.println(INCORRECT_COMMAND);
+                return;
+            }
+            Object object = objects.get(args[1]);
+            if( object instanceof Room room ){
+                System.out.println();
+                System.out.println(getName(room));
+                printList("neighbours", room.getNeighbours());
+                printList("peopleInRoom", room.getPeopleInRoom());
+                printList("itemsInRoom", room.getItemsInRoom());
+                System.out.println("gas: " + room.isGas());
+                System.out.println("cursed: " + room.isCursed());
+                System.out.println("capacity: " + room.getCapacity());
+                System.out.println("curseActive: " + room.isCurseActive());
+                System.out.println("stickiness: " + room.getStickiness());
+            } else if( object instanceof Person person ){
+                System.out.println();
+                System.out.println(getName(person));
+                System.out.println("location: " + getName(person.getLocation()));
+                printList("itemsInHand", person.getItemsInHand());
+                System.out.println("stunRemaining: " + person.getStunRemaining());
+            } else if( object instanceof Transistor transistor ){
+                System.out.println();
+                System.out.println(getName(transistor));
+                System.out.println("location: " + getName(transistor.getLocation()));
+                System.out.println("holder: " + getName(transistor.getHolder()));
+                System.out.println("pair: " + getName(transistor.getPair()));
+            } else if( object instanceof TVSZ tvsz ){
+                System.out.println();
+                System.out.println(getName(tvsz));
+                System.out.println("location: " + getName(tvsz.getLocation()));
+                System.out.println("holder: " + getName(tvsz.getHolder()));
+                System.out.println("usesRemaining: " + tvsz.getUsesRemaining());
+            } else if( object instanceof Mask mask ){
+                System.out.println();
+                System.out.println(getName(mask));
+                System.out.println("location: " + getName(mask.getLocation()));
+                System.out.println("holder: " + getName(mask.getHolder()));
+                System.out.println("timeRemaining: " + mask.getTimeRemaining());
+                System.out.println("duration: " + mask.getDuration());
+            } else if( object instanceof IntervalItem intervalItem ){
+                System.out.println();
+                System.out.println(getName(intervalItem));
+                System.out.println("location: " + getName(intervalItem.getLocation()));
+                System.out.println("holder: " + getName(intervalItem.getHolder()));
+                System.out.println("timeRemaining: " + intervalItem.getTimeRemaining());
+            } else if( object instanceof Item item){
+                System.out.println();
+                System.out.println(getName(item));
+                System.out.println("location: " + getName(item.getLocation()));
+                System.out.println("holder: " + getName(item.getHolder()));
+            } else {
+                System.out.println(INCORRECT_COMMAND);
+                return;
+            }
+        });
+
         commands.put("exit", args -> {
             System.exit(1);
         });
     }
 
+    private String getName( Object object ){
+        if( object == null ){
+            return "NULL";
+        }
+        for( Map.Entry<String,Object> iter : objects.entrySet() ){
+            if( object.equals( iter.getValue() ) ){
+                return iter.getKey();
+            }
+        }
+        return null;
+    }
+
+    private void printList(String name, Collection<?> list){
+        System.out.print( name + ": ");
+        for( Object i : list ){
+            System.out.print(getName(i) + ", ");
+        }
+        System.out.println();
+    }
+
     public void execute(String line ){
         String[] args = line.split(" ");
         Command command = commands.get( args[ 0 ]);
+        if( command == null ){
+            System.out.println(INCORRECT_COMMAND);
+            return;
+        }
         command.execute(args);
     }
 
