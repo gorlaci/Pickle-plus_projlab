@@ -1,0 +1,20 @@
+create room r1
+create room r2
+neighbour r1 r2
+neighbour r2 r1
+create student s
+addperson s r1
+create beerglass b
+add b r1
+setinterval activated b true
+create transistor t1
+add t1 r1
+create teacher t
+addperson t r2
+setroom stickiness 4
+setseed s 0
+
+pickup t1 s
+pickup b s
+enter t r1
+pickup t1 s

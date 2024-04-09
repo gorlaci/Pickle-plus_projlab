@@ -1,0 +1,13 @@
+create room r1
+create student s
+create mask m
+create camambert c
+create airfresher a
+
+add m s
+add c s
+add a s
+addperson s r1
+
+activate c s
+activate a s

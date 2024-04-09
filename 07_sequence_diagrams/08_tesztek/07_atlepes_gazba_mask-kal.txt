@@ -1,0 +1,13 @@
+create room r1
+create room r2
+setroom r2 gas true
+create student s
+create teacher t
+create mask m
+
+addperson s r1
+addperson t r2
+add m s
+neighbour r1 r2
+
+enter r2 s

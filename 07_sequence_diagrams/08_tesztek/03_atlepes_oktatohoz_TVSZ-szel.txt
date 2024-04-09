@@ -1,0 +1,12 @@
+create room r1
+create room r2
+create student s
+create teacher t
+create tvsz tv
+
+addperson s r1
+addperson t r2
+add tv s
+neighbour r1 r2
+
+enter r2 s
