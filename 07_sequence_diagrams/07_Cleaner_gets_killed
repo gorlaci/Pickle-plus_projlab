@@ -1,0 +1,17 @@
+@startuml
+
+mainframe Cleaner gets killed
+
+participant t as "t: Teacher"
+participant c as "c: Cleaner"
+
+-> t : meet(c)
+activate t
+t -> c : kill(t)
+activate c
+t <<-- c
+deactivate c
+<<-- t :
+deactivate t
+
+@enduml

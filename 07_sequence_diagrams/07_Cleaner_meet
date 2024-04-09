@@ -1,0 +1,15 @@
+@startuml
+
+mainframe Cleaner meet 
+
+participant r as "r: Room"
+participant c as "c: Cleaner"
+participant p as "p: Person"
+
+activate r
+r -> c : meet(p)
+activate c
+r <<-- c
+deactivate c
+
+@enduml

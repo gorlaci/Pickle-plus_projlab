@@ -1,0 +1,17 @@
+@startuml
+
+mainframe Cleaner gets slipped
+
+participant r as "r: Rag"
+participant c as "c: Cleaner"
+
+-> r : meet(c)
+activate r
+r -> c : slip()
+activate c
+r <<-- c
+deactivate c
+<<-- r :
+deactivate r
+
+@enduml

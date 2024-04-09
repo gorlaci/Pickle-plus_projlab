@@ -1,0 +1,13 @@
+@startuml
+
+mainframe False Mask against Death
+
+participant fm as "fm: FalseMask"
+participant t as "t: Teacher"
+
+-> fm : saveFromDeath(t)
+activate fm
+<<-- fm : false
+deactivate fm
+
+@enduml

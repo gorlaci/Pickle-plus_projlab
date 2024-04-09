@@ -1,0 +1,38 @@
+@startuml
+
+mainframe BeerGlass against Death
+
+participant s as "s: Student"
+participant bg as "bg: BeerGlass"
+participant r as "r: Room"
+participant i as "i: Item"
+
+activate s
+s -> bg : saveFromDeath(t)
+activate bg
+alt bg.activated
+    s <- bg : dropRandomItem()
+    activate s
+    s -> s : dropItem(i)
+    note right : i is chosen from itemsInHand pseudo randomly
+    activate s
+    s -> r : addItem(i)
+    activate r
+    r -> i : setLocation(r,NULL)
+    activate i
+    r <<-- i
+    deactivate i
+    s <<-- r
+    deactivate r
+    s -->> s
+    deactivate s
+    s -->> bg
+    deactivate s
+    s <<-- bg : true
+else
+    s <<-- bg : false
+    deactivate bg
+end
+deactivate s
+
+@enduml

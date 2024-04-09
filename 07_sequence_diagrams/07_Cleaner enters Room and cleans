@@ -1,0 +1,38 @@
+@startuml
+
+mainframe Cleaner enters Room and cleans
+
+actor co as "Controller"
+participant c as "c: Cleaner"
+participant r1 as "r1: Room"
+participant p2 as "p2: Person"
+participant r3 as "r3: Room"
+participant r2 as "r2: Room"
+participant i as "i: Item"
+
+activate co
+co -> c : enterRoom(r1)
+activate c
+ref over c,r1,p2,r2,i : Person enters Room
+opt location changed
+    c -> r1 : setGas(false)
+    activate r1
+    c <<-- r1
+    deactivate r1
+    c -> r1 : clean()
+    activate r1
+    loop foreach r3 in r1.neighbours
+        loop foreach p2 in r1.peopleInRoom except c
+            r1 -> p2 : enterRoom(r3)
+            activate p2
+            ref over p2,r3 : Person enters Room
+            r1 <<-- p2
+            deactivate p2
+        end
+    end
+    c <<-- r1
+    deactivate r1
+end
+co <<-- c
+deactivate c
+@enduml

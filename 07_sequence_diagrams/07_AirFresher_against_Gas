@@ -1,0 +1,12 @@
+@startuml
+
+mainframe AirFresher against Gas
+
+participant a as "a: AirFresher"
+
+-> a : saveFromGas()
+activate a
+<<--  a : false
+deactivate a
+
+@enduml
