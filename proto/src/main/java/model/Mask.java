@@ -23,7 +23,7 @@ public class Mask extends IntervalItem{
      */
     public Mask(Room location, Person holder, boolean activated, int timeRemaining){
         super(location, holder, activated, timeRemaining);
-        this.duration = timeRemaining;
+        this.duration = timeRemaining - DURATION_DECR;
     }
 
     /**
@@ -72,9 +72,6 @@ public class Mask extends IntervalItem{
         if(activated){
             timeRemaining -= time;
             if(timeRemaining <= 0){
-                activated = false;
-                duration -= DURATION_DECR;
-                timeRemaining = duration;
                 if(duration <= 0){
                     if(holder != null){
                         holder.removeItem(this);
@@ -83,6 +80,11 @@ public class Mask extends IntervalItem{
                         location.removeItem(this);
                     }
                 }
+		else {
+		    activated = false;
+		    timeRemaining = duration;
+                    duration -= DURATION_DECR;
+		}
             }
         }
     }
