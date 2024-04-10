@@ -6,10 +6,12 @@ create teacher t
 create beerglass b
 create falsemask fm
 
+neighbour r1 r2
 addperson s r1
 addperson t r2
 add b s
 add fm s
-neighbour r1 r2
-
 enter r2 s
+
+status s
+status

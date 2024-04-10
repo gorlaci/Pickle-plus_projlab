@@ -15,3 +15,6 @@ drop t1 s
 activate t2 s
 enter r2 s
 activate t2 s
+
+status t2
+status s

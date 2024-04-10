@@ -13,3 +13,5 @@ neighbour r1 r2
 neighbour r2 r1
 
 enter r2 c
+
+status r2

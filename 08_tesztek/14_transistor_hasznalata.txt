@@ -18,3 +18,5 @@ drop t2 s
 enter r2 s
 enter r3 s
 activate t1 s
+
+status s

@@ -1,7 +1,6 @@
 create room r1
 create room r2
 setroom r2 capacity 5
-neighbour r1 r2
 
 create student s1
 create teacher t1
@@ -22,6 +21,7 @@ create airfresher a
 create transistor t
 create camembert c
 
+neighbour r1 r2
 addperson s1 r1
 addperson t1 r1
 addperson s2 r2
@@ -45,3 +45,8 @@ add c r2
 
 enter r2 s1
 enter r2 t1
+
+status s
+status t
+status rag
+status

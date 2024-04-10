@@ -5,3 +5,5 @@ addperson s r
 create tvsz t
 add t r
 pickup t s
+
+status s

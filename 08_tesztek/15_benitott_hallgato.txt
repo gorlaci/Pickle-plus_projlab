@@ -7,3 +7,5 @@ neighbour r1 r2
 addperson s r1
 
 enter r2 s
+
+status s

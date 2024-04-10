@@ -20,5 +20,11 @@ setinterval activated r true
 setinterval timeremaining r 1
 
 enter t r2
+
+status t
+
 elapsetime 1
 enter t r1
+
+status r2
+status t

@@ -42,8 +42,11 @@ add sr r3
 enter r2 T
 pickup r T
 enter r2 H
+
 status r2
 status tv
+
 enter r3 H
 pickup sr H
+
 status

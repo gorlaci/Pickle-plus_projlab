@@ -7,3 +7,6 @@ addperson s r1
 split r1 r3
 merge r1 r2 r4
 merge r2 r1 r5
+
+status r1
+status r2

@@ -9,6 +9,7 @@ create camambert c
 create transistor tr
 create rag r
 
+neighbour r1 r2
 addperson s r1
 addperson t r2
 add tv s
@@ -16,6 +17,11 @@ add a s
 add c s
 add tr s
 add r s
-neighbour r1 r2
+
+status s
+status
 
 enter r2 s
+
+status s
+status

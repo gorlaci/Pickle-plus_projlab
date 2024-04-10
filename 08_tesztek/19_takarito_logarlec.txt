@@ -4,3 +4,5 @@ addperson c r
 create sliderule sr
 add sr r
 pickup sr c
+
+status sr

@@ -11,10 +11,13 @@ create transistor t1
 add t1 r1
 create teacher t
 addperson t r2
-setroom stickiness 4
+setroom r1 stickiness 4
 setseed s 0
 
 pickup t1 s
 pickup b s
 enter t r1
 pickup t1 s
+
+status s
+status r1

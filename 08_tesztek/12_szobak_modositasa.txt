@@ -17,5 +17,13 @@ add m r1
 add tv r1
 add b r1
 
+status r1
+
 split r1 r5
+
+status r1
+status r5
+
 merge r1 r5 r6
+
+status r6
