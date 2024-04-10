@@ -172,12 +172,13 @@ public class Room implements ItemHandler, TimeSensitive {
 
         if(gas) person.stun();
 
-        for( Item item : itemsInRoom ){
-            item.meet( person );
+        for(int i=0; i<itemsInRoom.size(); i++) {
+            itemsInRoom.get(i).meet(person);
         }
 
-        for( Person personInRoom : peopleInRoom ){
-            if(personInRoom!=person) person.meet( personInRoom );
+        for( int i = 0 ; i < peopleInRoom.size() ; i++ ){
+            if(peopleInRoom.get( i )!=person)
+                person.meet( peopleInRoom.get( i ) );
         }
 
         return true;
