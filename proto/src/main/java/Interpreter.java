@@ -27,7 +27,7 @@ public class Interpreter {
             Object newObject = null;
             switch( args[ 1 ] ){
                 case "room":
-                    newObject = new Room( 3, false, false, 3);
+                    newObject = new Room( 3, false, false, 0);
                     break;
                 case "student":
                     newObject = new Student(0, null);
@@ -514,6 +514,28 @@ public class Interpreter {
         });
 
         commands.put("status", args -> {
+            if(args.length == 1) {
+                boolean win=false;
+                boolean inProgress=false;
+                for(Object object: objects.values()) {
+                    if(object instanceof Room room) {
+                        for(Person person: room.getPeopleInRoom()) {
+                            if(person instanceof Student student) {
+                                inProgress=true;
+                                for(Item item: student.getItemsInHand()) {
+                                    if(item instanceof SlideRule slideRule) {
+                                        win=true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                if(win) System.out.println("Win");
+                else if(inProgress) System.out.println("Game in progress");
+                else System.out.println("Game over");
+                return;
+            }
             if( args.length != 2 ){
                 System.out.println(INCORRECT_COMMAND);
                 return;
@@ -598,6 +620,9 @@ public class Interpreter {
     }
 
     public void execute(String line ){
+        if(line.isBlank()) {
+            return;
+        }
         String[] args = line.split(" ");
         Command command = commands.get( args[ 0 ]);
         if( command == null ){

@@ -1,7 +1,5 @@
 package model;
 
-import java.util.List;
-
 /**
  * A Student osztály a hallgatók működését és viselkedését modellezi.
  * A játékosok által elvégezhető funkciókat valósítja meg.
