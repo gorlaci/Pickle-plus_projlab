@@ -322,7 +322,7 @@ public class Interpreter {
                 case "timeremaining":
                     int newTimeRemaining;
                     try {
-                        newTimeRemaining = Integer.parseInt( args[2] );
+                        newTimeRemaining = Integer.parseInt( args[3] );
                     } catch (NumberFormatException exception){
                         System.out.println(INCORRECT_COMMAND);
                         return;
