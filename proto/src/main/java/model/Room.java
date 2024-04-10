@@ -125,10 +125,10 @@ public class Room implements ItemHandler, TimeSensitive {
 
         if(cursed) {
             changeCurseIn-=time;
-            if(changeCurseIn<=0) {
+            while(changeCurseIn<=0) {
                 curseActive = !curseActive;
+		changeCurseIn+=CURSESTATEINTERVAL;
             }
-            changeCurseIn+=CURSESTATEINTERVAL;
         }
         List<Item> itemsInRoomCopy = new ArrayList<>(itemsInRoom);
         for( Item item : itemsInRoomCopy ){
