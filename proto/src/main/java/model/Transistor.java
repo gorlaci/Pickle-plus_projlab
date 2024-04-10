@@ -55,7 +55,7 @@ public class Transistor extends Item{
             personToMove.enterRoom( pair.location );
         } else{
             Transistor candidate = pairingRequests.get(holder);
-            if(candidate == null || candidate.holder != holder){
+            if(candidate == null || candidate.holder != holder || candidate == this){
                 pairingRequests.put(holder, this);
             }else{
                 pair = candidate;
