@@ -46,7 +46,8 @@ add c r2
 enter r2 s1
 enter r2 t1
 
-status s
-status t
-status rag
+status r1
+status r2
+status t1
+status t2
 status
