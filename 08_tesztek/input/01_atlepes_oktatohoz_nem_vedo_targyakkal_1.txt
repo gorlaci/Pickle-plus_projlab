@@ -4,7 +4,7 @@ create student s
 create teacher t
 create falsetvsz ftv
 create airfresher a
-create camambert c
+create camembert c
 create transistor tr
 create rag r
 

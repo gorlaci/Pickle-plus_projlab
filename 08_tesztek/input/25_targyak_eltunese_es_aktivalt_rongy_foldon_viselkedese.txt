@@ -19,7 +19,7 @@ add r r2
 setinterval activated r true
 setinterval timeremaining r 1
 
-enter t r2
+enter r2 t
 
 status t
 

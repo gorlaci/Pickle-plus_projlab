@@ -1,0 +1,11 @@
+
+s
+location: r1
+itemsInHand: m, 
+stunRemaining: 0
+
+m
+location: r1
+holder: s
+timeRemaining: 6
+duration: 4

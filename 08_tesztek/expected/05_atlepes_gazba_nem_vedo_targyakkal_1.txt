@@ -1,0 +1,12 @@
+
+s
+location: r1
+itemsInHand: tv, a, c, tr, r, 
+stunRemaining: 0
+Game in progress
+
+s
+location: r2
+itemsInHand: 
+stunRemaining: 3
+Game over

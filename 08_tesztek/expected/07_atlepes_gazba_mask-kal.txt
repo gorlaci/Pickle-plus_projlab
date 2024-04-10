@@ -1,0 +1,6 @@
+
+s
+location: r2
+itemsInHand: m, 
+stunRemaining: 0
+Game over
