@@ -523,7 +523,7 @@ public class Interpreter {
                             if(person instanceof Student student) {
                                 inProgress=true;
                                 for(Item item: student.getItemsInHand()) {
-                                    if(item instanceof SlideRule slideRule) {
+                                    if(item instanceof SlideRule && !(item instanceof FalseSlideRule)) {
                                         win=true;
                                     }
                                 }
