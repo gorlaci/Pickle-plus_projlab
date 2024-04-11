@@ -8,9 +8,6 @@ addperson s1 r1
 addperson s2 r1
 
 enter r2 s1
-
-status s1
-
 elapsetime 5
 enter r2 s2
 
