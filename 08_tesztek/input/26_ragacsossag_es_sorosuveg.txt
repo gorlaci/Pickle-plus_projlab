@@ -16,9 +16,11 @@ setseed s -1
 
 pickup t1 s
 pickup b s
+
+status s
+
 enter r1 t
 pickup t1 s
 
 status s
 status r1
-status r2

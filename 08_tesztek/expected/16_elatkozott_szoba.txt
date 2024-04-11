@@ -1,9 +1,4 @@
 
-s1
-location: r2
-itemsInHand: 
-stunRemaining: 0
-
 r1
 neighbours: r2, 
 peopleInRoom: s2, 

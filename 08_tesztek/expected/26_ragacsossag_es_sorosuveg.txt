@@ -1,6 +1,11 @@
 
 s
 location: r1
+itemsInHand: t1, b, 
+stunRemaining: 0
+
+s
+location: r1
 itemsInHand: b, 
 stunRemaining: 0
 
@@ -13,13 +18,3 @@ cursed: false
 capacity: 3
 curseActive: false
 stickiness: 5
-
-r2
-neighbours: r1, 
-peopleInRoom: 
-itemsInRoom: 
-gas: false
-cursed: false
-capacity: 3
-curseActive: false
-stickiness: 0

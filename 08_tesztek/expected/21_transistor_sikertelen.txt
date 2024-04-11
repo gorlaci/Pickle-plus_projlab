@@ -2,7 +2,7 @@
 t2
 location: r2
 holder: s
-pair: t2
+pair: NULL
 
 s
 location: r2

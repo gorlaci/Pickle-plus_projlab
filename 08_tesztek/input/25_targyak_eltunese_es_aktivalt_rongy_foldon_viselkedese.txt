@@ -12,7 +12,7 @@ add m t
 setinterval activated m true
 setinterval timeremaining m 1
 setremaining m 0
-add b r1
+add b r2
 setinterval activated b true
 setinterval timeremaining b 1
 add r r2
@@ -21,10 +21,11 @@ setinterval timeremaining r 1
 
 enter r2 t
 
+status r2
 status t
 
 elapsetime 1
-enter t r1
+enter r1 t
 
 status r2
 status t
