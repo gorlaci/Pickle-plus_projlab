@@ -8,3 +8,13 @@ cursed: false
 capacity: 3
 curseActive: false
 stickiness: 0
+
+r1
+neighbours: r2, 
+peopleInRoom: s, 
+itemsInRoom: 
+gas: false
+cursed: false
+capacity: 3
+curseActive: false
+stickiness: 1
