@@ -1,0 +1,6 @@
+
+tv
+location: r2
+holder: s
+usesRemaining: 2
+Game in progress
