@@ -542,7 +542,6 @@ public class Interpreter {
             }
             Object object = objects.get(args[1]);
             if( object instanceof Room room ){
-                System.out.println();
                 System.out.println(getName(room));
                 printList("neighbours", room.getNeighbours());
                 printList("peopleInRoom", room.getPeopleInRoom());
@@ -553,38 +552,32 @@ public class Interpreter {
                 System.out.println("curseActive: " + room.isCurseActive());
                 System.out.println("stickiness: " + room.getStickiness());
             } else if( object instanceof Person person ){
-                System.out.println();
                 System.out.println(getName(person));
                 System.out.println("location: " + getName(person.getLocation()));
                 printList("itemsInHand", person.getItemsInHand());
                 System.out.println("stunRemaining: " + person.getStunRemaining());
             } else if( object instanceof Transistor transistor ){
-                System.out.println();
                 System.out.println(getName(transistor));
                 System.out.println("location: " + getName(transistor.getLocation()));
                 System.out.println("holder: " + getName(transistor.getHolder()));
                 System.out.println("pair: " + getName(transistor.getPair()));
             } else if( object instanceof TVSZ tvsz ){
-                System.out.println();
                 System.out.println(getName(tvsz));
                 System.out.println("location: " + getName(tvsz.getLocation()));
                 System.out.println("holder: " + getName(tvsz.getHolder()));
                 System.out.println("usesRemaining: " + tvsz.getUsesRemaining());
             } else if( object instanceof Mask mask ){
-                System.out.println();
                 System.out.println(getName(mask));
                 System.out.println("location: " + getName(mask.getLocation()));
                 System.out.println("holder: " + getName(mask.getHolder()));
                 System.out.println("timeRemaining: " + mask.getTimeRemaining());
                 System.out.println("duration: " + mask.getDuration());
             } else if( object instanceof IntervalItem intervalItem ){
-                System.out.println();
                 System.out.println(getName(intervalItem));
                 System.out.println("location: " + getName(intervalItem.getLocation()));
                 System.out.println("holder: " + getName(intervalItem.getHolder()));
                 System.out.println("timeRemaining: " + intervalItem.getTimeRemaining());
             } else if( object instanceof Item item){
-                System.out.println();
                 System.out.println(getName(item));
                 System.out.println("location: " + getName(item.getLocation()));
                 System.out.println("holder: " + getName(item.getHolder()));

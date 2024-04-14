@@ -1,4 +1,3 @@
-
 r1
 neighbours: r2, r3, r4, 
 peopleInRoom: 
@@ -8,7 +7,6 @@ cursed: false
 capacity: 3
 curseActive: false
 stickiness: 0
-
 r1
 neighbours: r4, r5, 
 peopleInRoom: 
@@ -18,7 +16,6 @@ cursed: false
 capacity: 3
 curseActive: false
 stickiness: 0
-
 r5
 neighbours: r2, r3, r1, 
 peopleInRoom: 
@@ -28,7 +25,6 @@ cursed: false
 capacity: 3
 curseActive: false
 stickiness: 0
-
 r6
 neighbours: r2, r3, r4, 
 peopleInRoom: 

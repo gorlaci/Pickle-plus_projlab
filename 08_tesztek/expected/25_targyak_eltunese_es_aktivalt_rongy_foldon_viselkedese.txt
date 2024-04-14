@@ -1,4 +1,3 @@
-
 r2
 neighbours: r1, 
 peopleInRoom: t, 
@@ -8,12 +7,10 @@ cursed: false
 capacity: 3
 curseActive: false
 stickiness: 1
-
 t
 location: r2
 itemsInHand: m, 
 stunRemaining: 3
-
 r2
 neighbours: r1, 
 peopleInRoom: t, 
@@ -23,7 +20,6 @@ cursed: false
 capacity: 3
 curseActive: false
 stickiness: 1
-
 t
 location: r2
 itemsInHand: 
