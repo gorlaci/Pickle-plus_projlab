@@ -6,7 +6,6 @@ create room r5
 create room r6
 create room r7
 create room r8
-
 neighbour r1 r2
 neighbour r2 r1
 neighbour r8 r7
@@ -27,7 +26,6 @@ neighbour r4 r3
 neighbour r3 r4
 neighbour r2 r3
 neighbour r3 r2
-
 create teacher T
 create student H
 addperson T r1
@@ -38,15 +36,11 @@ create sliderule sr
 add tv H
 add r r2
 add sr r3
-
 enter r2 T
 pickup r T
 enter r2 H
-
 status r2
 status tv
-
 enter r3 H
 pickup sr H
-
 status

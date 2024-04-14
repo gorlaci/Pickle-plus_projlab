@@ -1,14 +1,8 @@
 create room r1
 create room r2
 create student s
-create teacher t
-create tvsz tv
-
+setstun s 5
 neighbour r1 r2
 addperson s r1
-addperson t r2
-add tv s
 enter r2 s
-
-status tv
-status
+status s

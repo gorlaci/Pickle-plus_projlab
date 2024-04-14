@@ -17,16 +17,11 @@ add m s2
 activate m s2
 setremaining m 0
 elapsetime 1
-
 status s1
 status s2
 status t
-
 elapsetime 1
-
 status s1
 status t
-
 elapsetime 3
-
 status

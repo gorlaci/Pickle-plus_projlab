@@ -1,14 +1,13 @@
 create room r1
 create room r2
-setroom r2 gas true
 create student s
+create teacher t
 create beerglass b
-create falsemask fm
-
+create mask m
 neighbour r1 r2
 addperson s r1
+addperson t r2
 add b s
-add fm s
+add m s
 enter r2 s
-
-status s
+status

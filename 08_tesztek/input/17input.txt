@@ -5,5 +5,4 @@ neighbour r1 r2
 create student s1
 addperson s1 r1
 enter r2 s1
-
 status r2
