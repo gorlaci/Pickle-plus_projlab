@@ -1,29 +1,5 @@
 
-Ä
-java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÌÈà«8‰È‘‚è1J$3c2d5a75-5e3a-4f50-af7b-0360e497a425
-É
-java:S1186&"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(úˆ²Çüÿÿÿÿ8Òê‘‚è1J$f2d82666-7ff5-4d47-857f-ce30685b5328
-Ä
-java:S1186."€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Îª£²8¦…’‚è1J$9b7fe559-42a8-406a-864a-4d494ffebc61
-Ä
-java:S11867"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÚÖÆò8¡£’‚è1J$f67b8504-539b-40b8-af72-2f679efdd2ef
-Ä
-java:S1186@"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(òûƒá8»¿’‚è1J$9a5cc5c5-5244-480d-9387-0999cf30f9ec
-Ä
-java:S1186N"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¯‡œ›8ûï’‚è1J$aea94116-1e6f-45f7-be67-626bff117ce9
-Å
-java:S1186ˆ"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ö§ù‡8Â—–‚è1J$94b34efc-9b98-467f-b135-f54e1a59064d
-Ê
-java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(§¨¦–şÿÿÿÿ8ı»–‚è1J$f86b3726-f188-485e-9a16-290240873635
-Ä
-java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ö¶é¦8¯­‘‚è1J$1e0da0d3-bc90-44fb-a810-cca0c47ec318
-p
-java:S1172€",Remove this unused method parameter "room1".(¶ÙÄ¢8ÃÚ•‚è1J$7d9c24a0-b932-407b-9bb6-649cc966d96e
-x
-java:S1068"0Remove this unused "peopleInRoom" private field.(Üš¶úÿÿÿÿ8Š¼–‚è1J$ae588299-69ac-40f4-bd4c-9000b4bc0b44
-r
-java:S1068"/Remove this unused "itemsInRoom" private field.(úêãÀ8ÈÚ•‚è1J$68daba0f-c42d-4116-8c8a-3559fb95d7e6
-v
-java:S1068".Remove this unused "neighbours" private field.(¿Ïèßşÿÿÿÿ8¯È‘‚è1J$097463a0-10ed-4940-a36a-5a4e7da9c193
-n
-java:S1144€"*Remove this unused private "merge" method.(¶ÙÄ¢8›ã”‚è1J$2a61e401-f5cf-4182-91b2-590b81d24778
+U
+java:S1135²"2Complete the task associated to this TODO comment.(Á“Éöúÿÿÿÿ8–ÖÒôë1
+L
+java:S1068"/Remove this unused "STICKYLIMIT" private field.(øóñî8˜ÖÒôë1

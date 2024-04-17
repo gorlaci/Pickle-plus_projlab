@@ -7,46 +7,54 @@ package model;
  * Az Item absztrakt osztály leszármazottja.
  */
 public class TVSZ extends Item{
+
+    private int usesRemaining;
+
     /**
      * A TVSZ osztály konstruktora.
-     * Létrehoz és inicializás egy TVSZ objektumot és ennek tényét logolja.
+     * Létrehoz és inicializás egy TVSZ objektumot.
+     *
+     * @param location a szoba, amiben a tárgy van
+     * @param holder a személy, akinél a tárgy van
      */
-    public TVSZ(){
+    public TVSZ(Room location, Person holder){
+        super(location, holder);
+        usesRemaining = 3;
     }
 
     /**
      * A TVSZ-t manuálisan nem lehet aktiválni, nem történik vele semmi.
-     * A függvényhívást és visszatérést logolja.
      */
     @Override
-    public void activate() {
-    }
+    public void activate() { }
 
     /**
+     * Találkozás személlyel
      * Nem csinál semmit. a földön nem tud megvédeni senkit.
-     * A függvényhívást és visszatérést logolja.
      * @param person a személy, akivel találkozik a tárgy
      */
     @Override
-    public void meet(Person person) {
-    }
+    public void meet(Person person) { }
 
     /**
-     * A tárgy megvédve a birtokosát és csökkenti a
-     * usesRemaining-et 1-gyel. Amennyiben a változó értéke 0 lesz megsemmisül. Logikai
-     * igazzal tér vissza. Azt, hogy még lehet-e használni, a felhasználótól kérdezi meg.
-     * A függvényhívást és visszatérést logolja.
+     * Kibukás elleni védelem kérése
+     * A tárgy megvédi a birtokosát és csökkenti a
+     * usesRemaining-et 1-gyel. Amennyiben a változó értéke 0 lesz megsemmisül.
+     * Logikai igazzal tér vissza.
      * @param killer a támadó személy
      * @return {@code true} minden esetben
      */
     @Override
     public boolean saveFromDeath(Person killer) {
-        return false;
+        if(--usesRemaining == 0){
+            holder.removeItem(this);
+        }
+        return true;
     }
 
     /**
+     * Mérgező gáz elleni védelem kérése
      * A tárgy nem nyújt védelmet a gáz ellen.
-     * A függvényhívást és visszatérést logolja.
      * @return {@code false} minden esetben
      */
     @Override
@@ -55,12 +63,19 @@ public class TVSZ extends Item{
     }
 
     /**
+     * Idő telése a TVSZ-en
      * Mivel egyszerhasználatos tárgy, így nem történik vele
      * semmi az idő múlásával.
-     * A függvényhívást és visszatérést logolja.
      * @param time az eltelt idő
      */
     @Override
-    public void timeElapsed(int time) {
+    public void timeElapsed(int time) { }
+
+    public int getUsesRemaining(){
+        return usesRemaining;
+    }
+
+    public void setUsesRemaining(int usesRemaining) {
+        this.usesRemaining = usesRemaining;
     }
 }

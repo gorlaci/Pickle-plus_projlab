@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\UNI\\04_Projlab\\Pickle-plus_projlab\\proto\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\UNI\\04_Projlab\\Pickle-plus_projlab\\proto\\src\\main\\java\\Interpreter.java||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\main\\java\\Interpreter.java||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Interpreter.java",
+              "DocumentMoniker": "D:\\UNI\\04_Projlab\\Pickle-plus_projlab\\proto\\src\\main\\java\\Interpreter.java",
+              "RelativeDocumentMoniker": "src\\main\\java\\Interpreter.java",
+              "ToolTip": "D:\\UNI\\04_Projlab\\Pickle-plus_projlab\\proto\\src\\main\\java\\Interpreter.java",
+              "RelativeToolTip": "src\\main\\java\\Interpreter.java",
+              "ViewState": "AQIAAOABAAAAAAAAAAAAAF0CAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-04-10T10:17:59.813Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

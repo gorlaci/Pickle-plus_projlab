@@ -5,6 +5,7 @@ package model;
  * számára nyújt alaposztályt, amiből származhatnak.
  * Számon tartja, hogy a tárgy melyik szobában van,
  * illetve, ha egy személy kezében van, akkor azt is, hogy kinél.
+ * Felel az aktiválás lehetőségéért és a védelemnyújtásért.
  * A TimeSensitive interfészt implementálja.
  */
 public abstract class Item implements TimeSensitive {
@@ -13,36 +14,41 @@ public abstract class Item implements TimeSensitive {
     protected Person holder;
 
     /**
-     * A tárgy kezdeti helyének, illetve birtokosának beéllítására szolgál.
-     * A függvényhívást és visszatérést logolja.
-     * @param room a szoba ahova a tárgyat elhelyezi
-     * @param person a személy akinek a kezébe adja, {@code null} esetén nem adja senki kezébe
+     * Az Item osztály konstruktora.
+     * Inicializál egy Item objektumot birtokossal és elhelyezkedéssel.
+     *
+     * @param location a szoba, amiben a tárgy van
+     * @param holder a személy, akinél a tárgy van
      */
-    public void initLocation( Room room, Person person ){
+    public Item(Room location, Person holder){
+        this.location = location;
+        this.holder = holder;
     }
 
     /**
-     * Az tárgy aktiválása.
+     * A tárgy aktiválása.
      */
     public abstract void activate();
 
     /**
-     * Ha a tárgy a földön van egy szpbában,
+     * Ha a tárgy a földön van egy szobában,
      * a szobába belépő új személyekkel való találkozást kezeli.
      * @param person a személy, akivel találkozik a tárgy
      */
     public abstract void meet( Person person );
 
     /**
-     * Átálítja a tárgy tartózkodási helyét és birtokosát.
-     * A függvényhívást és visszatérést logolja.
+     * Átállítja a tárgy tartózkodási helyét és birtokosát.
      * @param room a szoba ahova a tárgyat elhelyezi
      * @param person a személy akinek a kezébe adja, {@code null} esetén nem adja senki kezébe
      */
     public void setLocation( Room room, Person person ){
+        this.location = room;
+        this.holder = person;
     }
 
     /**
+     * Tárgy megkérése, hogy védje meg birtokosát a kibukás ellen.
      * A visszatérési értéke logikai igazzal tér vissza,
      * ha tárgy a kibukással szemben védelmet biztosít,
      * egyébként logikai hamissal tér vissza.
@@ -52,9 +58,19 @@ public abstract class Item implements TimeSensitive {
     public abstract boolean saveFromDeath( Person killer );
 
     /**
+     * Tárgy megkérése, hogy védje meg birtokosát mérgező gáz ellen.
      * A metódus visszatérési értéke logikai igaz, ha a tárgy a mérgező gázzal
      * védelmet biztosít és logikai hamis, ha nem.
      * @return {@code true} ha védelmet biztosít, {@code false} egyébként
      */
     public abstract  boolean saveFromGas();
+
+    public Room getLocation(){
+        return location;
+    }
+
+    public Person getHolder(){
+        return holder;
+    }
+
 }
