@@ -1,0 +1,15 @@
+@startuml
+
+mainframe AirFresher meet
+
+participant r as "r: Room"
+participant a as "a: AirFresher"
+participant p as "p: Person"
+
+activate r
+r -> a : meet(p)
+activate a
+r <<-- a
+deactivate a
+
+@enduml

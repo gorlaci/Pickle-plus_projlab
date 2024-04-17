@@ -47,7 +47,11 @@ public class TVSZ extends Item{
     @Override
     public boolean saveFromDeath(Person killer) {
         if(--usesRemaining == 0){
-            holder.removeItem(this);
+            if(holder != null){
+                holder.removeItem(this);
+            } else{
+                location.removeItem(this);
+            }
         }
         return true;
     }

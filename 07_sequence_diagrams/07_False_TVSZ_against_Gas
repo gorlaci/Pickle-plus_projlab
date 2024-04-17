@@ -1,0 +1,12 @@
+@startuml
+
+mainframe False TVSZ against Gas
+
+participant ftv as "ftv: FalseTVSZ"
+
+-> ftv : saveFromGas()
+activate ftv
+<<-- ftv : false
+deactivate ftv
+
+@enduml

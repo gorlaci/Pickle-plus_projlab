@@ -1,0 +1,14 @@
+@startuml
+
+mainframe Cleaner gets greeted
+
+participant s as "s: Student"
+participant c as "c: Cleaner"
+
+activate s
+s -> c : greet(s)
+activate c
+s <<-- c
+deactivate c
+
+@enduml

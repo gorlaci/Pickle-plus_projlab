@@ -1,0 +1,30 @@
+@startuml
+
+mainframe Person picks up item
+
+actor co as "Controller"
+participant p as "p: Person"
+participant r as "r: Room"
+participant i as "i: Item"
+
+activate co
+co -> p: addItem(i)
+activate p
+opt stunRemaining == 0 && itemsInHand.size < 5
+    p -> r : pickUpItem(i)
+    alt stickiness < 5
+        activate r
+        p <<-- r : true
+        p -> i : setLocation(r,p)
+        activate i
+        p <<-- i
+        deactivate i
+    else
+        p <<-- r : false
+        deactivate r
+    end
+end
+co <<-- p
+deactivate p
+
+@enduml

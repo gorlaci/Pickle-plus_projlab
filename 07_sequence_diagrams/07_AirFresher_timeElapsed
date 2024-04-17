@@ -1,0 +1,12 @@
+@startuml
+
+mainframe AirFresher timeElapsed
+
+participant a as "AirFresher"
+
+-->> a : timeElapsed
+activate a
+<<-- a
+deactivate a
+
+@enduml

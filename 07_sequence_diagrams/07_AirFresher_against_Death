@@ -1,0 +1,13 @@
+@startuml
+
+mainframe AirFresher against Death
+
+participant a as "a: AirFresher"
+participant t as "t: Teacher"
+
+-> a : saveFromDeath(t)
+activate a
+<<-- a : false
+deactivate a
+
+@enduml

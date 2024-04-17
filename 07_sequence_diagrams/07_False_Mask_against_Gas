@@ -1,0 +1,12 @@
+@startuml
+
+mainframe False Mask against Gas
+
+participant fm as "fm: FalseMask"
+
+-> fm : saveFromGas()
+activate fm
+<<-- fm : false
+deactivate fm
+
+@enduml

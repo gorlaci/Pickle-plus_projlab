@@ -1,0 +1,73 @@
+@startuml
+actor co as "Controller"
+participant c as "c: Cleaner"
+participant r1 as "r1: Room"
+participant t as "t: Teacher"
+participant tv as "tv: TVSZ"
+participant r2 as "r2: Room"
+participant b as "b: BeerGlass"
+activate co
+co -> c : enterRoom(r1)
+activate c
+c -> r2 : movePerson(s,r1)
+activate r2
+alt r2.curseInactive
+r2 -> r1 : acceptPerson(s)
+activate r1
+alt r1 not full
+r1 -> c : setLocation(r1)
+activate c
+c -->> r1
+deactivate c
+opt r1 gassed
+c <- r1 : stun()
+activate c
+c -->> r1
+deactivate c
+end
+r1 -> tv : meet(s)
+activate tv
+tv -->> r1
+deactivate tv
+r1 -> c : meet(t)
+activate c
+c -->> r1
+deactivate c
+r1 -->> r2 : true
+r2 -> r2 : removePerson(s)
+activate r2
+r2 -->> r2
+deactivate r2
+r2 -->> c : true
+c -> b : setLocation(r1, s)
+activate b
+b -->> c
+deactivate b
+c -> r1 : setGas(false)
+activate r1
+c <<-- r1
+deactivate r1
+c -> r1 : clean()
+activate r1
+t <- r1 : enterRoom(r2)
+ref over t,r1,r2 : enterRoom
+activate t
+r1 <<-- t
+deactivate t
+c <- r1 : enterRoom(r2)
+ref over c,r1,r2 : enterRoom
+activate c
+c -->> r1
+deactivate c
+else
+    r1 -->> r2 : false
+    deactivate r1
+    r2 -->> c : false
+    end
+else
+    r2 -->> c : false
+    deactivate r2
+    end
+co <<-- c
+deactivate c
+@enduml

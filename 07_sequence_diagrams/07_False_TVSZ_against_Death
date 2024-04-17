@@ -1,0 +1,13 @@
+@startuml
+
+mainframe False TVSZ against Death
+
+participant ftv as "ftv: FalseTVSZ"
+participant t as "t: Teacher"
+
+-> ftv : saveFromDeath(t)
+activate ftv
+<<-- ftv : false
+deactivate ftv
+
+@enduml

@@ -1,0 +1,18 @@
+@startuml
+participant s as "s: Student"
+participant a as "a: AirFreshener"
+participant r as "r: Room"
+activate s
+s -> a : activate()
+activate a
+a -> r : setGas(false)
+activate r
+a <<-- r
+deactivate r
+s <- a : removeItem(this)
+activate s
+s -->> a
+deactivate s
+s <<-- a
+deactivate a
+@enduml

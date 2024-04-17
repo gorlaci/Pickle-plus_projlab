@@ -1,0 +1,14 @@
+@startuml
+
+mainframe Cleaner gets stunned
+
+participant r as "r: Room"
+participant c as "c: Cleaner"
+
+activate r
+r -> c : stun()
+activate c
+r <<-- c
+deactivate c
+
+@enduml
