@@ -8,6 +8,10 @@ package model;
  */
 public class TVSZ extends Item{
 
+    /*
+     * A tárgy ennyiszer véd meg a kibukástól, ha eléri a nullát, megszűnik
+     * Kezdőértéke 3
+     */
     private int usesRemaining;
 
     /**
@@ -75,10 +79,16 @@ public class TVSZ extends Item{
     @Override
     public void timeElapsed(int time) { }
 
+    /*
+     * Hátralevő használati alkalmak lekérdezése
+     */
     public int getUsesRemaining(){
         return usesRemaining;
     }
 
+    /*
+     * Hátralevő használati alkalmak beállítása
+     */
     public void setUsesRemaining(int usesRemaining) {
         this.usesRemaining = usesRemaining;
     }

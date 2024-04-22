@@ -3,7 +3,8 @@
     "",
     "\\src",
     "\\src\\main",
-    "\\src\\main\\java"
+    "\\src\\main\\java",
+    "\\src\\main\\java\\model"
   ],
   "SelectedNode": "\\src\\main\\java\\Interpreter.java",
   "PreviewInSolutionExplorer": false

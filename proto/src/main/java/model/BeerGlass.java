@@ -3,7 +3,7 @@ package model;
 /**
  * Az BeerGlass osztály a szent söröspoharak működését és viselkedését modellezi.
  * A söröspohár védelmet nyújt egy  adott ideig az oktatókkal szemben, ha aktiválva van.
- * Ha a hatása elmúlik, akkor eltűnik.
+ * Használatkor a hallgató elejt egy véletlen tárgyat a kezéből. Ha a hatása elmúlik, akkor eltűnik.
  * Az osztály az IntervalItem absztakt osztályból származik.
  */
 public class BeerGlass extends IntervalItem{

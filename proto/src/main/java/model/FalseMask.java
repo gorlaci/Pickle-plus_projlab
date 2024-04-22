@@ -22,6 +22,7 @@ public class FalseMask extends Mask{
 
     /**
      * Mérgező gáz elleni védelem kérése
+     * Meghívja ősének azonos nevű metódusát az esetleges aktiválás miatt.
      * Nem nyújt védelmet a gáz ellen.
      * @return {@code false} minden esetben
      */

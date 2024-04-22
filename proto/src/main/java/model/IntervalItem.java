@@ -9,7 +9,9 @@ package model;
  */
 public abstract class IntervalItem extends Item {
 
+    //A tárgy aktiválva van-e vagy sem
     protected boolean activated;
+    //Mennyi idő múlva változik a tárgy állapota aktiváltról.
     protected int timeRemaining;
 
     /**
@@ -35,18 +37,30 @@ public abstract class IntervalItem extends Item {
         activated = true;
     }
 
+    /*
+     * Aktiváltság lekérdezése
+     */
     public boolean isActivated(){
         return activated;
     }
 
+    /*
+     * Aktiváltság beállítása
+     */
     public void setActivated(boolean activated){
         this.activated = activated;
     }
 
+    /*
+     * Hátralévő idő lekérdezése
+     */
     public int getTimeRemaining() {
         return timeRemaining;
     }
 
+    /*
+     * Hátralévő idő beállítása
+     */
     public void setTimeRemaining( int timeRemaining ){
         this.timeRemaining = timeRemaining;
     }

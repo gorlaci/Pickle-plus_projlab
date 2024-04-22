@@ -11,11 +11,17 @@ import java.util.Random;
  */
 public abstract class Person implements ItemHandler, TimeSensitive{
 
+    //Ennyi ideig van még elkábulva a személy. Ha nincs elkábulva, értéke 0
     protected int stunRemaining;
+    //Az elkábulás pillanatától ennyi ideig marad elkábulva a személy
     protected static final int STUNSTART=3;
+    //Személy tartózkodási helye
     protected Room location;
+    //Személy tárgyai
     protected final List<Item> itemsInHand = new ArrayList<>();
+    //Ennyi tárgy lehet legfeljebb minden egyes személynél
     protected static final int ITEMSINHANDLIMIT=5;
+    //Söröspohár hatására eldobandó véletlen tárgy indexének generálására használt objektum
     protected static Random random=new Random();
 
     /**
@@ -104,7 +110,7 @@ public abstract class Person implements ItemHandler, TimeSensitive{
     }
 
     /**
-     * Egy tárgy eldobása. A személy kezéből eltávolítja a tárgyat éd hozzáadja a szobához.
+     * Egy tárgy eldobása. A személy kezéből eltávolítja a tárgyat és hozzáadja a szobához.
      * @param item az eldobni kívánt tárgy
      */
     public void dropItem( Item item ){
@@ -113,7 +119,7 @@ public abstract class Person implements ItemHandler, TimeSensitive{
     }
 
     /**
-     * Egy tárgy eldobása.
+     * Egy véletlen tárgy eldobása.
      * Az ember kezéből egy véletlenszerűen választott tárgyat eldob a szobába.
      * A véletlenszerű kiválasztás pszeudo-random módon történik, a seedje állítható teszteléshez.
      */
@@ -132,7 +138,7 @@ public abstract class Person implements ItemHandler, TimeSensitive{
      * A személy mérgező gáz általi megbénulását hajtja végre. Először is
      * végigkérdezi a tárgyait, hogy képesek-e megóvni őt a mérgező gáz általi veszélytől.
      * Ha legalább egy megvédi, akkor nem történik a személlyel semmi. Ha egy sem védi
-     * meg, akkor eldobja az összes tárgyát és adott ideig elkábul.
+     * meg, akkor eldobja az összes tárgyát és meghatározott időre elkábul.
      */
     public void stun(){
         boolean saved = false;
@@ -175,22 +181,37 @@ public abstract class Person implements ItemHandler, TimeSensitive{
      */
     public abstract void greet( Person greeter );
 
+    /*
+     * hátralévő kábulási idő lekérdezése
+     */
     public int getStunRemaining() {
         return stunRemaining;
     }
 
+    /*
+     * hátralévő kábulási idő beállítása
+     */
     public void setStunRemaining(int stunRemaining) {
         this.stunRemaining = stunRemaining;
     }
 
+    /*
+     * tartózkodási szoba lekérdezése
+     */
     public Room getLocation(){
         return location;
     }
 
+    /*
+     * kézben lévő tárgyak lekérdezése
+     */
     public List<Item> getItemsInHand() {
         return itemsInHand;
     }
 
+    /*
+     * random objektum seedjének beállítása teszteléshez
+     */
     public void setSeed(long seed) {
         random.setSeed(seed);
     }

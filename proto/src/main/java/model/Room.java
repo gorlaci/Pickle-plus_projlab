@@ -12,18 +12,27 @@ import java.util.List;
  */
 public class Room implements ItemHandler, TimeSensitive {
 
+    //Szoba kapacitása
     private int capacity;
+    //Gázosság állapota
     private boolean gas;
+    //A szoba képes-e elátkozott lenni
     private boolean cursed;
+    //Az elátkozott szoba jelenleg átkozott-e
     private boolean curseActive;
+    //Az elátkozott szoba mennyi idő múlva vált állapotot
     private int changeCurseIn;
+    //Az elátkozott Room-ok milyen gyakran vált állapotot
     private static final int CURSESTATEINTERVAL=5;
+    //Ragacsosság mértéke
     private int stickiness;
+    //Ragacsosság határa minden Roomban, ha ezt az értéket eléri, akkor a tárgyak nem vehetők fel
     private static final int STICKYLIMIT=5;
-
+    //Szobában tartózkodó emberek
     private final List<Person> peopleInRoom = new ArrayList<>();
+    //Szobában levő tárgyak
     private final List<Item> itemsInRoom = new ArrayList<>();
-
+    //Szoba szomszédainak listája, csak az odairányt teszi lehetővé
     private final List<Room> neighbours =new ArrayList<>();
 
     /**
@@ -89,7 +98,7 @@ public class Room implements ItemHandler, TimeSensitive {
 
     /**
      * Egy tárgy felvételének kezdeményezése a szobánál.
-     * Amennyiben a stickiness még nem érte el a határértékét,
+     * Amennyiben a ragacsosság még nem érte el a határértékét,
      * a removeItem()-hez hasonlóan eltávolítja a tárgyat, majd igazzal visszatér.
      * Egyébként hamis visszatérési értékkel jelzi a személynek a sikertelen felvételt.
      * @param item a tárgy amit fel akarnak venni
@@ -361,50 +370,86 @@ public class Room implements ItemHandler, TimeSensitive {
         }
     }
 
+    /*
+     * gázosság lekérdezése
+     */
     public boolean isGas() {
         return gas;
     }
 
+    /*
+     * elátkozottság lekérdezése
+     */
     public boolean isCursed() {
         return cursed;
     }
 
+    /*
+     * elátkozottság beállítása
+     */
     public void setCursed(boolean cursed) {
         this.cursed = cursed;
     }
 
+    /*
+     * kapacitás lekérdezése
+     */
     public int getCapacity() {
         return capacity;
     }
 
+    /*
+     * kapacitás beállítása
+     */
     public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
 
+    /*
+     * aktív elátkozottság lekérdezése
+     */
     public boolean isCurseActive() {
         return curseActive;
     }
 
+    /*
+     * aktív elátkozottság beállítása
+     */
     public void setCurseActive(boolean curseActive) {
         this.curseActive = curseActive;
     }
 
+    /*
+     * ragacsosság lekérdezése
+     */
     public int getStickiness() {
         return stickiness;
     }
 
+    /*
+     * ragacsosság beállítása
+     */
     public void setStickiness(int stickiness) {
         this.stickiness = stickiness;
     }
 
+    /*
+     * szobában tartózkodó személyek lekérdezése
+     */
     public List<Person> getPeopleInRoom() {
         return peopleInRoom;
     }
 
+    /*
+     * szobában levő tárgyak lekérdezése
+     */
     public List<Item> getItemsInRoom() {
         return itemsInRoom;
     }
 
+    /*
+     * szomszéd szobák lekérdezése
+     */
     public List<Room> getNeighbours() {
         return neighbours;
     }

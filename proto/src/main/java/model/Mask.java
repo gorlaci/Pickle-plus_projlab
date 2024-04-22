@@ -9,12 +9,18 @@ package model;
  */
 public class Mask extends IntervalItem{
 
+    //Minden Mask ezzel az értékkel csökkenti a duration értékét miután lejár az aktiválási ideje
     private static final int DURATION_DECR = 2;
+    /*
+     * A Mask tartóssága, tárolja hogy következő aktiváláskor mennyi ideig lesz aktív
+     * Értéke minden deaktiválással csökken, és ha eléri a nullát, megszűnik a Mask
+     */
     private int duration;
 
     /**
      * A Mask osztály konstruktora.
      * Létrehoz és inicializál egy Mask objektumot.
+     * A duration értékét beállítja, hogy a második aktiváláskor mennyi ideig hat majd.
      *
      * @param location a szoba, amiben a tárgy van
      * @param holder a személy, akinél a tárgy van
@@ -89,10 +95,16 @@ public class Mask extends IntervalItem{
         }
     }
 
+    /*
+     * Tartósság lekérdezése
+     */
     public int getDuration() {
         return duration;
     }
 
+    /*
+     * Tartósság beállítása
+     */
     public void setDuration(int duration) {
         this.duration = duration;
     }

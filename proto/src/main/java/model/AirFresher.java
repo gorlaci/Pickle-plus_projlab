@@ -20,8 +20,8 @@ public class AirFresher extends Item{
 
     /**
      * A légfrissítő aktiválása.
-     * Igényli birtokosánál az önmegsemmisítést (holder.removeItem()).
      * Tartózkodási szobáján meghívja a location.setGas(false) metódust és felfrissíti azt.
+     * Igényli birtokosánál az önmegsemmisítést (holder.removeItem()).
      */
     @Override
     public void activate() {

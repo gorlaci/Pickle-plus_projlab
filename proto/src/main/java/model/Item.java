@@ -10,7 +10,9 @@ package model;
  */
 public abstract class Item implements TimeSensitive {
 
+    //A tárgy tartózkodási szobája, melyet akkor is számon tartunk ha egy személy kezében van
     protected Room location;
+    //A tárgy birtokosa. Amennyiben a földön van, értéke null
     protected Person holder;
 
     /**
@@ -65,10 +67,16 @@ public abstract class Item implements TimeSensitive {
      */
     public abstract  boolean saveFromGas();
 
+    /*
+     * Tárgy tartózkodási helyének lekérdezése
+     */
     public Room getLocation(){
         return location;
     }
 
+    /*
+     * Tárgy birtokosának lekérdezése
+     */
     public Person getHolder(){
         return holder;
     }
