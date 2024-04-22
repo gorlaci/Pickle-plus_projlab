@@ -7,10 +7,14 @@ ECHO.
 ECHO.
 
 SET N=0
-IF %1 NEQ [] (
+
+SET C=0
+FOR %%X IN (%*) DO SET /A C+=1
+IF %C%==1 (
 	SET N=%1
 	GOTO TEST
 )
+IF %C% GTR 1 GOTO ERROR
 
 SET /P N=Melyik teszteset? (1-28 vagy * az összeshez)
 
@@ -35,6 +39,6 @@ FOR /L %%I IN (1,1,28) DO (
 GOTO END
 
 :ERROR
-ECHO A megadott teszteset nem létezik!
+ECHO A megadott teszteset nem létezik, vagy túl sok paraméter lett megadva!
 
 :END
