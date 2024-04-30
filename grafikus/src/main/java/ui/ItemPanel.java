@@ -25,11 +25,11 @@ public class ItemPanel extends JComponent {
 
         ArrayList<String> lines = Controller.getItemAttributes(item);
         attributes.add(lines.get(0));
-        if(lines.size() > 1){
+        if(lines.size() > 1) {
             attributes.addSeparator();
-        }
-        for(int i = 1; i < lines.size(); i++){
-            attributes.add(lines.get(i));
+            for(int i = 1; i < lines.size(); i++){
+                attributes.add(lines.get(i));
+            }
         }
 
         this.add(attributes);
