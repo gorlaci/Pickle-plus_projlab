@@ -6,16 +6,35 @@ import model.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.ArrayList;
 
 public class ItemPanel extends JComponent {
     private final Item item;
     private BufferedImage image;
 
+    private JPopupMenu attributes;
+
     public ItemPanel(Item item){
         this.item = item;
         String imagePath = Controller.getItemImage(item);
+        attributes = new JPopupMenu();
+
+        ArrayList<String> lines = Controller.getItemAttributes(item);
+        attributes.add(lines.get(0));
+        if(lines.size() > 1){
+            attributes.addSeparator();
+        }
+        for(int i = 1; i < lines.size(); i++){
+            attributes.add(lines.get(i));
+        }
+
+        this.add(attributes);
+
+        addMouseListener(new ItemAttributeMouseListener());
 
         try {
             image = ImageIO.read(new File(imagePath));
@@ -48,6 +67,20 @@ public class ItemPanel extends JComponent {
             setBorder(BorderFactory.createLineBorder(Color.BLACK));
         } else {
             setBorder(null);
+        }
+    }
+
+    class ItemAttributeMouseListener extends MouseAdapter{
+        @Override
+        public void mouseEntered(MouseEvent e) {
+            attributes.show(e.getComponent(), 0, e.getComponent().getHeight());
+            attributes.setVisible(true);
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+            attributes.setVisible(false);
+            //attributes.hide();
         }
     }
 }

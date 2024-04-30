@@ -59,6 +59,37 @@ public class Controller {
         } else return "resources" + File.separator + "transistor.png";
     }
 
+    public static ArrayList<String> getItemAttributes(Item item){
+        ArrayList<String> attributes = new ArrayList<>();
+        if (item instanceof BeerGlass) {
+            attributes.add("Beer Glass");
+            attributes.add(((BeerGlass)item).isActivated() ? "Activated" : "Not activated");
+            attributes.add("Remaining time: " + ((BeerGlass)item).getTimeRemaining());
+        } else if (item instanceof AirFresher) {
+            attributes.add("Air Freshener");
+        } else if (item instanceof Camembert) {
+            attributes.add("Camembert");
+        } else if (item instanceof Mask) {
+            attributes.add("Mask");
+            attributes.add(((Mask)item).isActivated() ? "Activated" : "Not activated");
+            attributes.add("Remaining time: " + ((Mask)item).getTimeRemaining());
+            attributes.add("Next duration: " + ((Mask)item).getDuration());
+        } else if (item instanceof SlideRule) {
+            attributes.add("Slide Rule");
+        } else if (item instanceof TVSZ) {
+            attributes.add("TVSZ");
+            attributes.add("Uses remaining: " + ((TVSZ)item).getUsesRemaining());
+        } else if (item instanceof Rag) {
+            attributes.add("Rag");
+            attributes.add(((Rag)item).isActivated() ? "Activated" : "Not activated");
+            attributes.add("Remaining time: " + ((Rag)item).getTimeRemaining());
+        } else{
+            attributes.add("Transistor");
+            attributes.add(((Transistor)item).getPair() == null ? "Not Paired" : "Paired");
+        }
+        return attributes;
+    }
+
 
     public static void startGame( int mapSize, int playerNumber ){
         menuWindow.dispose();
