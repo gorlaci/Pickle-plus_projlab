@@ -13,27 +13,25 @@ public class GameWindow extends JFrame implements ActionListener {
 
     HashMap<Student,PlayerPanel> playerPanels = new HashMap<>();
 
-    PlayerPanel actPlayerPanel;
+    public PlayerPanel actPlayerPanel;
 
     public GameWindow(List<Student> players){
         super("Logarléc");
         setMinimumSize(new Dimension(800,500));
-        initMenu(this);
+        initMenu();
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         for( Student player : players ){
-            playerPanels.put( player, new PlayerPanel(player) );
+            playerPanels.put( player, new PlayerPanel(player, "Player"+(players.indexOf(player)+1)));
         }
         actPlayerPanel = playerPanels.get( players.get(0) );
-        setLayout( new BorderLayout() );
-        add( actPlayerPanel, BorderLayout.CENTER );
-        add( new JLabel("TESZT"), BorderLayout.SOUTH );
+        add( actPlayerPanel );
 
         pack();
         setVisible(true);
     }
 
-    private void initMenu(JFrame frame){
+    private void initMenu() {
         JMenuBar menuBar = new JMenuBar();
         JMenu menu = new JMenu("Menu");
         JMenuItem menuNewGame = new JMenuItem("New Game");
@@ -43,7 +41,7 @@ public class GameWindow extends JFrame implements ActionListener {
         menu.add(menuExit);
         menuNewGame.addActionListener(this);
         menuExit.addActionListener(this);
-        frame.setJMenuBar(menuBar);
+        setJMenuBar(menuBar);
     }
 
     public void actionPerformed(ActionEvent e)
@@ -56,6 +54,16 @@ public class GameWindow extends JFrame implements ActionListener {
     }
 
     public void showPlayer( Student player ){
-        removeAll();
+        remove(actPlayerPanel);
+        actPlayerPanel = playerPanels.get(player);
+        add(actPlayerPanel);
+        reDraw();
+    }
+
+    public void reDraw(){
+        actPlayerPanel.reDraw();
+        pack();
+        revalidate();
+        repaint();
     }
 }

@@ -13,27 +13,39 @@ public class MenuWindow extends JFrame {
     public MenuWindow() {
 
         // Ablak inicializálása
-        setTitle("Menu");
-        setMinimumSize(new Dimension(600,600));
+        super("Menu");
+        setMinimumSize(new Dimension(800,500));
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         // Layout beállítása
         setLayout(new GridLayout(4, 1, 0, 10));
-        JPanel menuPanel = new JPanel();
-        menuPanel.setLayout(new BoxLayout(menuPanel, BoxLayout.Y_AXIS));
 
-        // Pálya kiválasztása
+        //BME logo
+        JLabel imageLabel = new JLabel(new ImageIcon("resources"+File.separator+"bme.png"));
+
+        //Panelek létrehozása
         JPanel mapPanel = new JPanel();
-        mapPanel.setLayout(new BoxLayout(mapPanel, BoxLayout.X_AXIS));
+        JPanel playerPanel = new JPanel();
+        JPanel startPanel = new JPanel();
+
+        //Panelek elrendezése
+        mapPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        playerPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        startPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+
+        //Panelek mérete
+        mapPanel.setPreferredSize(new Dimension(300, 50));
+        playerPanel.setPreferredSize(new Dimension(300, 50));
+        startPanel.setPreferredSize(new Dimension(300, 50));
+
+        // Pálya kiválasztása - mapPanel
         JLabel mapLabel = new JLabel("Map:");
         String[] mapOptions = {"Small", "Medium", "Large"};
         JComboBox<String> mapComboBox = new JComboBox<>(mapOptions);
         mapPanel.add(mapLabel);
         mapPanel.add(mapComboBox);
 
-        // Játékosok számának kiválasztása
-        JPanel playerPanel = new JPanel();
-        playerPanel.setLayout(new BoxLayout(playerPanel, BoxLayout.X_AXIS));
+        // Játékosok számának kiválasztása - playerPanel
         JLabel playerTextLabel = new JLabel("Players:");
         playerLabel = new JLabel(String.valueOf(numPlayers));
         JButton plusButton = new JButton("+");
@@ -51,42 +63,24 @@ public class MenuWindow extends JFrame {
             if(numPlayers == 1) minusButton.setEnabled(false);
         });
         playerPanel.add(playerTextLabel);
-
         playerPanel.add(minusButton);
         playerPanel.add(playerLabel);
         playerPanel.add(plusButton);
 
-        // Start gomb
-        JPanel buttonPanel = new JPanel();
+        // Start gomb - startPanel
         JButton startButton = new JButton("Start Game");
         startButton.addActionListener(e -> {
             // Start játék logika
             //JOptionPane.showMessageDialog(null, "Game started!");
-            Controller.startGame(0,numPlayers);
+            Controller.startGame(mapComboBox.getSelectedIndex(), numPlayers);
         });
-        buttonPanel.add(startButton);
-
-        //BME kép
-        JLabel imageLabel = new JLabel(new ImageIcon("resources"+File.separator+"bme.png"));
-        setContentPane(imageLabel);
+        startPanel.add(startButton);
 
         // Panelek hozzáadása a frame-hez
-        mapPanel.setPreferredSize(new Dimension(300, 50)); // Például 300 pixel széles
-        playerPanel.setPreferredSize(new Dimension(300, 50));
-        buttonPanel.setPreferredSize(new Dimension(300, 50));
-        menuPanel.add(imageLabel);
-        menuPanel.add(mapPanel);
-        menuPanel.add(playerPanel);
-        menuPanel.add(buttonPanel);
-        add(menuPanel, BorderLayout.CENTER);
-
-        /*setContentPane(new JLabel(new ImageIcon("resources"+File.separator+"bme.png")));
-        mapPanel.setOpaque(false);
-        playerPanel.setOpaque(false);
-        buttonPanel.setOpaque(false);
-        mapPanel.setBackground(new Color(0, 0, 0, 0));
-        playerPanel.setBackground(new Color(0, 0, 0, 0));
-        buttonPanel.setBackground(new Color(0, 0, 0, 0));*/
+        add(imageLabel);
+        add(mapPanel);
+        add(playerPanel);
+        add(startPanel);
 
         setVisible(true);
     }
