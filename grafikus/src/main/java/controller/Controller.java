@@ -13,12 +13,12 @@ import java.util.List;
 import java.util.Random;
 
 public class Controller {
-    public static List<Room> rooms = new ArrayList<>();
-    public static List<Student> players = new ArrayList<>();
-    public static List<Teacher> teachers = new ArrayList<>();
-    public static List<Cleaner> cleaners = new ArrayList<>();
-    public static MenuWindow menuWindow = new MenuWindow();
-    public static GameWindow gameWindow;
+    private static final List<Room> rooms = new ArrayList<>();
+    private static final List<Student> players = new ArrayList<>();
+    private static final List<Teacher> teachers = new ArrayList<>();
+    private static final List<Cleaner> cleaners = new ArrayList<>();
+    private static final MenuWindow menuWindow = new MenuWindow();
+    private static GameWindow gameWindow;
 
     public static void main(String[] args){
         menuWindow.setVisible(true);
@@ -105,7 +105,7 @@ public class Controller {
 
         turnCounter = 0;
         if(mapSize == 0) initSmallMap();
-        //else if(mapSize == 1) initMediumMap();
+        else if(mapSize == 1) initMediumMap();
         //else initLargeMap();
         initPlayers(playerNumber);
 
@@ -158,6 +158,83 @@ public class Controller {
         rooms.get(1).addPerson(teacher);
         teachers.add(teacher);
     }
+
+    private static void initMediumMap() {
+        for(int i = 0; i < 13; i++) {
+            Room room = new Room(3, false, false, 3);
+            giveRoomRandomColor(room);
+            rooms.add(room);
+        }
+        rooms.get(0).setCapacity(4);
+        rooms.get(1).setGas(true);
+        rooms.get(4).setCursed(true);
+        rooms.get(6).setCursed(true);
+        rooms.get(8).setGas(true);
+        rooms.get(9).setGas(true);
+        rooms.get(11).setCursed(true);
+
+        rooms.get(0).addNeighbour(rooms.get(1));
+        rooms.get(0).addNeighbour(rooms.get(4));
+        rooms.get(1).addNeighbour(rooms.get(0));
+        rooms.get(1).addNeighbour(rooms.get(2));
+        rooms.get(2).addNeighbour(rooms.get(3));
+        rooms.get(3).addNeighbour(rooms.get(4));
+        rooms.get(4).addNeighbour(rooms.get(0));
+        rooms.get(4).addNeighbour(rooms.get(3));
+        rooms.get(4).addNeighbour(rooms.get(5));
+        rooms.get(5).addNeighbour(rooms.get(4));
+        rooms.get(5).addNeighbour(rooms.get(6));
+        rooms.get(5).addNeighbour(rooms.get(9));
+        rooms.get(5).addNeighbour(rooms.get(10));
+        rooms.get(6).addNeighbour(rooms.get(5));
+        rooms.get(6).addNeighbour(rooms.get(7));
+        rooms.get(6).addNeighbour(rooms.get(8));
+        rooms.get(7).addNeighbour(rooms.get(6));
+        rooms.get(7).addNeighbour(rooms.get(8));
+        rooms.get(8).addNeighbour(rooms.get(6));
+        rooms.get(8).addNeighbour(rooms.get(7));
+        rooms.get(8).addNeighbour(rooms.get(9));
+        rooms.get(8).addNeighbour(rooms.get(10));
+        rooms.get(9).addNeighbour(rooms.get(1));
+        rooms.get(9).addNeighbour(rooms.get(8));
+        rooms.get(10).addNeighbour(rooms.get(5));
+        rooms.get(10).addNeighbour(rooms.get(8));
+        rooms.get(10).addNeighbour(rooms.get(11));
+        rooms.get(11).addNeighbour(rooms.get(10));
+        rooms.get(11).addNeighbour(rooms.get(12));
+        rooms.get(12).addNeighbour(rooms.get(0));
+        rooms.get(12).addNeighbour(rooms.get(11));
+
+        rooms.get(0).initItem(new Rag(rooms.get(0), null, false, 3));
+        rooms.get(0).initItem(new Mask(rooms.get(0), null, false, 6));
+        rooms.get(0).initItem(new Transistor(rooms.get(0), null));
+
+        rooms.get(3).initItem(new BeerGlass(rooms.get(3), null, false, 4));
+        rooms.get(3).initItem(new Transistor(rooms.get(3), null));
+
+        rooms.get(5).initItem(new Transistor(rooms.get(5), null));
+        rooms.get(5).initItem(new FalseSlideRule(rooms.get(5), null));
+
+        rooms.get(7).initItem(new AirFresher(rooms.get(7), null));
+
+        rooms.get(8).initItem(new FalseMask(rooms.get(8), null, false, 4));
+        rooms.get(8).initItem(new Transistor(rooms.get(8), null));
+        rooms.get(8).initItem(new Camembert(rooms.get(8), null));
+
+        rooms.get(9).initItem(new TVSZ(rooms.get(9), null));
+        rooms.get(9).initItem(new Mask(rooms.get(9), null, false, 4));
+
+        rooms.get(2).initItem(new Rag(rooms.get(2), null, false, 3));
+
+        Cleaner cleaner = new Cleaner(0, rooms.get(3));
+        rooms.get(3).addPerson(cleaner);
+        cleaners.add(cleaner);
+
+        Teacher teacher = new Teacher(0, rooms.get(1));
+        rooms.get(1).addPerson(teacher);
+        teachers.add(teacher);
+    }
+
 
     private static void initPlayers(int playerNumber) {
         for( int i = 0 ; i < playerNumber ; i++ ) {

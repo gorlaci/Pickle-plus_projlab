@@ -1,0 +1,481 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": false,
+    "cutInterfaceStructures": false,
+    "cutDataStructures": false,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 6,
+    "backwardDepth": 6,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "ui.DoorPanel",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_104069929 { 
+   	label=model
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   AirFresher104069929[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)AirFresher</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ activate()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ meet(person: Person)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ saveFromDeath(killer: Person): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ saveFromGas(): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ timeElapsed(time: int)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+BeerGlass104069929[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)BeerGlass</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ meet(person: Person)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ saveFromDeath(killer: Person): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ saveFromGas(): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ timeElapsed(time: int)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Camembert104069929[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Camembert</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ activate()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ meet(person: Person)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ saveFromDeath(killer: Person): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ saveFromGas(): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ timeElapsed(time: int)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Cleaner104069929[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Cleaner</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ enterRoom(roomTo: Room)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ greet(greeter: Person)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ kill(killer: Person)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ meet(person: Person)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ pickedUpSlideRule(slideRule: SlideRule)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ slip()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ stun()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+IntervalItem104069929[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)IntervalItem</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   activated: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   timeRemaining: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ activate()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Item104069929[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Item</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   holder: Person [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   location: Room [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ activate()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ meet(person: Person)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ saveFromDeath(killer: Person): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ saveFromGas(): boolean</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Mask104069929[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Mask</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   duration: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ meet(person: Person)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ saveFromDeath(killer: Person): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ saveFromGas(): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ timeElapsed(time: int)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Person104069929[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Person</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   itemsInHand: List&lt;Item&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   location: Room [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   stunRemaining: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addItem(item: Item)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ dropItem(item: Item)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ dropRandomItem()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ enterRoom(roomTo: Room)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ greet(greeter: Person)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ initItem(item: Item)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ kill(killer: Person)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ meet(person: Person)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ pickedUpSlideRule(slideRule: SlideRule)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeItem(item: Item)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ slip()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ stun()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ timeElapsed(time: int)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Rag104069929[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Rag</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ meet(person: Person)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ saveFromDeath(killer: Person): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ saveFromGas(): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ timeElapsed(time: int)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Room104069929[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Room</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   capacity: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   changeCurseIn: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   curseActive: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   cursed: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   gas: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   itemsInRoom: List&lt;Item&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   neighbours: List&lt;Room&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   peopleInRoom: List&lt;Person&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   stickiness: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ acceptPerson(person: Person): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ addItem(item: Item)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ addNeighbour(room: Room)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ addPerson(person: Person)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ clean()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ initItem(item: Item)</TD></TR>
+<TR><TD ALIGN="LEFT" >- merge(room1: Room): Room</TD></TR>
+<TR><TD ALIGN="LEFT" >+ movePerson(person: Person, roomTo: Room): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ pickUpItem(item: Item): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeItem(item: Item)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removePerson(person: Person)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ requestMerge(room2: Room): Room</TD></TR>
+<TR><TD ALIGN="LEFT" >+ split(): Room</TD></TR>
+<TR><TD ALIGN="LEFT" >+ timeElapsed(time: int)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+SlideRule104069929[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)SlideRule</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ activate()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ meet(person: Person)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ saveFromDeath(killer: Person): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ saveFromGas(): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ timeElapsed(time: int)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Student104069929[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Student</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ activateItem(item: Item)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ greet(greeter: Person)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ kill(killer: Person)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ meet(person: Person)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ pickedUpSlideRule(slideRule: SlideRule)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ slip()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+TVSZ104069929[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)TVSZ</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   usesRemaining: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ activate()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ meet(person: Person)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ saveFromDeath(killer: Person): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ saveFromGas(): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ timeElapsed(time: int)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Teacher104069929[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Teacher</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ greet(greeter: Person)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ kill(killer: Person)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ meet(person: Person)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ pickedUpSlideRule(slideRule: SlideRule)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ slip()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Transistor104069929[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Transistor</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   pair: Transistor [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ activate()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ meet(person: Person)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ saveFromDeath(killer: Person): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ saveFromGas(): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ timeElapsed(time: int)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_3732 { 
+   	label=ui
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   DoorPanel3732[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)DoorPanel</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   color: Color [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   room: Room [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" ># paintComponent(g: Graphics)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+GameWindow3732[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)GameWindow</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+   actPlayerPanel: PlayerPanel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   gameEnded: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   playerPanels: HashMap&lt;Student, PlayerPanel&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ actionPerformed(e: ActionEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >- initMenu()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ reDraw()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ showPlayer(player: Student)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+PlayerPanel3732[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)PlayerPanel</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   activateButton: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   doorSelected: DoorPanel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   doorsPanel: JPanel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   dropButton: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   enterButton: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   itemInHandSelected: ItemPanel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   itemInRoomSelected: ItemPanel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   itemsInHandPanel: JPanel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   itemsInRoomPanel: JPanel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   name: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   peopleInRoomPanel: JPanel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   pickUpButton: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   statusPanel: JPanel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   student: Student [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >- addSmallPanels()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ reDraw()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+'edges    
+Cleaner104069929 -> Room104069929[label="enterRoom() -> clean()"];
+DoorPanel3732 -> Room104069929[label="room
+[0..1]"];
+GameWindow3732 -> PlayerPanel3732[label="actPlayerPanel
+[0..1]"];
+GameWindow3732 -> PlayerPanel3732[label="playerPanels
+[0..*]"];
+IntervalItem104069929 -> Rag104069929[arrowhead=none, arrowtail=empty, dir=both];
+Item104069929 -> AirFresher104069929[arrowhead=none, arrowtail=empty, dir=both];
+Item104069929 -> Camembert104069929[arrowhead=none, arrowtail=empty, dir=both];
+Item104069929 -> IntervalItem104069929[arrowhead=none, arrowtail=empty, dir=both];
+Item104069929 -> Person104069929[label="holder
+[0..1]"];
+Item104069929 -> Room104069929[label="location
+[0..1]"];
+Item104069929 -> SlideRule104069929[arrowhead=none, arrowtail=empty, dir=both];
+Item104069929 -> TVSZ104069929[arrowhead=none, arrowtail=empty, dir=both];
+Item104069929 -> Transistor104069929[arrowhead=none, arrowtail=empty, dir=both];
+Person104069929 -> Cleaner104069929[arrowhead=none, arrowtail=empty, dir=both];
+Person104069929 -> Item104069929[label="itemsInHand
+[0..*]"];
+Person104069929 -> Room104069929[arrowhead=none];
+Person104069929 -> Student104069929[arrowhead=none, arrowtail=empty, dir=both];
+Person104069929 -> Teacher104069929[arrowhead=none, arrowtail=empty, dir=both];
+PlayerPanel3732 -> DoorPanel3732[label="doorSelected
+[0..1]"];
+Rag104069929 -> Room104069929[label="timeElapsed() -> removeItem()"];
+Room104069929 -> AirFresher104069929[label="timeElapsed() -> timeElapsed()", arrowhead=none];
+Room104069929 -> BeerGlass104069929[label="timeElapsed() -> timeElapsed()", arrowhead=none];
+Room104069929 -> Camembert104069929[label="timeElapsed() -> timeElapsed()", arrowhead=none];
+Room104069929 -> Item104069929[arrowhead=none];
+Room104069929 -> Mask104069929[label="timeElapsed() -> timeElapsed()", arrowhead=none];
+Room104069929 -> Person104069929[arrowhead=none];
+Room104069929 -> Rag104069929[label="timeElapsed() -> timeElapsed()", arrowhead=none];
+Room104069929 -> SlideRule104069929[label="timeElapsed() -> timeElapsed()", arrowhead=none];
+Room104069929 -> TVSZ104069929[label="timeElapsed() -> timeElapsed()", arrowhead=none];
+Room104069929 -> Transistor104069929[label="timeElapsed() -> timeElapsed()", arrowhead=none];
+Student104069929 -> Room104069929[label="kill() -> removePerson()"];
+    
+}
+@enduml
