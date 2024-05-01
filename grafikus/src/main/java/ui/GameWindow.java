@@ -15,6 +15,8 @@ public class GameWindow extends JFrame implements ActionListener {
 
     public PlayerPanel actPlayerPanel;
 
+    public boolean gameEnded = false;
+
     public GameWindow(List<Student> players){
         super("Logarléc");
         setMinimumSize(new Dimension(800,500));
@@ -61,6 +63,7 @@ public class GameWindow extends JFrame implements ActionListener {
     }
 
     public void reDraw(){
+        if( gameEnded ) return;
         actPlayerPanel.reDraw();
         pack();
         revalidate();

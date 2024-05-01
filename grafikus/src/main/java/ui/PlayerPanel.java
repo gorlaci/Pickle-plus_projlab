@@ -109,11 +109,15 @@ public class PlayerPanel extends JPanel {
         statusPanel.add(new PersonPanel(student));
         int stun=student.getStunRemaining();
         if(stun > 0 ) statusPanel.add(new JLabel("Stunned for "+stun+" turns"));
+        statusPanel.add( new JLabel("Room capacity: "+student.getLocation().getCapacity()));
         statusPanel.add( new JLabel("Room stickiness: "+student.getLocation().getStickiness()));
         if(student.getLocation().isGas()) statusPanel.add( new JLabel("Room is gassed"));
+
         JButton endButton = new JButton("End Turn");
         endButton.addActionListener(e -> Controller.endButtonPressed());
         statusPanel.add( endButton );
+
+        statusPanel.add( new JLabel("Actions remaining: "+Controller.getActionsRemaining()));
 
         for(Room neighbour : student.getLocation().getNeighbours()){
             DoorPanel doorPanel = new DoorPanel(neighbour);
