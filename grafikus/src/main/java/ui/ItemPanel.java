@@ -16,7 +16,7 @@ public class ItemPanel extends JComponent {
     private final Item item;
     private BufferedImage image;
 
-    private JPopupMenu attributes;
+    private final JPopupMenu attributes;
 
     public ItemPanel(Item item){
         this.item = item;

@@ -1,7 +1,9 @@
 package ui;
 
+import controller.Controller;
 import model.Student;
 
+import javax.naming.ldap.Control;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -51,7 +53,7 @@ public class GameWindow extends JFrame implements ActionListener {
         String s = e.getActionCommand();
         if(s.equals("Exit")) System.exit(0);
         else if (s.equals("New Game")) {
-            
+            Controller.gameOver(false);
         }
     }
 

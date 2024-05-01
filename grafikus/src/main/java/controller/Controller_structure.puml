@@ -70,7 +70,7 @@ config=StructureConfiguration;
     "showPackageLevels": 2,
     "showDetailedClassStructure": true
   },
-  "rootClass": "ui.DoorPanel",
+  "rootClass": "controller.Controller",
   "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
 }
 diagram meta data end '/
@@ -136,17 +136,33 @@ Camembert104069929[
 	fillcolor="#FFFFFF"
 ];
 
-Cleaner104069929[
+FalseMask104069929[
 	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
-<TR><TD ALIGN="LEFT" >(C)Cleaner</TD></TR>
+<TR><TD ALIGN="LEFT" >(C)FalseMask</TD></TR>
 <HR/>
-<TR><TD ALIGN="LEFT" >+ enterRoom(roomTo: Room)</TD></TR>
-<TR><TD ALIGN="LEFT" >+ greet(greeter: Person)</TD></TR>
-<TR><TD ALIGN="LEFT" >+ kill(killer: Person)</TD></TR>
-<TR><TD ALIGN="LEFT" >+ meet(person: Person)</TD></TR>
-<TR><TD ALIGN="LEFT" >+ pickedUpSlideRule(slideRule: SlideRule)</TD></TR>
-<TR><TD ALIGN="LEFT" >+ slip()</TD></TR>
-<TR><TD ALIGN="LEFT" >+ stun()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ saveFromGas(): boolean</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+FalseSlideRule104069929[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)FalseSlideRule</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+FalseTVSZ104069929[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)FalseTVSZ</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ saveFromDeath(killer: Person): boolean</TD></TR>
 </TABLE>>
 	style=filled
 	margin=0
@@ -333,22 +349,6 @@ TVSZ104069929[
 	fillcolor="#FFFFFF"
 ];
 
-Teacher104069929[
-	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
-<TR><TD ALIGN="LEFT" >(C)Teacher</TD></TR>
-<HR/>
-<TR><TD ALIGN="LEFT" >+ greet(greeter: Person)</TD></TR>
-<TR><TD ALIGN="LEFT" >+ kill(killer: Person)</TD></TR>
-<TR><TD ALIGN="LEFT" >+ meet(person: Person)</TD></TR>
-<TR><TD ALIGN="LEFT" >+ pickedUpSlideRule(slideRule: SlideRule)</TD></TR>
-<TR><TD ALIGN="LEFT" >+ slip()</TD></TR>
-</TABLE>>
-	style=filled
-	margin=0
-	shape=plaintext
-	fillcolor="#FFFFFF"
-];
-
 Transistor104069929[
 	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
 <TR><TD ALIGN="LEFT" >(C)Transistor</TD></TR>
@@ -408,6 +408,22 @@ GameWindow3732[
 	fillcolor="#FFFFFF"
 ];
 
+ItemPanel3732[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ItemPanel</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   attributes: JPopupMenu [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   image: BufferedImage [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   item: Item [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" ># paintComponent(g: Graphics)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
 PlayerPanel3732[
 	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
 <TR><TD ALIGN="LEFT" >(C)PlayerPanel</TD></TR>
@@ -438,14 +454,60 @@ PlayerPanel3732[
 ];
 } 
 
+subgraph cluster_637428636 { 
+   	label=controller
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Controller637428636[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Controller</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ activateButtonPressed()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ dropButtonPressed()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ endButtonPressed()</TD></TR>
+<TR><TD ALIGN="LEFT" >- endTurn()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ enterButtonPressed()</TD></TR>
+<TR><TD ALIGN="LEFT" >- gameOver(win: boolean)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getItemAttributes(item: Item): ArrayList&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getItemImage(item: Item): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getPersonImage(person: Person): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getRoomColor(room: Room): Color</TD></TR>
+<TR><TD ALIGN="LEFT" >- giveRoomRandomColor(room: Room)</TD></TR>
+<TR><TD ALIGN="LEFT" >- initMediumMap()</TD></TR>
+<TR><TD ALIGN="LEFT" >- initPlayers(playerNumber: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >- initSmallMap()</TD></TR>
+<TR><TD ALIGN="LEFT" >- isPlayerDead(player: Student): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ main(args: String[])</TD></TR>
+<TR><TD ALIGN="LEFT" >- moveToRandomNeighbour(person: Person)</TD></TR>
+<TR><TD ALIGN="LEFT" >- nextPlayer()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ pickUpButtonPressed()</TD></TR>
+<TR><TD ALIGN="LEFT" >- pickUpRandomItem(person: Person)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ startGame(mapSize: int, playerNumber: int)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
 'edges    
-Cleaner104069929 -> Room104069929[label="enterRoom() -> clean()"];
+AirFresher104069929 -> Person104069929[label="activate() -> removeItem()"];
+BeerGlass104069929 -> Room104069929[label="timeElapsed() -> removeItem()"];
+Camembert104069929 -> Person104069929[label="activate() -> removeItem()"];
+Controller637428636 -> Student104069929[label="activateButtonPressed() -> activateItem()"];
 DoorPanel3732 -> Room104069929[label="room
 [0..1]"];
 GameWindow3732 -> PlayerPanel3732[label="actPlayerPanel
 [0..1]"];
 GameWindow3732 -> PlayerPanel3732[label="playerPanels
 [0..*]"];
+GameWindow3732 -> Student104069929[label="playerPanels
+[0..*]"];
+IntervalItem104069929 -> BeerGlass104069929[arrowhead=none, arrowtail=empty, dir=both];
+IntervalItem104069929 -> Mask104069929[arrowhead=none, arrowtail=empty, dir=both];
 IntervalItem104069929 -> Rag104069929[arrowhead=none, arrowtail=empty, dir=both];
 Item104069929 -> AirFresher104069929[arrowhead=none, arrowtail=empty, dir=both];
 Item104069929 -> Camembert104069929[arrowhead=none, arrowtail=empty, dir=both];
@@ -457,13 +519,19 @@ Item104069929 -> Room104069929[label="location
 Item104069929 -> SlideRule104069929[arrowhead=none, arrowtail=empty, dir=both];
 Item104069929 -> TVSZ104069929[arrowhead=none, arrowtail=empty, dir=both];
 Item104069929 -> Transistor104069929[arrowhead=none, arrowtail=empty, dir=both];
-Person104069929 -> Cleaner104069929[arrowhead=none, arrowtail=empty, dir=both];
-Person104069929 -> Item104069929[label="itemsInHand
-[0..*]"];
-Person104069929 -> Room104069929[arrowhead=none];
+ItemPanel3732 -> Item104069929[label="item
+[0..1]"];
+Mask104069929 -> FalseMask104069929[arrowhead=none, arrowtail=empty, dir=both];
+Mask104069929 -> Person104069929[label="timeElapsed() -> removeItem()"];
+Mask104069929 -> Room104069929[label="timeElapsed() -> removeItem()"];
 Person104069929 -> Student104069929[arrowhead=none, arrowtail=empty, dir=both];
-Person104069929 -> Teacher104069929[arrowhead=none, arrowtail=empty, dir=both];
 PlayerPanel3732 -> DoorPanel3732[label="doorSelected
+[0..1]"];
+PlayerPanel3732 -> ItemPanel3732[label="itemInHandSelected
+[0..1]"];
+PlayerPanel3732 -> ItemPanel3732[label="itemInRoomSelected
+[0..1]"];
+PlayerPanel3732 -> Student104069929[label="student
 [0..1]"];
 Rag104069929 -> Room104069929[label="timeElapsed() -> removeItem()"];
 Room104069929 -> AirFresher104069929[label="timeElapsed() -> timeElapsed()", arrowhead=none];
@@ -476,7 +544,11 @@ Room104069929 -> Rag104069929[label="timeElapsed() -> timeElapsed()", arrowhead=
 Room104069929 -> SlideRule104069929[label="timeElapsed() -> timeElapsed()", arrowhead=none];
 Room104069929 -> TVSZ104069929[label="timeElapsed() -> timeElapsed()", arrowhead=none];
 Room104069929 -> Transistor104069929[label="timeElapsed() -> timeElapsed()", arrowhead=none];
+SlideRule104069929 -> FalseSlideRule104069929[arrowhead=none, arrowtail=empty, dir=both];
 Student104069929 -> Room104069929[label="kill() -> removePerson()"];
+TVSZ104069929 -> FalseTVSZ104069929[arrowhead=none, arrowtail=empty, dir=both];
+TVSZ104069929 -> Person104069929[label="saveFromDeath() -> removeItem()"];
+TVSZ104069929 -> Room104069929[label="saveFromDeath() -> removeItem()"];
     
 }
 @enduml

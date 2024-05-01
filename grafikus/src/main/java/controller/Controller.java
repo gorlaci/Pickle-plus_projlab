@@ -224,17 +224,19 @@ public class Controller {
         rooms.get(9).initItem(new TVSZ(rooms.get(9), null));
         rooms.get(9).initItem(new Mask(rooms.get(9), null, false, 4));
 
-        rooms.get(2).initItem(new Rag(rooms.get(2), null, false, 3));
+        rooms.get(12).initItem(new SlideRule(rooms.get(12), null));
 
-        Cleaner cleaner = new Cleaner(0, rooms.get(3));
-        rooms.get(3).addPerson(cleaner);
+        Cleaner cleaner = new Cleaner(0, rooms.get(6));
+        rooms.get(6).addPerson(cleaner);
         cleaners.add(cleaner);
 
-        Teacher teacher = new Teacher(0, rooms.get(1));
-        rooms.get(1).addPerson(teacher);
+        Teacher teacher = new Teacher(0, rooms.get(8));
+        rooms.get(8).addPerson(teacher);
+        teachers.add(teacher);
+        teacher = new Teacher(0, rooms.get(9));
+        rooms.get(9).addPerson(teacher);
         teachers.add(teacher);
     }
-
 
     private static void initPlayers(int playerNumber) {
         for( int i = 0 ; i < playerNumber ; i++ ) {
@@ -243,7 +245,6 @@ public class Controller {
             rooms.get(0).addPerson(student);
         }
     }
-
 
     private static int actionsRemaining = 3;
     private static int playerIdx = 0;
@@ -263,6 +264,8 @@ public class Controller {
     private static int turnCounter = 0;
     private static final int MAX_TURNS = 50;
 
+    public static int getTurnsLeft() { return MAX_TURNS-turnCounter; }
+
     private static void endTurn() {
         turnCounter++;
         if( turnCounter == MAX_TURNS ){
@@ -279,13 +282,55 @@ public class Controller {
         List<Student> playersCopy = new ArrayList<>(players);
         for( Student player : playersCopy ){
             if( isPlayerDead(player) ){
-                System.out.println( "Dead: " + players.indexOf(player) );
                 players.remove(player);
             }
         }
         if(players.isEmpty()){
             gameOver(false);
         }
+        if(turnCounter % 2 == 0) mergeRooms();
+        else splitRooms();
+    }
+
+    private static void mergeRooms() {
+        Room r1=null;
+        Room r2=null;
+        int tries = 0;
+        while(tries < rooms.size()) {
+            Room room1 = rooms.get(random.nextInt(rooms.size()));
+            if(room1.getPeopleInRoom().isEmpty()) {
+                for(Room room2 : room1.getNeighbours()) {
+                    if(room2.getPeopleInRoom().isEmpty() && room2.getNeighbours().contains(room1)) {
+                        r1 = room1;
+                        r2 = room2;
+                        break;
+                    }
+                }
+            }
+            tries++;
+            if(r1 != null) break;
+        }
+        if(r1 == null) return;
+        Room newRoom = r1.requestMerge(r2);
+        if(newRoom == null) return;
+        rooms.remove(r1);
+        rooms.remove(r2);
+        rooms.add(newRoom);
+        if(random.nextFloat()>0.8) splitRooms();
+    }
+
+    private static void splitRooms() {
+        int tries = 0;
+        while(tries < rooms.size()) {
+            Room room = rooms.get(random.nextInt(rooms.size()));
+            if(room.getPeopleInRoom().isEmpty()) {
+                Room newRoom = room.split();
+                if (newRoom != null) rooms.add(newRoom);
+                break;
+            }
+            tries++;
+        }
+        if(random.nextFloat()>0.8) mergeRooms();
     }
 
     public static void enterButtonPressed(){
@@ -295,7 +340,6 @@ public class Controller {
         }
         if( isPlayerDead(players.get(playerIdx)) ){
             players.remove(playerIdx);
-            System.out.println("Dead: "  + playerIdx);
             if( players.isEmpty() ){
                 gameOver(false);
                 return;
@@ -338,7 +382,6 @@ public class Controller {
         players.get(playerIdx).activateItem(gameWindow.actPlayerPanel.itemInHandSelected.getItem());
         if( isPlayerDead(players.get(playerIdx)) ){
             players.remove(playerIdx);
-            System.out.println( "Dead: " + playerIdx );
             if( players.isEmpty() ){
                 gameOver(false);
                 return;
@@ -359,7 +402,7 @@ public class Controller {
         nextPlayer();
     }
 
-    private static void gameOver(boolean win){
+    public static void gameOver(boolean win){
         gameWindow.gameEnded = true;
         JOptionPane.showMessageDialog(null, win ? "GG" : "BME");
         gameWindow.dispose();
@@ -376,6 +419,7 @@ public class Controller {
 
     private static void moveToRandomNeighbour( Person person ){
         Room room = person.getLocation();
+        if( room.getNeighbours().isEmpty() ) return;
         int idx = random.nextInt( room.getNeighbours().size() );
         person.enterRoom( room.getNeighbours().get(idx) );
     }

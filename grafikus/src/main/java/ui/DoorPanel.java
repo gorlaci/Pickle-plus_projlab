@@ -5,19 +5,15 @@ import model.Room;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 public class DoorPanel extends JPanel {
 
-    private Room room;
-    private Color color;
+    private final Room room;
+    private final Color color;
 
     public DoorPanel(Room room){
         this.room = room;

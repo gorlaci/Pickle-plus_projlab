@@ -14,7 +14,7 @@ import java.awt.event.MouseEvent;
 
 public class PlayerPanel extends JPanel {
     private final Student student;
-    private String name;
+    private final String name;
 
     private final JPanel doorsPanel = new JPanel();
     private final JPanel peopleInRoomPanel = new JPanel();
@@ -112,11 +112,13 @@ public class PlayerPanel extends JPanel {
         statusPanel.add( new JLabel("Room capacity: "+student.getLocation().getCapacity()));
         statusPanel.add( new JLabel("Room stickiness: "+student.getLocation().getStickiness()));
         if(student.getLocation().isGas()) statusPanel.add( new JLabel("Room is gassed"));
+        if(student.getLocation().isCurseActive()) statusPanel.add( new JLabel("Room is cursed right now"));
 
         JButton endButton = new JButton("End Turn");
         endButton.addActionListener(e -> Controller.endButtonPressed());
         statusPanel.add( endButton );
 
+        statusPanel.add( new JLabel(Controller.getTurnsLeft()+" turns left."));
         statusPanel.add( new JLabel("Actions remaining: "+Controller.getActionsRemaining()));
 
         for(Room neighbour : student.getLocation().getNeighbours()){
