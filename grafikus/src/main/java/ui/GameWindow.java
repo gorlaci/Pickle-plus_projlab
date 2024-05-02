@@ -5,14 +5,12 @@ import model.Student;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.List;
 
-public class GameWindow extends JFrame implements ActionListener {
+public class GameWindow extends JFrame {
 
-    HashMap<Student,PlayerPanel> playerPanels = new HashMap<>();
+    private final HashMap<Student,PlayerPanel> playerPanels = new HashMap<>();
 
     public PlayerPanel actPlayerPanel;
 
@@ -42,18 +40,13 @@ public class GameWindow extends JFrame implements ActionListener {
         menuBar.add(menu);
         menu.add(menuNewGame);
         menu.add(menuExit);
-        menuNewGame.addActionListener(this);
-        menuExit.addActionListener(this);
+        menuExit.addActionListener( (e) -> System.exit(0));
+        menuNewGame.addActionListener((e)->{
+            gameEnded = true;
+            dispose();
+            Controller.showMenu();
+        });
         setJMenuBar(menuBar);
-    }
-
-    public void actionPerformed(ActionEvent e)
-    {
-        String s = e.getActionCommand();
-        if(s.equals("Exit")) System.exit(0);
-        else if (s.equals("New Game")) {
-            Controller.gameOver(false);
-        }
     }
 
     public void showPlayer( Student player ){

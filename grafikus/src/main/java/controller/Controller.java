@@ -101,6 +101,10 @@ public class Controller {
         return attributes;
     }
 
+    public static void showMenu(){
+        menuWindow.setVisible(true);
+    }
+
     public static void startGame( int mapSize, int playerNumber ){
 
         menuWindow.dispose();
@@ -256,7 +260,7 @@ public class Controller {
             gameWindow.reDraw();
             return;
         }
-        if( actionsRemaining == 0 || players.get(playerIdx).getStunRemaining()>0){
+        if( actionsRemaining == 0 ){
             nextPlayer();
         }
         gameWindow.reDraw();
@@ -299,7 +303,7 @@ public class Controller {
             return;
         }
         actionsRemaining--;
-        if( actionsRemaining == 0 || players.get(playerIdx).getStunRemaining()>0){
+        if( actionsRemaining == 0 ){
             nextPlayer();
         }
         gameWindow.reDraw();

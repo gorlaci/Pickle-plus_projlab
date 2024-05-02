@@ -25,12 +25,12 @@ public class PlayerPanel extends JPanel {
     public ItemPanel itemInRoomSelected = null;
     public ItemPanel itemInHandSelected = null;
 
-    JPanel statusPanel = new JPanel();
+    private final JPanel statusPanel = new JPanel();
 
-    JButton enterButton = new JButton("Enter");
-    JButton pickUpButton = new JButton("Pick Up");
-    JButton dropButton = new JButton("Drop");
-    JButton activateButton = new JButton("Activate");
+    private final JButton enterButton = new JButton("Enter");
+    private final JButton pickUpButton = new JButton("Pick Up");
+    private final JButton dropButton = new JButton("Drop");
+    private final JButton activateButton = new JButton("Activate");
 
     public PlayerPanel( Student student, String name){
         this.student = student;

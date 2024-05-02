@@ -34,7 +34,18 @@ public class ItemPanel extends JComponent {
 
         this.add(attributes);
 
-        addMouseListener(new ItemAttributeMouseListener());
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseExited(MouseEvent e) {
+                attributes.setVisible(false);
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                attributes.show(e.getComponent(), 0, e.getComponent().getHeight());
+                attributes.setVisible(true);
+            }
+        });
 
         try {
             image = ImageIO.read(new File(imagePath));
@@ -66,19 +77,6 @@ public class ItemPanel extends JComponent {
             setBorder(BorderFactory.createLineBorder(Color.BLACK));
         } else {
             setBorder(null);
-        }
-    }
-
-    class ItemAttributeMouseListener extends MouseAdapter{
-        @Override
-        public void mouseEntered(MouseEvent e) {
-            attributes.show(e.getComponent(), 0, e.getComponent().getHeight());
-            attributes.setVisible(true);
-        }
-
-        @Override
-        public void mouseExited(MouseEvent e) {
-            attributes.setVisible(false);
         }
     }
 }

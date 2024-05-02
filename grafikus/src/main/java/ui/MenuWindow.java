@@ -14,7 +14,7 @@ public class MenuWindow extends JFrame {
 
         // Ablak inicializálása
         super("Menu");
-        setMinimumSize(new Dimension(800,500));
+        setMinimumSize(new Dimension(400,500));
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         // Layout beállítása

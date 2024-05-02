@@ -38,9 +38,9 @@ public class DoorPanel extends JPanel {
         super.paintComponent(g);
         try {
             BufferedImage image = ImageIO.read(new File("resources"+ File.separator+"door.png"));
-            g.drawImage(image, 0, 0, this);
             g.setColor(color);
             g.fillRect(0, 0, getWidth(), getHeight());
+            g.drawImage(image,0, 0, this);
         } catch (IOException e) {
             e.printStackTrace();
         }
