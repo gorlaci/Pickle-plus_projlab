@@ -31,5 +31,3 @@ S
 #src/main/java/model/Transistor.java,c\e\cee4dec52b0bc06f934d2ee6d64c0ef59ac93592
 M
 src/main/java/model/TVSZ.java,4\5\459651ccb1d71cedad252c828f04a35cae8934b7
-G
-src/main/java/Main.java,e\4\e44a8606ce010ad9b89aafdfcee2ab49afbf6d10

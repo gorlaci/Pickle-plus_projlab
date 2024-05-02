@@ -45,15 +45,14 @@ public class ItemPanel extends JComponent {
         setPreferredSize(new Dimension(50,50));
     }
 
+    @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
         if(image != null){
             g.drawImage(image, 0, 0, this);
-            if(item instanceof IntervalItem){
-                if(((IntervalItem) item).isActivated()){
-                    g.setColor(new Color(0,255,0,80));
-                    g.fillRect(0, 0, getWidth() - 1, getHeight() - 1);
-                }
+            if(item instanceof IntervalItem interval && interval.isActivated()){
+                g.setColor(new Color(0,255,0,80));
+                g.fillRect(0, 0, getWidth() - 1, getHeight() - 1);
             }
         }
     }
@@ -80,7 +79,6 @@ public class ItemPanel extends JComponent {
         @Override
         public void mouseExited(MouseEvent e) {
             attributes.setVisible(false);
-            //attributes.hide();
         }
     }
 }

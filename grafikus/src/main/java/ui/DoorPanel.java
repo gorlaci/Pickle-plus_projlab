@@ -33,6 +33,7 @@ public class DoorPanel extends JPanel {
         return room;
     }
 
+    @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         try {

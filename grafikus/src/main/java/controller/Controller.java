@@ -14,19 +14,19 @@ import java.util.Random;
 
 public class Controller {
     private static final List<Room> rooms = new ArrayList<>();
+    private static final HashMap<Room,Color> roomColors = new HashMap<>();
     private static final List<Student> players = new ArrayList<>();
     private static final List<Teacher> teachers = new ArrayList<>();
     private static final List<Cleaner> cleaners = new ArrayList<>();
     private static final MenuWindow menuWindow = new MenuWindow();
     private static GameWindow gameWindow;
+    private static int turnCounter = 0;
+    private static final int MAX_TURNS = 50;
+    private static int actionsRemaining = 4;
+    private static int playerIdx = 0;
 
     public static void main(String[] args){
         menuWindow.setVisible(true);
-    }
-
-    private static final HashMap<Room,Color> roomColors = new HashMap<>();
-    public static Color getRoomColor( Room room ){
-        return roomColors.get(room);
     }
 
     private static final Random random = new Random();
@@ -36,63 +36,70 @@ public class Controller {
         float b = random.nextFloat();
         roomColors.put( room, new Color(r,g,b) );
     }
+    public static Color getRoomColor( Room room ){
+        return roomColors.get(room);
+    }
+    public static int getActionsRemaining() { return actionsRemaining; }
+    public static int getTurnsLeft() { return MAX_TURNS-turnCounter; }
 
+    private static final String RES = "resources";
+    private static final String PNG = ".png";
     public static String getPersonImage(Person person) {
-        if(person instanceof Teacher) return "resources"+ File.separator+"teacher.png";
-        else if(person instanceof Cleaner) return "resources"+ File.separator+"cleaner.png";
+        if(person instanceof Teacher) return RES+ File.separator+"teacher"+PNG;
+        else if(person instanceof Cleaner) return RES+ File.separator+"cleaner"+PNG;
         else {
-            return "resources"+ File.separator+"player"+(players.indexOf((Student)person)+1)+".png";
+            int cnt=0;
+            for(int i=0; i<players.size(); i++) {
+                if(players.get(i)==person) cnt = i+1;
+            }
+            return RES+ File.separator+"player"+cnt+PNG;
         }
     }
     public static String getItemImage(Item item) {
         if (item instanceof BeerGlass) {
-            return "resources" + File.separator + "beerglass.png";
+            return RES + File.separator + "beerglass"+PNG;
         } else if (item instanceof AirFresher) {
-            return "resources" + File.separator + "airfresher.png";
+            return RES + File.separator + "airfresher"+PNG;
         } else if (item instanceof Camembert) {
-            return "resources" + File.separator + "camembert.png";
+            return RES + File.separator + "camembert"+PNG;
         } else if (item instanceof Mask) {
-            return "resources" + File.separator + "mask.png";
+            return RES + File.separator + "mask"+PNG;
         } else if (item instanceof SlideRule) {
-            return "resources" + File.separator + "sliderule.png";
+            return RES + File.separator + "sliderule"+PNG;
         } else if (item instanceof TVSZ) {
-            return "resources" + File.separator + "tvsz.png";
+            return RES + File.separator + "tvsz"+PNG;
         } else if (item instanceof Rag) {
-            return "resources" + File.separator + "rag.png";
-        } else return "resources" + File.separator + "transistor.png";
+            return RES + File.separator + "rag"+PNG;
+        } else return RES + File.separator + "transistor"+PNG;
     }
 
     public static ArrayList<String> getItemAttributes(Item item){
         ArrayList<String> attributes = new ArrayList<>();
         if (item instanceof BeerGlass) {
             attributes.add("Beer Glass");
-            attributes.add(((BeerGlass)item).isActivated() ? "Activated" : "Not activated");
-            attributes.add("Remaining time: " + ((BeerGlass)item).getTimeRemaining());
         } else if (item instanceof AirFresher) {
             attributes.add("Air Freshener");
         } else if (item instanceof Camembert) {
             attributes.add("Camembert");
-        } else if (item instanceof Mask) {
+        } else if (item instanceof Mask mask) {
             attributes.add("Mask");
-            attributes.add(((Mask)item).isActivated() ? "Activated" : "Not activated");
-            attributes.add("Remaining time: " + ((Mask)item).getTimeRemaining());
-            attributes.add("Next duration: " + ((Mask)item).getDuration());
+            attributes.add("Next duration: " + mask.getDuration());
         } else if (item instanceof SlideRule) {
             attributes.add("Slide Rule");
-        } else if (item instanceof TVSZ) {
+        } else if (item instanceof TVSZ tvsz) {
             attributes.add("TVSZ");
-            attributes.add("Uses remaining: " + ((TVSZ)item).getUsesRemaining());
+            attributes.add("Uses remaining: " + tvsz.getUsesRemaining());
         } else if (item instanceof Rag) {
             attributes.add("Rag");
-            attributes.add(((Rag)item).isActivated() ? "Activated" : "Not activated");
-            attributes.add("Remaining time: " + ((Rag)item).getTimeRemaining());
+        } else if(item instanceof IntervalItem interval) {
+            attributes.add(interval.isActivated() ? "Activated" : "Not activated");
+            attributes.add("Remaining time: " + interval.getTimeRemaining());
         } else{
             attributes.add("Transistor");
             attributes.add(((Transistor)item).getPair() == null ? "Not Paired" : "Paired");
         }
         return attributes;
     }
-
 
     public static void startGame( int mapSize, int playerNumber ){
 
@@ -106,11 +113,200 @@ public class Controller {
         turnCounter = 0;
         if(mapSize == 0) initSmallMap();
         else if(mapSize == 1) initMediumMap();
-        //else initLargeMap();
+        else if(mapSize == 2) initLargeMap();
+        else initRandomMap();
         initPlayers(playerNumber);
 
         gameWindow = new GameWindow( players );
         gameWindow.setVisible(true);
+    }
+
+    private static void initPlayers(int playerNumber) {
+        for (int i = 0; i < playerNumber; i++) {
+            Student student = new Student(0, rooms.get(0));
+            players.add(student);
+            rooms.get(0).addPerson(student);
+        }
+    }
+
+    private static void nextPlayer(){
+        actionsRemaining = 4;
+        playerIdx = (playerIdx + 1) % players.size();
+        if(playerIdx == 0) endTurn();
+        if(players.isEmpty()){
+            return;
+        }
+        gameWindow.showPlayer( players.get(playerIdx) );
+    }
+
+    private static void endTurn() {
+        turnCounter++;
+        if( turnCounter == MAX_TURNS ){
+            gameOver(false);
+        }
+        for(Teacher teacher: teachers) {
+            pickUpRandomItem(teacher);
+            moveToRandomNeighbour(teacher);
+        }
+        for(Cleaner cleaner: cleaners) {
+            moveToRandomNeighbour(cleaner);
+        }
+        for(Room room : rooms) room.timeElapsed(1);
+        List<Student> playersCopy = new ArrayList<>(players);
+        for( Student player : playersCopy ){
+            if( isPlayerDead(player) ){
+                players.remove(player);
+            }
+        }
+        if(players.isEmpty()){
+            gameOver(false);
+        }
+        if(turnCounter % 4 == 0) mergeRooms();
+        else if(turnCounter % 4 == 2) splitRooms();
+    }
+
+    private static void pickUpRandomItem(Person person) {
+        Room room = person.getLocation();
+        if( !room.getItemsInRoom().isEmpty() ) {
+            int idx = random.nextInt(room.getItemsInRoom().size());
+            person.addItem(room.getItemsInRoom().get(idx));
+        }
+    }
+
+    private static void moveToRandomNeighbour( Person person ){
+        Room room = person.getLocation();
+        if( room.getNeighbours().isEmpty() ) return;
+        int idx = random.nextInt( room.getNeighbours().size() );
+        person.enterRoom( room.getNeighbours().get(idx) );
+    }
+
+    private static boolean isPlayerDead( Student player ){
+        for( Person person : player.getLocation().getPeopleInRoom() ){
+            if( person == player ){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void gameOver(boolean win){
+        gameWindow.gameEnded = true;
+        JOptionPane.showMessageDialog(null, win ? "GG" : "BME");
+        gameWindow.dispose();
+        menuWindow.setVisible(true);
+    }
+
+    private static void mergeRooms() {
+        ArrayList<Room> merging = getMergingRooms();
+        if(merging.isEmpty()) return;
+        Room newRoom = merging.get(0).requestMerge(merging.get(1));
+        if(newRoom == null) return;
+        rooms.remove(merging.get(0));
+        rooms.remove(merging.get(1));
+        rooms.add(newRoom);
+        if(random.nextFloat()>0.8) splitRooms();
+    }
+
+    private static ArrayList<Room> getMergingRooms() {
+        int tries = 0;
+        ArrayList<Room> merging = new ArrayList<>();
+        while(tries < rooms.size()) {
+            Room room1 = rooms.get(random.nextInt(rooms.size()));
+            if(room1.getPeopleInRoom().isEmpty()) {
+                for(Room room2 : room1.getNeighbours()) {
+                    if(room2.getPeopleInRoom().isEmpty() && room2.getNeighbours().contains(room1)) {
+                        merging.add(room1);
+                        merging.add(room2);
+                        return merging;
+                    }
+                }
+            }
+            tries++;
+        }
+        return merging;
+    }
+
+    private static void splitRooms() {
+        int tries = 0;
+        while(tries < rooms.size()) {
+            Room room = rooms.get(random.nextInt(rooms.size()));
+            if(room.getPeopleInRoom().isEmpty()) {
+                Room newRoom = room.split();
+                if (newRoom != null) rooms.add(newRoom);
+                break;
+            }
+            tries++;
+        }
+        if(random.nextFloat()>0.8) mergeRooms();
+    }
+
+    public static void enterButtonPressed(){
+        if( actionsRemaining >= 2 ){
+            players.get(playerIdx).enterRoom( gameWindow.actPlayerPanel.doorSelected.getRoom() );
+            actionsRemaining -= 2;
+        }
+        if( isPlayerDead(players.get(playerIdx)) ){
+            players.remove(playerIdx);
+            if( players.isEmpty() ){
+                gameOver(false);
+                return;
+            }
+            playerIdx--;
+            nextPlayer();
+            gameWindow.reDraw();
+            return;
+        }
+        if( actionsRemaining == 0 || players.get(playerIdx).getStunRemaining()>0){
+            nextPlayer();
+        }
+        gameWindow.reDraw();
+    }
+
+    public static void pickUpButtonPressed(){
+        players.get(playerIdx).addItem( gameWindow.actPlayerPanel.itemInRoomSelected.getItem() );
+        actionsRemaining--;
+        for( Item item : players.get(playerIdx).getItemsInHand() ){
+            if( item instanceof SlideRule && !(item instanceof FalseSlideRule) ){
+                gameOver(true);
+            }
+        }
+        if( actionsRemaining == 0 ){
+            nextPlayer();
+        }
+        gameWindow.reDraw();
+    }
+
+    public static void dropButtonPressed(){
+        players.get(playerIdx).dropItem(gameWindow.actPlayerPanel.itemInHandSelected.getItem());
+        actionsRemaining--;
+        if( actionsRemaining == 0 ){
+            nextPlayer();
+        }
+        gameWindow.reDraw();
+    }
+
+    public static void activateButtonPressed(){
+        players.get(playerIdx).activateItem(gameWindow.actPlayerPanel.itemInHandSelected.getItem());
+        if( isPlayerDead(players.get(playerIdx)) ){
+            players.remove(playerIdx);
+            if( players.isEmpty() ){
+                gameOver(false);
+                return;
+            }
+            playerIdx--;
+            nextPlayer();
+            gameWindow.reDraw();
+            return;
+        }
+        actionsRemaining--;
+        if( actionsRemaining == 0 || players.get(playerIdx).getStunRemaining()>0){
+            nextPlayer();
+        }
+        gameWindow.reDraw();
+    }
+
+    public static void endButtonPressed() {
+        nextPlayer();
     }
 
     private static void initSmallMap() {
@@ -238,198 +434,11 @@ public class Controller {
         teachers.add(teacher);
     }
 
-    private static void initPlayers(int playerNumber) {
-        for( int i = 0 ; i < playerNumber ; i++ ) {
-            Student student = new Student(0, rooms.get(0));
-            players.add(student);
-            rooms.get(0).addPerson(student);
-        }
+    private static void initLargeMap() {
+        initMediumMap();
     }
 
-    private static int actionsRemaining = 3;
-    private static int playerIdx = 0;
-
-    public static int getActionsRemaining() { return actionsRemaining; }
-
-    private static void nextPlayer(){
-        actionsRemaining = 3;
-        playerIdx = (playerIdx + 1) % players.size();
-        if(playerIdx == 0) endTurn();
-        if(players.isEmpty()){
-            return;
-        }
-        gameWindow.showPlayer( players.get(playerIdx) );
-    }
-
-    private static int turnCounter = 0;
-    private static final int MAX_TURNS = 50;
-
-    public static int getTurnsLeft() { return MAX_TURNS-turnCounter; }
-
-    private static void endTurn() {
-        turnCounter++;
-        if( turnCounter == MAX_TURNS ){
-            gameOver(false);
-        }
-        for(Teacher teacher: teachers) {
-            pickUpRandomItem(teacher);
-            moveToRandomNeighbour(teacher);
-        }
-        for(Cleaner cleaner: cleaners) {
-            moveToRandomNeighbour(cleaner);
-        }
-        for(Room room : rooms) room.timeElapsed(1);
-        List<Student> playersCopy = new ArrayList<>(players);
-        for( Student player : playersCopy ){
-            if( isPlayerDead(player) ){
-                players.remove(player);
-            }
-        }
-        if(players.isEmpty()){
-            gameOver(false);
-        }
-        if(turnCounter % 2 == 0) mergeRooms();
-        else splitRooms();
-    }
-
-    private static void mergeRooms() {
-        Room r1=null;
-        Room r2=null;
-        int tries = 0;
-        while(tries < rooms.size()) {
-            Room room1 = rooms.get(random.nextInt(rooms.size()));
-            if(room1.getPeopleInRoom().isEmpty()) {
-                for(Room room2 : room1.getNeighbours()) {
-                    if(room2.getPeopleInRoom().isEmpty() && room2.getNeighbours().contains(room1)) {
-                        r1 = room1;
-                        r2 = room2;
-                        break;
-                    }
-                }
-            }
-            tries++;
-            if(r1 != null) break;
-        }
-        if(r1 == null) return;
-        Room newRoom = r1.requestMerge(r2);
-        if(newRoom == null) return;
-        rooms.remove(r1);
-        rooms.remove(r2);
-        rooms.add(newRoom);
-        if(random.nextFloat()>0.8) splitRooms();
-    }
-
-    private static void splitRooms() {
-        int tries = 0;
-        while(tries < rooms.size()) {
-            Room room = rooms.get(random.nextInt(rooms.size()));
-            if(room.getPeopleInRoom().isEmpty()) {
-                Room newRoom = room.split();
-                if (newRoom != null) rooms.add(newRoom);
-                break;
-            }
-            tries++;
-        }
-        if(random.nextFloat()>0.8) mergeRooms();
-    }
-
-    public static void enterButtonPressed(){
-        if( actionsRemaining >= 2 ){
-            players.get(playerIdx).enterRoom( gameWindow.actPlayerPanel.doorSelected.getRoom() );
-            actionsRemaining -= 2;
-        }
-        if( isPlayerDead(players.get(playerIdx)) ){
-            players.remove(playerIdx);
-            if( players.isEmpty() ){
-                gameOver(false);
-                return;
-            }
-            playerIdx--;
-            nextPlayer();
-            gameWindow.reDraw();
-            return;
-        }
-        if( actionsRemaining == 0 ){
-            nextPlayer();
-        }
-        gameWindow.reDraw();
-    }
-
-    public static void pickUpButtonPressed(){
-        players.get(playerIdx).addItem( gameWindow.actPlayerPanel.itemInRoomSelected.getItem() );
-        actionsRemaining--;
-        for( Item item : players.get(playerIdx).getItemsInHand() ){
-            if( item instanceof SlideRule && !(item instanceof FalseSlideRule) ){
-                gameOver(true);
-            }
-        }
-        if( actionsRemaining == 0 ){
-            nextPlayer();
-        }
-        gameWindow.reDraw();
-    }
-
-    public static void dropButtonPressed(){
-        players.get(playerIdx).dropItem(gameWindow.actPlayerPanel.itemInHandSelected.getItem());
-        actionsRemaining--;
-        if( actionsRemaining == 0 ){
-            nextPlayer();
-        }
-        gameWindow.reDraw();
-    }
-
-    public static void activateButtonPressed(){
-        players.get(playerIdx).activateItem(gameWindow.actPlayerPanel.itemInHandSelected.getItem());
-        if( isPlayerDead(players.get(playerIdx)) ){
-            players.remove(playerIdx);
-            if( players.isEmpty() ){
-                gameOver(false);
-                return;
-            }
-            playerIdx--;
-            nextPlayer();
-            gameWindow.reDraw();
-            return;
-        }
-        actionsRemaining--;
-        if( actionsRemaining == 0 ){
-            nextPlayer();
-        }
-        gameWindow.reDraw();
-    }
-
-    public static void endButtonPressed() {
-        nextPlayer();
-    }
-
-    public static void gameOver(boolean win){
-        gameWindow.gameEnded = true;
-        JOptionPane.showMessageDialog(null, win ? "GG" : "BME");
-        gameWindow.dispose();
-        menuWindow.setVisible(true);
-    }
-
-    private static void pickUpRandomItem(Person person) {
-        Room room = person.getLocation();
-        if( !room.getItemsInRoom().isEmpty() ) {
-            int idx = random.nextInt(room.getItemsInRoom().size());
-            person.addItem(room.getItemsInRoom().get(idx));
-        }
-    }
-
-    private static void moveToRandomNeighbour( Person person ){
-        Room room = person.getLocation();
-        if( room.getNeighbours().isEmpty() ) return;
-        int idx = random.nextInt( room.getNeighbours().size() );
-        person.enterRoom( room.getNeighbours().get(idx) );
-    }
-
-    private static boolean isPlayerDead( Student player ){
-        for( Person person : player.getLocation().getPeopleInRoom() ){
-            if( person == player ){
-                return false;
-            }
-        }
-        return true;
+    private static void initRandomMap() {
+        initMediumMap();
     }
 }

@@ -40,7 +40,7 @@ public class MenuWindow extends JFrame {
 
         // Pálya kiválasztása - mapPanel
         JLabel mapLabel = new JLabel("Map:");
-        String[] mapOptions = {"Small", "Medium", "Large"};
+        String[] mapOptions = {"Small", "Medium", "Large", "Random"};
         JComboBox<String> mapComboBox = new JComboBox<>(mapOptions);
         mapPanel.add(mapLabel);
         mapPanel.add(mapComboBox);

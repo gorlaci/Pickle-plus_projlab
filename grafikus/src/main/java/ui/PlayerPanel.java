@@ -105,6 +105,20 @@ public class PlayerPanel extends JPanel {
     }
 
     private void addSmallPanels(){
+        addStatusPanel();
+        addDoorPanel();
+
+        for(Person personInRoom : student.getLocation().getPeopleInRoom()){
+            if( personInRoom != student ){
+                peopleInRoomPanel.add( new PersonPanel(personInRoom) );
+            }
+        }
+
+        addItemRoomPanel();
+        addItemHandPanel();
+    }
+
+    private void addStatusPanel() {
         statusPanel.add( new JLabel(name));
         statusPanel.add(new PersonPanel(student));
         int stun=student.getStunRemaining();
@@ -120,7 +134,9 @@ public class PlayerPanel extends JPanel {
 
         statusPanel.add( new JLabel(Controller.getTurnsLeft()+" turns left."));
         statusPanel.add( new JLabel("Actions remaining: "+Controller.getActionsRemaining()));
+    }
 
+    private void addDoorPanel() {
         for(Room neighbour : student.getLocation().getNeighbours()){
             DoorPanel doorPanel = new DoorPanel(neighbour);
             doorPanel.addMouseListener(new MouseAdapter() {
@@ -141,11 +157,9 @@ public class PlayerPanel extends JPanel {
             });
             doorsPanel.add( doorPanel );
         }
-        for(Person personInRoom : student.getLocation().getPeopleInRoom()){
-            if( personInRoom != student ){
-                peopleInRoomPanel.add( new PersonPanel(personInRoom) );
-            }
-        }
+    }
+
+    private void addItemRoomPanel() {
         for(Item itemInRoom : student.getLocation().getItemsInRoom()){
             ItemPanel itemPanel = new ItemPanel(itemInRoom);
             itemPanel.addMouseListener(new MouseAdapter() {
@@ -166,6 +180,9 @@ public class PlayerPanel extends JPanel {
             });
             itemsInRoomPanel.add(itemPanel);
         }
+    }
+
+    private void addItemHandPanel() {
         for( Item itemInHand : student.getItemsInHand() ){
             ItemPanel itemPanel = new ItemPanel(itemInHand);
             itemPanel.addMouseListener(new MouseAdapter() {

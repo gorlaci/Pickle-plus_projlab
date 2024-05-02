@@ -27,6 +27,7 @@ public class PersonPanel extends JComponent {
         setPreferredSize(new Dimension(50,50));
     }
 
+    @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
         if(image != null){
