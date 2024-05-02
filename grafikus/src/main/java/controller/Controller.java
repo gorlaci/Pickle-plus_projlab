@@ -91,12 +91,13 @@ public class Controller {
             attributes.add("Uses remaining: " + tvsz.getUsesRemaining());
         } else if (item instanceof Rag) {
             attributes.add("Rag");
-        } else if(item instanceof IntervalItem interval) {
-            attributes.add(interval.isActivated() ? "Activated" : "Not activated");
-            attributes.add("Remaining time: " + interval.getTimeRemaining());
-        } else{
+        } else {
             attributes.add("Transistor");
             attributes.add(((Transistor)item).getPair() == null ? "Not Paired" : "Paired");
+        }
+        if(item instanceof IntervalItem interval) {
+            attributes.add(interval.isActivated() ? "Activated" : "Not activated");
+            attributes.add("Remaining time: " + interval.getTimeRemaining());
         }
         return attributes;
     }
@@ -218,7 +219,7 @@ public class Controller {
             Room room1 = rooms.get(random.nextInt(rooms.size()));
             if(room1.getPeopleInRoom().isEmpty()) {
                 for(Room room2 : room1.getNeighbours()) {
-                    if(room2.getPeopleInRoom().isEmpty() && room2.getNeighbours().contains(room1)) {
+                    if(room2.getPeopleInRoom().isEmpty() && room2.getNeighbours().contains(room1) && room2.getNeighbours().size()>1 && room1.getNeighbours().size()>1) {
                         merging.add(room1);
                         merging.add(room2);
                         return merging;
@@ -361,7 +362,7 @@ public class Controller {
 
     private static void initMediumMap() {
         for(int i = 0; i < 13; i++) {
-            Room room = new Room(3, false, false, 3);
+            Room room = new Room(3, false, false, 2);
             giveRoomRandomColor(room);
             rooms.add(room);
         }
@@ -439,10 +440,120 @@ public class Controller {
     }
 
     private static void initLargeMap() {
+        initSmallMap();
         initMediumMap();
+        rooms.get(4).getItemsInRoom().remove(0);
+        rooms.get(0).getNeighbours().add(rooms.get(5));
+        rooms.get(1).getNeighbours().add(rooms.get(16));
+        rooms.get(16).getNeighbours().add(rooms.get(1));
+        rooms.get(2).getNeighbours().add(rooms.get(14));
+        rooms.get(14).getNeighbours().add(rooms.get(2));
+        rooms.get(3).getNeighbours().add(rooms.get(14));
+        rooms.get(14).getNeighbours().add(rooms.get(3));
+        rooms.get(4).addItem(new AirFresher(rooms.get(4), null));
+        rooms.get(6).initItem(new Rag(rooms.get(6), null, false, 6));
+        Cleaner cleaner = new Cleaner(0, rooms.get(15));
+        rooms.get(15).addPerson(cleaner);
+        cleaners.add(cleaner);
     }
 
     private static void initRandomMap() {
-        initMediumMap();
+        int roomCnt=random.nextInt(12,25);
+        makeRandomRooms(roomCnt);
+        makeRandomNPCs(roomCnt);
+        makeRandomItems(roomCnt);
+    }
+
+    private static void makeRandomRooms(int roomCnt) {
+        for(int i=0; i<roomCnt; i++) {
+            boolean gas = false;
+            boolean cursed = false;
+            if(random.nextFloat() > 0.8) gas = true;
+            if(random.nextFloat() > 0.8) cursed = true;
+            Room room = new Room(random.nextInt(2, 6), gas, cursed, random.nextInt(0, 4));
+            giveRoomRandomColor(room);
+            rooms.add(room);
+            if(i>0) {
+                rooms.get(i).getNeighbours().add(rooms.get(i-1));
+                rooms.get(i-1).getNeighbours().add(rooms.get(i));
+            }
+        }
+        int neighbourCnt=random.nextInt(roomCnt, roomCnt*2+1);
+        int actCnt=0;
+        while (actCnt<neighbourCnt) {
+            Room room1 = rooms.get(random.nextInt(roomCnt));
+            Room room2 = rooms.get(random.nextInt(roomCnt));
+            if(room1!=room2 && ! room1.getNeighbours().contains(room2) && ! room2.getNeighbours().contains(room1) ) {
+                room1.addNeighbour(room2);
+                actCnt++;
+                if(random.nextFloat() > 0.5) {
+                    room2.addNeighbour(room1);
+                    actCnt++;
+                }
+            }
+        }
+    }
+
+    private static void makeRandomNPCs(int roomCnt) {
+        Room room;
+        int counter = random.nextInt(2, 6);
+        for(int i=0; i<counter; i++) {
+            room=rooms.get(random.nextInt(1, roomCnt));
+            Teacher teacher = new Teacher(0, room);
+            room.addPerson(teacher);
+            teachers.add(teacher);
+        }
+        counter = random.nextInt(2, 6);
+        for(int i=0; i<counter; i++) {
+            room=rooms.get(random.nextInt(0, roomCnt));
+            Cleaner cleaner = new Cleaner(0, room);
+            room.addPerson(cleaner);
+            cleaners.add(cleaner);
+        }
+    }
+
+    private static void makeRandomItems(int roomCnt) {
+        for(Room room: rooms) {
+            int itemCnt = random.nextInt(4);
+            for(int i=0; i< itemCnt; i++) {
+                int itemType = random.nextInt(10);
+                int time = random.nextInt(3, 7);
+                switch(itemType) {
+                    case(0):
+                        room.initItem(new AirFresher(room, null));
+                        break;
+                    case(1):
+                        room.initItem(new BeerGlass(room, null, false, time));
+                        break;
+                    case(2):
+                        room.initItem(new Camembert(room, null));
+                        break;
+                    case(3):
+                        room.initItem(new FalseMask(room, null, false, time));
+                        break;
+                    case(4):
+                        room.initItem(new FalseSlideRule(room, null));
+                        break;
+                    case(5):
+                        room.initItem(new FalseTVSZ(room, null));
+                        break;
+                    case(6):
+                        room.initItem(new Mask(room, null, false, time));
+                        break;
+                    case(7):
+                        room.initItem(new Rag(room, null, false, time));
+                        break;
+                    case(8):
+                        room.initItem(new Transistor(room, null));
+                        break;
+                    case(9):
+                        room.initItem(new TVSZ(room, null));
+                        break;
+                    default:
+                }
+            }
+        }
+        Room room = rooms.get(random.nextInt(1, roomCnt));
+        room.initItem(new SlideRule(room, null));
     }
 }
