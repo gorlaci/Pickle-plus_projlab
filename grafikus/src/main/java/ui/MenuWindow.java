@@ -80,7 +80,5 @@ public class MenuWindow extends JFrame {
         add(mapPanel);
         add(playerPanel);
         add(startPanel);
-
-        setVisible(true);
     }
 }

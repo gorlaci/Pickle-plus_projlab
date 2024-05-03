@@ -21,9 +21,9 @@ public class PlayerPanel extends JPanel {
     private final JPanel itemsInRoomPanel = new JPanel();
     private final JPanel itemsInHandPanel = new JPanel();
 
-    public DoorPanel doorSelected = null;
-    public ItemPanel itemInRoomSelected = null;
-    public ItemPanel itemInHandSelected = null;
+    private DoorPanel doorSelected = null;
+    private ItemPanel itemInRoomSelected = null;
+    private ItemPanel itemInHandSelected = null;
 
     private final JPanel statusPanel = new JPanel();
 
@@ -229,5 +229,17 @@ public class PlayerPanel extends JPanel {
         doorsPanel.setBackground(roomColor);
         peopleInRoomPanel.setBackground(roomColor);
         itemsInRoomPanel.setBackground(roomColor);
+    }
+
+    public DoorPanel getDoorSelected(){
+        return doorSelected;
+    }
+
+    public ItemPanel getItemInRoomSelected(){
+        return itemInRoomSelected;
+    }
+
+    public ItemPanel getItemInHandSelected(){
+        return  itemInHandSelected;
     }
 }

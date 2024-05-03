@@ -14,12 +14,19 @@ import java.util.Random;
 
 public class Controller {
     private static final List<Room> rooms = new ArrayList<>();
-    private static final HashMap<Room,Color> roomColors = new HashMap<>();
     private static final List<Student> players = new ArrayList<>();
     private static final List<Teacher> teachers = new ArrayList<>();
     private static final List<Cleaner> cleaners = new ArrayList<>();
+
     private static final MenuWindow menuWindow = new MenuWindow();
     private static GameWindow gameWindow;
+
+    private static final HashMap<Room,Color> roomColors = new HashMap<>();
+    private static final Random random = new Random();
+
+    private static final String RES = "resources";
+    private static final String PNG = ".png";
+
     private static int turnCounter = 0;
     private static final int MAX_TURNS = 50;
     private static int actionsRemaining = 4;
@@ -29,7 +36,6 @@ public class Controller {
         menuWindow.setVisible(true);
     }
 
-    private static final Random random = new Random();
     private static void giveRoomRandomColor( Room room ){
         float r = random.nextFloat();
         float g = random.nextFloat();
@@ -42,8 +48,6 @@ public class Controller {
     public static int getActionsRemaining() { return actionsRemaining; }
     public static int getTurnsLeft() { return MAX_TURNS-turnCounter; }
 
-    private static final String RES = "resources";
-    private static final String PNG = ".png";
     public static String getPersonImage(Person person) {
         if(person instanceof Teacher) return RES+ File.separator+"teacher"+PNG;
         else if(person instanceof Cleaner) return RES+ File.separator+"cleaner"+PNG;
@@ -195,7 +199,7 @@ public class Controller {
     }
 
     public static void gameOver(boolean win){
-        gameWindow.gameEnded = true;
+        gameWindow.endGame();
         JOptionPane.showMessageDialog(null, win ? "GG" : "BME");
         gameWindow.dispose();
         menuWindow.setVisible(true);
@@ -247,7 +251,7 @@ public class Controller {
 
     public static void enterButtonPressed(){
         if( actionsRemaining >= 2 ){
-            players.get(playerIdx).enterRoom( gameWindow.actPlayerPanel.doorSelected.getRoom() );
+            players.get(playerIdx).enterRoom( gameWindow.getActPlayerPanel().getDoorSelected().getRoom() );
             actionsRemaining -= 2;
         }
         if( isPlayerDead(players.get(playerIdx)) ){
@@ -268,7 +272,7 @@ public class Controller {
     }
 
     public static void pickUpButtonPressed(){
-        players.get(playerIdx).addItem( gameWindow.actPlayerPanel.itemInRoomSelected.getItem() );
+        players.get(playerIdx).addItem( gameWindow.getActPlayerPanel().getItemInRoomSelected().getItem() );
         actionsRemaining--;
         for( Item item : players.get(playerIdx).getItemsInHand() ){
             if( item instanceof SlideRule && !(item instanceof FalseSlideRule) ){
@@ -282,7 +286,7 @@ public class Controller {
     }
 
     public static void dropButtonPressed(){
-        players.get(playerIdx).dropItem(gameWindow.actPlayerPanel.itemInHandSelected.getItem());
+        players.get(playerIdx).dropItem(gameWindow.getActPlayerPanel().getItemInHandSelected().getItem());
         actionsRemaining--;
         if( actionsRemaining == 0 ){
             nextPlayer();
@@ -291,7 +295,7 @@ public class Controller {
     }
 
     public static void activateButtonPressed(){
-        players.get(playerIdx).activateItem(gameWindow.actPlayerPanel.itemInHandSelected.getItem());
+        players.get(playerIdx).activateItem(gameWindow.getActPlayerPanel().getItemInHandSelected().getItem());
         if( isPlayerDead(players.get(playerIdx)) ){
             players.remove(playerIdx);
             if( players.isEmpty() ){

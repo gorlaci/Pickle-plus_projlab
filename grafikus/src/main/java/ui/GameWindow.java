@@ -15,9 +15,9 @@ public class GameWindow extends JFrame {
 
     private final HashMap<Student,PlayerPanel> playerPanels = new HashMap<>();
 
-    public PlayerPanel actPlayerPanel;
+    private PlayerPanel actPlayerPanel;
 
-    public boolean gameEnded = false;
+    private boolean gameEnded = false;
 
     public GameWindow(List<Student> players){
         super("Logarléc");
@@ -32,7 +32,6 @@ public class GameWindow extends JFrame {
         add( actPlayerPanel );
 
         pack();
-        setVisible(true);
     }
 
     private void initMenu() {
@@ -92,5 +91,13 @@ public class GameWindow extends JFrame {
         pack();
         revalidate();
         repaint();
+    }
+
+    public PlayerPanel getActPlayerPanel(){
+        return actPlayerPanel;
+    }
+
+    public  void endGame(){
+        gameEnded = true;
     }
 }
