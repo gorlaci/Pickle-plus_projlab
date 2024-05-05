@@ -12,7 +12,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class PlayerPanel extends JPanel {
+public class PlayerPanel extends JComponent {
     private final Student student;
     private final String name;
 

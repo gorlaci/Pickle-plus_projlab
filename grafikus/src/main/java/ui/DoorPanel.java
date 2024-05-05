@@ -10,7 +10,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class DoorPanel extends JPanel {
+public class DoorPanel extends JComponent {
 
     private final Room room;
     private final Color color;
