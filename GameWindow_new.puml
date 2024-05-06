@@ -1,0 +1,26 @@
+@startuml
+participant Controller as "c: Controller"
+participant GameWindow as "gw: GameWindow"
+participant PlayerPanel as "pp: PlayerPanel"
+create GameWindow
+Controller -> GameWindow : <<create>>(players: List<Student>)
+activate GameWindow
+GameWindow -> GameWindow : initMenu()
+activate GameWindow
+GameWindow -->> GameWindow
+deactivate GameWindow
+loop foreach player in players
+create PlayerPanel
+GameWindow -->> PlayerPanel : <<create>>(player, "Player"+(players.indexOf(player)+1))
+GameWindow -> GameWindow : playerPanels.put(pp)
+activate GameWindow
+GameWindow -->> GameWindow
+deactivate GameWindow
+end
+GameWindow -> GameWindow : add(playerPanels.get(players[0]))
+activate GameWindow
+GameWindow -->> GameWindow
+deactivate GameWindow
+GameWindow -->> Controller
+deactivate GameWindow
+@enduml

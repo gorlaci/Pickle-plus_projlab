@@ -1,0 +1,46 @@
+@startuml
+participant MenuWindow as "mw: MenuWindow"
+participant Controller as "c: Controller"
+participant mapComboBox as "mapComboBox: JComboBox"
+participant minusButton as "minusButton: JButton"
+participant plusButton as "plusButton: JButton"
+participant startButton as "startButton: JButton"
+participant playerLabel as "playerLabel: JLabel"
+create MenuWindow
+-->> MenuWindow : <<create>>
+activate MenuWindow
+create mapComboBox
+MenuWindow -->> mapComboBox : <<create>>("small", "medium", "large")
+create minusButton
+MenuWindow -->> minusButton : <<create>>
+MenuWindow -> minusButton : addActionListener
+activate minusButton
+minusButton -> playerLabel : setText(numPlayers)
+activate playerLabel
+playerLabel -->> minusButton
+deactivate playerLabel
+minusButton -->> MenuWindow
+deactivate minusButton
+create plusButton
+MenuWindow -->> plusButton : <<create>>
+MenuWindow -> plusButton : addActionListener
+activate plusButton
+plusButton -> playerLabel : setText(numPlayers)
+activate playerLabel
+playerLabel -->> plusButton
+deactivate playerLabel
+plusButton -->> MenuWindow
+deactivate plusButton
+create startButton
+MenuWindow -->> startButton : <<create>>
+MenuWindow -> startButton : addActionListener
+activate startButton
+startButton -> Controller : startGame(mapSize, numPlayers)
+activate Controller
+Controller --> startButton
+deactivate Controller
+startButton -->> MenuWindow
+deactivate startButton
+<<-- MenuWindow
+deactivate MenuWindow
+@enduml
