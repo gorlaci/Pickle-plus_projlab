@@ -70,7 +70,6 @@ public class MenuWindow extends JFrame {
         // Start gomb - startPanel
         JButton startButton = new JButton("Start Game");
         startButton.addActionListener(e -> {
-            // Start játék logika
             Controller.startGame(mapComboBox.getSelectedIndex(), numPlayers);
         });
         startPanel.add(startButton);
