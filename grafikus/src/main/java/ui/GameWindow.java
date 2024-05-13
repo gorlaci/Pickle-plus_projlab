@@ -11,14 +11,34 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
+/** 
+ * A játékot megjelenítő ablak. A játékosokat és a játék állapotát jeleníti meg.
+ * Az ablakban a játékosok paneljei vannak elrendezve, és a játékosok váltakozva jönnek sorra.
+ * Az ablakban található menüben lehet új játékot indítani, kilépni a játékból, illetve információkat kérni a játékról.
+ * Az információk egy info.txt fájlból kerülnek beolvasásra.
+ */
 public class GameWindow extends JFrame {
 
+    /** 
+     * A játékosokat és a hozzájuk tartozó panelt tartalmazó HashMap.
+     */
     private final HashMap<Student,PlayerPanel> playerPanels = new HashMap<>();
 
+    /** 
+     * Az éppen aktív játékos panelje.
+     */
     private PlayerPanel actPlayerPanel;
 
+    /** 
+     * A játék vége állapotát tároló változó.
+     */
     private boolean gameEnded = false;
 
+    /** 
+     * Konstruktor, inicializálja az ablakot, a menüt, és a játékosok paneljeit.
+     * Az ablakot a megadott játékosokkal hozza létre.
+     * @param players A játékosok listája.
+     */
     public GameWindow(List<Student> players){
         super("Logarléc");
         setMinimumSize(new Dimension(800,500));
@@ -34,6 +54,12 @@ public class GameWindow extends JFrame {
         pack();
     }
 
+
+    /**
+     * Inicializálja a menüt.
+     * A menüben lehet új játékot indítani, kilépni a játékból, illetve információkat kérni a játékról.
+     * Az információk egy info.txt fájlból kerülnek beolvasásra.
+     */
     private void initMenu() {
         JMenuBar menuBar = new JMenuBar();
         JMenu menu = new JMenu("Menu");
@@ -57,6 +83,11 @@ public class GameWindow extends JFrame {
         setJMenuBar(menuBar);
     }
 
+    /** 
+     * Beolvassa a megadott fájlt egy String-be.
+     * @param fileName A beolvasandó fájl neve.
+     * @return A beolvasott fájl tartalma.
+     */
     private String readFileToString(String fileName) {
         File file=new File(fileName);
         if(!file.exists()) {
@@ -77,7 +108,11 @@ public class GameWindow extends JFrame {
         sc.close();
         return text;
     }
-
+    
+    /** 
+     * Megjeleníti a megadott játékost.
+     * @param player A megjelenítendő játékos.
+     */
     public void showPlayer( Student player ){
         remove(actPlayerPanel);
         actPlayerPanel = playerPanels.get(player);
@@ -85,6 +120,9 @@ public class GameWindow extends JFrame {
         reDraw();
     }
 
+    /** 
+     * Frissíti az ablakot.
+     */
     public void reDraw(){
         if( gameEnded ) return;
         actPlayerPanel.reDraw();
@@ -93,10 +131,17 @@ public class GameWindow extends JFrame {
         repaint();
     }
 
+    /** 
+     * Visszaadja az éppen aktív játékos paneljét.
+     * @return Az éppen aktív játékos panelje.
+     */
     public PlayerPanel getActPlayerPanel(){
         return actPlayerPanel;
     }
 
+    /** 
+     * Beállítja a játék vége állapotát.
+     */
     public  void endGame(){
         gameEnded = true;
     }

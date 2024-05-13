@@ -12,26 +12,89 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/** 
+ * A játékosokat megjelenítő panel. A játékosokhoz tartozó információkat jeleníti meg, valamint lehetőséget ad a játékosok által végrehajtható műveletek elvégzésére.
+ */
 public class PlayerPanel extends JComponent {
+
+    /** 
+     * A játékos, akinek a panel tartozik.
+     */
     private final Student student;
+
+    /** 
+     * A játékos neve.
+     */
     private final String name;
 
+    /** 
+     * Az ajtókat megjelenítő panel.
+     */
     private final JPanel doorsPanel = new JPanel();
+
+    /** 
+     * A személyeket megjelenítő panel.
+     */
     private final JPanel peopleInRoomPanel = new JPanel();
+
+    /** 
+     * A szobában tárgyakat megjelenítő panel.
+     */
     private final JPanel itemsInRoomPanel = new JPanel();
+
+    /** 
+     * A játékos által tartott tárgyakat megjelenítő panel.
+     */
     private final JPanel itemsInHandPanel = new JPanel();
 
+    /** 
+     * A játékos által kiválasztott ajtó.
+     */
     private DoorPanel doorSelected = null;
+
+    /** 
+     * A játékos által kiválasztott tárgy a szobában.
+     */
     private ItemPanel itemInRoomSelected = null;
+
+    /** 
+     * A játékos által kiválasztott tárgy a kezében.
+     */
     private ItemPanel itemInHandSelected = null;
 
+    /** 
+     * A játékhoz kapcsolódó hasznos állapokat megjelenítő panel.
+     */
     private final JPanel statusPanel = new JPanel();
 
+    /** 
+     * Az ajtóba való belépés gomb.
+     */
     private final JButton enterButton = new JButton("Enter");
+
+    /** 
+     * A tárgy felvételére szolgáló gomb.
+     */
     private final JButton pickUpButton = new JButton("Pick Up");
+
+    /** 
+     * A tárgy eldobására szolgáló gomb.
+     */
     private final JButton dropButton = new JButton("Drop");
+
+    /** 
+     * A tárgy aktiválására szolgáló gomb.
+     */
     private final JButton activateButton = new JButton("Activate");
 
+    /** 
+     * Konstruktor, beállítja a játékost és a nevét.
+     * Létrehozza a panelen megjelenítendő részeket, és hozzáadja őket a panelhez.
+     * Beállítja a gombokhoz tartozó eseménykezelőket.
+     * A panel hátterét a játékos szobájának színére állítja. 
+     * @param student A játékos, akinek a panel tartozik.
+     * @param name A játékos neve.
+     */
     public PlayerPanel( Student student, String name){
         this.student = student;
         this.name = name;
@@ -104,6 +167,9 @@ public class PlayerPanel extends JComponent {
 
     }
 
+    /** 
+     * Hozzáadja a felülethez a kisebb paneleket. Státuszpanelt, ajtókat, személyeket, tárgyakat.
+     */
     private void addSmallPanels(){
         addStatusPanel();
         addDoorPanel();
@@ -118,6 +184,11 @@ public class PlayerPanel extends JComponent {
         addItemHandPanel();
     }
 
+    /** 
+     * Legerálja a státuszpanelt és hozzáadja a felülethez.
+     * A státuszpanel tartalmazza a játékos nevét, a játékost, aki a panelhez tartozik, a szoba kapacitását, ragadóságát, gázos-e a szoba, és hogy átok van-e a szobában.
+     * Hozzáad egy gombot, amellyes a játékos befejezheti a körét.
+     */
     private void addStatusPanel() {
         statusPanel.add( new JLabel(name));
         statusPanel.add(new PersonPanel(student));
@@ -136,6 +207,11 @@ public class PlayerPanel extends JComponent {
         statusPanel.add( new JLabel("Actions remaining: "+Controller.getActionsRemaining()));
     }
 
+    /** 
+     * Hozzáadja a felülethez az ajtókat megjelenítő paneleket.
+     * Az ajtókra kattintva a játékos át tud lépni a szobák között.
+     * Ha az ajtóra kattint a játékos, akkor az ajtó kijelölődik, és a belépés gomb aktiválódik.
+     */
     private void addDoorPanel() {
         for(Room neighbour : student.getLocation().getNeighbours()){
             DoorPanel doorPanel = new DoorPanel(neighbour);
@@ -159,6 +235,12 @@ public class PlayerPanel extends JComponent {
         }
     }
 
+
+    /** 
+     * Hozzáadja a felülethez a szobában található tárgyakat megjelenítő paneleket.
+     * A tárgyakra kattintva a játékos fel tudja venni a tárgyat.
+     * Ha a tárgyra kattint a játékos, akkor a tárgy kijelölődik, és a felvétel gomb aktiválódik.
+     */
     private void addItemRoomPanel() {
         for(Item itemInRoom : student.getLocation().getItemsInRoom()){
             ItemPanel itemPanel = new ItemPanel(itemInRoom);
@@ -182,6 +264,11 @@ public class PlayerPanel extends JComponent {
         }
     }
 
+    /** 
+     * Hozzáadja a felülethez a játékos által tartott tárgyakat megjelenítő paneleket.
+     * A tárgyakra kattintva a játékos aktiválhatja a tárgyat.
+     * Ha a tárgyra kattint a játékos, akkor a tárgy kijelölődik, és az aktiválás gomb aktiválódik.
+     */
     private void addItemHandPanel() {
         for( Item itemInHand : student.getItemsInHand() ){
             ItemPanel itemPanel = new ItemPanel(itemInHand);
@@ -207,6 +294,11 @@ public class PlayerPanel extends JComponent {
         }
     }
 
+    /** 
+     * Frissíti a panelen megjelenített információkat.
+     * Az ajtókat, személyeket, tárgyakat újrarajzolja.
+     * A kijelöléseket visszaállítja.
+     */
     public void reDraw(){
         doorsPanel.removeAll();
         peopleInRoomPanel.removeAll();
@@ -231,14 +323,26 @@ public class PlayerPanel extends JComponent {
         itemsInRoomPanel.setBackground(roomColor);
     }
 
+    /** 
+     * Visszaadja a játékost.
+     * @return A játékos.
+     */
     public DoorPanel getDoorSelected(){
         return doorSelected;
     }
 
+    /** 
+     * Visszaadja a játékos által kiválasztott tárgyat, ami a szobában van.
+     * @return A tárgy.
+     */
     public ItemPanel getItemInRoomSelected(){
         return itemInRoomSelected;
     }
 
+    /** 
+     * Visszaadja a játékos által kiválasztott tárgyat, ami a kezében van.
+     * @return A tárgy.
+     */
     public ItemPanel getItemInHandSelected(){
         return  itemInHandSelected;
     }

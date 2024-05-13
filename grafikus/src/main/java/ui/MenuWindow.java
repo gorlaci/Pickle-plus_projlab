@@ -6,10 +6,28 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 
+/**
+ * A menüt megjelenítő ablak. A játék indításához szükséges beállításokat lehet itt megadni.
+ * A menüben lehet kiválasztani a pályát, a játékosok számát, és elindítani a játékot.
+ * A játék indításához a Start Game gombra kell kattintani.
+ */
 public class MenuWindow extends JFrame {
+
+    /** 
+     * A játékosok számát tartalmazó label.
+     */
     private final JLabel playerLabel;
+
+    /** 
+     * A játékosok számát tároló változó.
+     */
     private int numPlayers = 2;
 
+    /** 
+     * Konstruktor, inicializálja az ablakot, a menüt, és a beállításokat.
+     * Az ablakot a megadott játékosokkal hozza létre.
+     * A játékosok számát a plusButton és minusButton gombokkal lehet növelni és csökkenteni.
+     */
     public MenuWindow() {
 
         // Ablak inicializálása

@@ -12,42 +12,127 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
+/** 
+ * A játékot irányító osztály. A játék állapotát tárolja, a játékmenetet vezérli, a játék végét kezeli.
+ * A játékban szereplő szereplők és tárgyak listáit tárolja.
+ * A játékmenetet vezérlő gombok eseményeit kezeli.
+ */
 public class Controller {
+
+    /** 
+     * A játékban szereplő szobák listája.
+     */
     private static final List<Room> rooms = new ArrayList<>();
+
+    /** 
+     * A játékban szereplő játékosok listája.
+     */
     private static final List<Student> players = new ArrayList<>();
+
+    /** 
+     * A játékban szereplő tanárok listája.
+     */
     private static final List<Teacher> teachers = new ArrayList<>();
+
+    /** 
+     * A játékban szereplő takarítók listája.
+     */
     private static final List<Cleaner> cleaners = new ArrayList<>();
 
+    /** 
+     * A menü ablak.
+     */
     private static final MenuWindow menuWindow = new MenuWindow();
+
+    /** 
+     * A játék ablak.
+     */
     private static GameWindow gameWindow;
 
+    /** 
+     * A szobákhoz tartozó színek listája.
+     */
     private static final HashMap<Room,Color> roomColors = new HashMap<>();
+
+    /** 
+     * A véletlenszám generátor.
+     */
     private static final Random random = new Random();
 
+    /** 
+     * A képek elérési útvonala.
+     */
     private static final String RES = "resources";
+
+    /** 
+     * A képek kiterjesztése.
+     */
     private static final String PNG = ".png";
 
+    /** 
+     * A játékban eltelt körök száma.
+     */
     private static int turnCounter = 0;
+
+    /** 
+     * A játékban maximálisan eltölthető körök száma.
+     */
     private static final int MAX_TURNS = 50;
+
+    /** 
+     * A játékosok számának indexe.
+     */
     private static int actionsRemaining = 4;
+
+    /** 
+     * A jelenlegi játékos indexe.
+     */
     private static int playerIdx = 0;
 
+    /** 
+     * A játék indítása.
+     * Beállítja a játék ablakot, és megjeleníti azt.
+     * @param args A parancssori argumentumok.
+     */
     public static void main(String[] args){
         menuWindow.setVisible(true);
     }
 
+    /** 
+     * Véletlenszerű szín adása a megadott szobának.
+     */
     private static void giveRoomRandomColor( Room room ){
         float r = random.nextFloat();
         float g = random.nextFloat();
         float b = random.nextFloat();
         roomColors.put( room, new Color(r,g,b) );
     }
+
+    /**
+     * Visszaadja a megadott szoba színét.
+     * @param room
+     * @return A megadott szoba színe.
+     */
     public static Color getRoomColor( Room room ){
         return roomColors.get(room);
     }
+
+    /**
+     * Visszaadja a hátralévő lépések számát.
+     * @return A hátralévő lépések száma.
+     */
     public static int getActionsRemaining() { return actionsRemaining; }
+
+    /**
+     * Visszaadja a hátralévő körök számát.
+     * @return A hátralévő körök száma.
+     */
     public static int getTurnsLeft() { return MAX_TURNS-turnCounter; }
 
+    /**
+     * Visszaadja a játékoshoz tartozó képet.
+     * @return A játékoshoz tartozó kép.
+     */
     public static String getPersonImage(Person person) {
         if(person instanceof Teacher) return RES+ File.separator+"teacher"+PNG;
         else if(person instanceof Cleaner) return RES+ File.separator+"cleaner"+PNG;
@@ -59,6 +144,11 @@ public class Controller {
             return RES+ File.separator+"player"+cnt+PNG;
         }
     }
+
+    /**
+     * Visszaadja a tárgyhoz tartozó képet.
+     * @return A tárgyhoz tartozó kép.
+     */
     public static String getItemImage(Item item) {
         if (item instanceof BeerGlass) {
             return RES + File.separator + "beerglass"+PNG;
@@ -77,6 +167,10 @@ public class Controller {
         } else return RES + File.separator + "transistor"+PNG;
     }
 
+    /**
+     * Visszaadja a tárgy attribútumait.
+     * @return A tárgy attribútumai.
+     */
     public static ArrayList<String> getItemAttributes(Item item){
         ArrayList<String> attributes = new ArrayList<>();
         if (item instanceof BeerGlass) {
@@ -106,10 +200,19 @@ public class Controller {
         return attributes;
     }
 
+    /**
+     * Megjeleníti a menüt.
+     */
     public static void showMenu(){
         menuWindow.setVisible(true);
     }
 
+    /**
+     * Elindítja a játékot.
+     * Beállítja a játék ablakot, és megjeleníti azt.
+     * @param mapSize A pálya mérete.
+     * @param playerNumber A játékosok száma.
+     */
     public static void startGame( int mapSize, int playerNumber ){
 
         menuWindow.dispose();
@@ -130,6 +233,10 @@ public class Controller {
         gameWindow.setVisible(true);
     }
 
+    /**
+     * Inicializálja a játékosokat.
+     * @param playerNumber A játékosok száma.
+     */
     private static void initPlayers(int playerNumber) {
         for (int i = 0; i < playerNumber; i++) {
             Student student = new Student(0, rooms.get(0));
@@ -138,6 +245,9 @@ public class Controller {
         }
     }
 
+    /**
+     * A következő játékos nézetének megjelenítése.
+     */
     private static void nextPlayer(){
         actionsRemaining = 4;
         playerIdx = (playerIdx + 1) % players.size();
@@ -148,6 +258,9 @@ public class Controller {
         gameWindow.showPlayer( players.get(playerIdx) );
     }
 
+    /**
+     * A játékos körének lezárása, a következő játékos nézetének megjelenítése.
+     */
     private static void endTurn() {
         turnCounter++;
         if( turnCounter == MAX_TURNS ){
@@ -174,6 +287,10 @@ public class Controller {
         else if(turnCounter % 4 == 2) splitRooms();
     }
 
+    /**
+     * Véletlenszerű tárgy felvétele a megadott személy által.
+     * @param person A személy, aki felveszi a tárgyat.
+     */
     private static void pickUpRandomItem(Person person) {
         Room room = person.getLocation();
         if( !room.getItemsInRoom().isEmpty() ) {
@@ -182,6 +299,10 @@ public class Controller {
         }
     }
 
+    /**
+     * Véletlenszerű szomszédos szobába való átmozgatás a megadott személy által.
+     * @param person A személy, aki átmegy a szomszédos szobába.
+     */
     private static void moveToRandomNeighbour( Person person ){
         Room room = person.getLocation();
         if( room.getNeighbours().isEmpty() ) return;
@@ -189,6 +310,10 @@ public class Controller {
         person.enterRoom( room.getNeighbours().get(idx) );
     }
 
+    /**
+     * A megadott játékos halottságának ellenőrzése.
+     * @param player A játékos, akinek a halottságát ellenőrizzük.
+     */
     private static boolean isPlayerDead( Student player ){
         for( Person person : player.getLocation().getPeopleInRoom() ){
             if( person == player ){
@@ -198,6 +323,10 @@ public class Controller {
         return true;
     }
 
+    /**
+     * A játék végének kezelése.
+     * @param win A játék végének eredménye.
+     */
     public static void gameOver(boolean win){
         gameWindow.endGame();
         JOptionPane.showMessageDialog(null, win ? "GG" : "BME");
@@ -205,6 +334,10 @@ public class Controller {
         menuWindow.setVisible(true);
     }
 
+    /**
+     * A szobák összevonása.
+     * Ha a szobák összevonhatóak, akkor összevonja őket.
+     */
     private static void mergeRooms() {
         ArrayList<Room> merging = getMergingRooms();
         if(merging.isEmpty()) return;
@@ -216,6 +349,11 @@ public class Controller {
         if(random.nextFloat()>0.8) splitRooms();
     }
 
+    /**
+     * Visszaadja a szobákat, amelyek összevonhatóak.
+     * Ha nincs összevonható szoba, akkor üres listát ad vissza.
+     * @return A szobák, amelyek összevonhatóak.
+     */
     private static ArrayList<Room> getMergingRooms() {
         int tries = 0;
         ArrayList<Room> merging = new ArrayList<>();
@@ -235,6 +373,10 @@ public class Controller {
         return merging;
     }
 
+    /**
+     * A szobák szétválasztása.
+     * Ha a szobák szétválaszthatóak, akkor szétválasztja őket.
+     */
     private static void splitRooms() {
         int tries = 0;
         while(tries < rooms.size()) {
@@ -249,6 +391,13 @@ public class Controller {
         if(random.nextFloat()>0.8) mergeRooms();
     }
 
+    /**
+     * A játékos mozgásának kezelése.
+     * Ha a játékos mozog, akkor a játékablakot újrarajzolja.
+     * Ha a játékos meghal, akkor a játékablakot újrarajzolja, és a következő játékosra lép.
+     * Ha a játékosnak nincs több lépése, akkor a következő játékosra lép.
+     * Ha a játékos meghal, és nincs több játékos, akkor a játék végét kezeli.
+     */
     public static void enterButtonPressed(){
         if( actionsRemaining >= 2 ){
             players.get(playerIdx).enterRoom( gameWindow.getActPlayerPanel().getDoorSelected().getRoom() );
@@ -271,6 +420,10 @@ public class Controller {
         gameWindow.reDraw();
     }
 
+    /**
+     * A játékos tárgyfelvételének kezelése.
+     * Ha a játékos felvette a tárgyat, akkor a játékablakot újrarajzolja.
+     */
     public static void pickUpButtonPressed(){
         players.get(playerIdx).addItem( gameWindow.getActPlayerPanel().getItemInRoomSelected().getItem() );
         actionsRemaining--;
@@ -285,6 +438,10 @@ public class Controller {
         gameWindow.reDraw();
     }
 
+    /**
+     * A játékos tárgyeldobásának kezelése.
+     * Ha a játékos eldobta a tárgyat, akkor a játékablakot újrarajzolja.
+     */
     public static void dropButtonPressed(){
         players.get(playerIdx).dropItem(gameWindow.getActPlayerPanel().getItemInHandSelected().getItem());
         actionsRemaining--;
@@ -294,6 +451,12 @@ public class Controller {
         gameWindow.reDraw();
     }
 
+    /**
+     * A játékos tárgyaktiválásának kezelése.
+     * Ha a játékos aktiválta a tárgyat, akkor a játékablakot újrarajzolja.
+     * Ha a játékosnak nincs több lépése, akkor a következő játékosra lép.
+     * Ha a játékos meghal, és nincs több játékos, akkor a játék végét kezeli.
+     */
     public static void activateButtonPressed(){
         players.get(playerIdx).activateItem(gameWindow.getActPlayerPanel().getItemInHandSelected().getItem());
         if( isPlayerDead(players.get(playerIdx)) ){
@@ -314,10 +477,16 @@ public class Controller {
         gameWindow.reDraw();
     }
 
+    /**
+     * A játékoks körének befejezése.
+     */
     public static void endButtonPressed() {
         nextPlayer();
     }
 
+    /**
+     * A játék kicsi pályájának inicializálása.
+     */
     private static void initSmallMap() {
         Room room = new Room(4, false, false, 1);
         giveRoomRandomColor(room);
@@ -364,6 +533,9 @@ public class Controller {
         teachers.add(teacher);
     }
 
+    /**
+     * A játék közepes pályájának inicializálása.
+     */
     private static void initMediumMap() {
         for(int i = 0; i < 13; i++) {
             Room room = new Room(3, false, false, 2);
@@ -443,6 +615,9 @@ public class Controller {
         teachers.add(teacher);
     }
 
+    /**
+     * A játék nagy pályájának inicializálása.
+     */
     private static void initLargeMap() {
         initSmallMap();
         initMediumMap();
@@ -461,6 +636,9 @@ public class Controller {
         cleaners.add(cleaner);
     }
 
+    /**
+     * A játék véletlenszerű pályájának inicializálása.
+     */
     private static void initRandomMap() {
         int roomCnt=random.nextInt(12,25);
         makeRandomRooms(roomCnt);
@@ -468,6 +646,11 @@ public class Controller {
         makeRandomItems(roomCnt);
     }
 
+    /**
+     * Véletlenszerű szobák inicializálása.
+     * Ezeket összekapcsolja véletlenszerűen szomszédos szobákká.
+     * @param roomCnt A szobák száma.
+     */
     private static void makeRandomRooms(int roomCnt) {
         for(int i=0; i<roomCnt; i++) {
             boolean gas = false;
@@ -498,6 +681,11 @@ public class Controller {
         }
     }
 
+    /**
+     * Véletlenszerű NPC-k inicializálása. Tanárok és takarítók.
+     * Ezeket véletlenszerűen szobákba helyezi.
+     * @param roomCnt A szobák száma.
+     */
     private static void makeRandomNPCs(int roomCnt) {
         Room room;
         int counter = random.nextInt(2, 6);
@@ -516,6 +704,11 @@ public class Controller {
         }
     }
 
+    /**
+     *  Tárgyak inicializálása véletlenszerűen.
+     * Ezeket véletlenszerűen szobákba helyezi.
+     * @param roomCnt A szobák száma.
+     */
     private static void makeRandomItems(int roomCnt) {
         for(Room room: rooms) {
             int itemCnt = random.nextInt(4);

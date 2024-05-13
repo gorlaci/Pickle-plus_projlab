@@ -9,10 +9,25 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
+/** 
+ * A személyeket megjelenítő panel. A személyekhez tartozó képeket jeleníti meg. A képeket a Controller osztályból kéri le.
+ */
 public class PersonPanel extends JComponent {
+
+    /** 
+     * A személy, akinek a panel tartozik.
+     */
     private final Person person;
+
+    /** 
+     * A személyhez tartozó kép.
+     */
     private BufferedImage image;
 
+    /** 
+     * Konstruktor, beállítja a személyhez tartozó képet.
+     * @param person A személy, akinek a panel tartozik.
+     */
     public PersonPanel(Person person){
         this.person = person;
 
@@ -27,6 +42,10 @@ public class PersonPanel extends JComponent {
         setPreferredSize(new Dimension(50,50));
     }
 
+    /** 
+     * Beállítja a panel kijelöltségét.
+     * @param selected A kijelöltség állapota.
+     */
     @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
