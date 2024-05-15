@@ -9,11 +9,13 @@ package model;
  */
 public class Mask extends IntervalItem{
 
-    //Minden Mask ezzel az értékkel csökkenti a duration értékét miután lejár az aktiválási ideje
+    /**
+     * Minden Mask ezzel az értékkel csökkenti a duration értékét miután lejár az aktiválási ideje.
+     */
     private static final int DURATION_DECR = 2;
     /*
-     * A Mask tartóssága, tárolja hogy következő aktiváláskor mennyi ideig lesz aktív
-     * Értéke minden deaktiválással csökken, és ha eléri a nullát, megszűnik a Mask
+     * A Mask tartóssága, tárolja hogy következő aktiváláskor mennyi ideig lesz aktív.
+     * Értéke minden deaktiválással csökken, és ha eléri a nullát, megszűnik a Mask.
      */
     private int duration;
 
@@ -22,10 +24,10 @@ public class Mask extends IntervalItem{
      * Létrehoz és inicializál egy Mask objektumot.
      * A duration értékét beállítja, hogy a második aktiváláskor mennyi ideig hat majd.
      *
-     * @param location a szoba, amiben a tárgy van
-     * @param holder a személy, akinél a tárgy van
-     * @param activated a tárgy aktiválva van-e
-     * @param timeRemaining a hátralévő idő, amíg a tárgy aktív
+     * @param location A szoba, amiben a tárgy van.
+     * @param holder A személy, akinél a tárgy van.
+     * @param activated A tárgy aktiválva van-e?
+     * @param timeRemaining A hátralévő idő, amíg a tárgy aktív.
      */
     public Mask(Room location, Person holder, boolean activated, int timeRemaining){
         super(location, holder, activated, timeRemaining);
@@ -33,18 +35,20 @@ public class Mask extends IntervalItem{
     }
 
     /**
-     * Találkozás személlyel
+     * Találkozás személlyel.
      * Nem csinál semmit, mert ha földön van nincs kit megvédenie.
-     * @param person a személy, akivel találkozik a tárgy
+     * 
+     * @param person A személy, akivel találkozik a tárgy.
      */
     @Override
     public void meet(Person person) { }
 
     /**
-     * Kibukás elleni védelem kérése
+     * Kibukás elleni védelem kérése.
      * A tárgy nem nyújt védelmet a kibukás ellen.
-     * @param killer a támadó személy
-     * @return {@code false} minden esetben
+     * 
+     * @param killer A támadó személy.
+     * @return {@code false} minden esetben.
      */
     @Override
     public boolean saveFromDeath(Person killer) {
@@ -52,10 +56,11 @@ public class Mask extends IntervalItem{
     }
 
     /**
-     * Mérgező gáz elleni védelem kérése
+     * Mérgező gáz elleni védelem kérése.
      * Amennyiben aktiválva van a maszk, logikai igazzal tér vissza, megvédve a birtokosát.
      * Ha nincs aktiválva, akkor aktiválódik, és szintén logikai igazzal tér vissza.
-     * @return {@code true} minden esetben
+     * 
+     * @return {@code true} minden esetben.
      */
     @Override
     public boolean saveFromGas() {
@@ -66,12 +71,13 @@ public class Mask extends IntervalItem{
     }
 
     /**
-     * Idő telése a maszkon
-     * Ha aktiválva van a tárgy, akkor a timeRemaining értékét
+     * Idő telése a maszkon.
+     * Ha aktiválva van a tárgy, akkor a timeRemaining értékét.
      * csökkenti time-mal. Ha elérte a 0-t, akkor adott értékkel csökkenti a durationt és
      * visszaállítja az activatedet hamisra. Ha a duration elérte a 0-t akkor aktuális
-     * birtokosánál kezdeményezi a tárgy megsemmisítését
-     * @param time az eltelt idő
+     * birtokosánál kezdeményezi a tárgy megsemmisítését.
+     * 
+     * @param time Az eltelt idő.
      */
     @Override
     public void timeElapsed(int time) {
@@ -96,14 +102,14 @@ public class Mask extends IntervalItem{
     }
 
     /*
-     * Tartósság lekérdezése
+     * Tartósság lekérdezése.
      */
     public int getDuration() {
         return duration;
     }
 
     /*
-     * Tartósság beállítása
+     * Tartósság beállítása.
      */
     public void setDuration(int duration) {
         this.duration = duration;

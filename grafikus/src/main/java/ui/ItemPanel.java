@@ -13,7 +13,8 @@ import java.io.File;
 import java.util.ArrayList;
 
 /** 
- * Az Itemeket megjelenítő panel. Az Itemekhez tartozó képeket és attribútumokat jeleníti meg. Az attribútumokat a Controller osztályból kéri le.
+ * Az Itemeket megjelenítő panel. Az Itemekhez tartozó képeket és attribútumokat jeleníti meg.
+ * Az attribútumokat a Controller osztályból kéri le.
  */
 public class ItemPanel extends JComponent {
 
@@ -34,7 +35,10 @@ public class ItemPanel extends JComponent {
 
     /** 
      * Konstruktor, beállítja az Itemhez tartozó képet és attribútumokat.
-     * A panelen lévő attribútumokat a Controller osztályból kéri le. Hozzáad egy egérfigyelőt, amely megjeleníti az attribútumokat, ha az egér a panel fölé kerül.
+     * A panelen lévő attribútumokat a Controller osztályból kéri le.
+     * Hozzáad egy egérfigyelőt, amely megjeleníti az attribútumokat, ha az egér a panel fölé kerül.
+     * A preferált méret 50 x 50 lesz.
+     * 
      * @param item Az Item, amelyhez a panel tartozik.
      */
     public ItemPanel(Item item){
@@ -77,6 +81,8 @@ public class ItemPanel extends JComponent {
 
     /** 
      * Kirajzolja a panelt.
+     * Ha a megjelenítendő tárgy IntervalItem, és a tárgy aktiválva van, beállít egy zöld hátteret is.
+     * 
      * @param g A rajzoló objektum.
      */
     @Override
@@ -92,7 +98,8 @@ public class ItemPanel extends JComponent {
     }
 
     /** 
-     * Visszaadja az Itemet.
+     * Visszaadja az Item-et.
+     * 
      * @return Az Item.
      */
     public Item getItem(){
@@ -101,6 +108,8 @@ public class ItemPanel extends JComponent {
 
     /** 
      * Beállítja a panel kijelöltségét.
+     * A kijelöltséget egy új határoló vonallal jelzi.
+     * 
      * @param selected A kijelöltség állapota.
      */
     public void setSelected(boolean selected) {

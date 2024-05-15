@@ -11,16 +11,18 @@ public class Student extends Person{
      * A Student osztály konstruktora.
      * Létrehoz és inicializál egy Student objektumot.
      *
-     * @param stunRemaining az idő, ameddig a személy le van bénulva
-     * @param location a szoba, ahol a személy vam
+     * @param stunRemaining Az idő, ameddig a személy le van bénulva.
+     * @param location A szoba, ahol a személy van.
      */
     public Student(int stunRemaining, Room location){
         super(stunRemaining, location);
     }
 
     /**
-     * Egy személlyel való találkozást kezeli le. Köszön a személynek.
-     * @param person a személy, akivel találkozik
+     * Egy személlyel való találkozást kezeli le.
+     * Köszön a személynek.
+     * 
+     * @param person A személy, akivel találkozik.
      */
     @Override
     public void meet(Person person) {
@@ -31,7 +33,8 @@ public class Student extends Person{
      * A hallgató megtámadását kezeli le. Ha képes magát megvédeni
      * valamely tárgya segítségével, akkor nem történik vele semmi.
      * Ha nem sikerül magát megvédenie, akkor kibukik és törli magát a tartózkodási helyéről.
-     * @param killer az a személy, aki ki akarja buktatni
+     * 
+     * @param killer Az a személy, aki ki akarja buktatni.
      */
     @Override
     public void kill(Person killer) {
@@ -57,7 +60,8 @@ public class Student extends Person{
     /**
      * Logarléc felvétele.
      * Nem történik semmi, nála maradhat a Logarléc.
-     * @param slideRule a logarléc
+     * 
+     * @param slideRule A logarléc.
      */
     @Override
     public void pickedUpSlideRule(SlideRule slideRule) {}
@@ -65,14 +69,16 @@ public class Student extends Person{
     /**
      * A hallgató köszönésre reagálása
      * Nem csinál semmit a hallgató.
-     * @param greeter a másik személy
+     * 
+     * @param greeter A másik személy.
      */
     @Override
     public void greet(Person greeter) {}
 
     /**
      * Egy tárgy aktiválása.
-     * @param item a használni kívánt tárgy
+     * 
+     * @param item A használni kívánt tárgy.
      */
     public void activateItem( Item item ){
         item.activate();

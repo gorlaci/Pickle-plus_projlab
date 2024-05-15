@@ -36,7 +36,10 @@ public class GameWindow extends JFrame {
 
     /** 
      * Konstruktor, inicializálja az ablakot, a menüt, és a játékosok paneljeit.
+     * Az ablak címe "Logarléc" lesz, mérete 800 x 500 px.
      * Az ablakot a megadott játékosokkal hozza létre.
+     * Az 1. játékos lesz az aktív játékos.
+     * 
      * @param players A játékosok listája.
      */
     public GameWindow(List<Student> players){
@@ -58,6 +61,7 @@ public class GameWindow extends JFrame {
     /**
      * Inicializálja a menüt.
      * A menüben lehet új játékot indítani, kilépni a játékból, illetve információkat kérni a játékról.
+     * Beállítja a grafikus felület objektumainak callback metódusait.
      * Az információk egy info.txt fájlból kerülnek beolvasásra.
      */
     private void initMenu() {
@@ -84,7 +88,8 @@ public class GameWindow extends JFrame {
     }
 
     /** 
-     * Beolvassa a megadott fájlt egy String-be.
+     * Segédfüggvény, beolvassa a megadott fájlt egy String-be.
+     * 
      * @param fileName A beolvasandó fájl neve.
      * @return A beolvasott fájl tartalma.
      */
@@ -111,6 +116,7 @@ public class GameWindow extends JFrame {
     
     /** 
      * Megjeleníti a megadott játékost.
+     * 
      * @param player A megjelenítendő játékos.
      */
     public void showPlayer( Student player ){
@@ -121,7 +127,7 @@ public class GameWindow extends JFrame {
     }
 
     /** 
-     * Frissíti az ablakot.
+     * Frissíti az ablakot, feltéve ha a játék még fut.
      */
     public void reDraw(){
         if( gameEnded ) return;
@@ -133,6 +139,7 @@ public class GameWindow extends JFrame {
 
     /** 
      * Visszaadja az éppen aktív játékos paneljét.
+     * 
      * @return Az éppen aktív játékos panelje.
      */
     public PlayerPanel getActPlayerPanel(){

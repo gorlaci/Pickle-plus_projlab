@@ -5,14 +5,14 @@ package model;
  * Ez az egyszerhasználatos tárgy aktiváláskor megszünteti a szoba gázosságát.
  * Az osztály az Item absztakt osztályból származik.
  */
-public class AirFresher extends Item{
+public class AirFresher extends Item {
 
     /**
      * A AirFresher osztály kontruktora.
      * Létrehoz és inicializál egy AirFresher objektumot.
      *
-     * @param location a szoba, amiben a tárgy van
-     * @param holder a személy, akinél a tárgy van
+     * @param location A szoba, amiben a tárgy van.
+     * @param holder A személy, akinél a tárgy van.
      */
     public AirFresher(Room location, Person holder){
         super(location, holder);
@@ -20,8 +20,8 @@ public class AirFresher extends Item{
 
     /**
      * A légfrissítő aktiválása.
-     * Tartózkodási szobáján meghívja a location.setGas(false) metódust és felfrissíti azt.
-     * Igényli birtokosánál az önmegsemmisítést (holder.removeItem()).
+     * Tartózkodási szobáján meghívja a {@code location.setGas(false)} metódust és felfrissíti azt.
+     * Igényli birtokosánál az önmegsemmisítést {@code (holder.removeItem())}.
      */
     @Override
     public void activate() {
@@ -32,16 +32,18 @@ public class AirFresher extends Item{
     /**
      * Egy személlyel való találkozást kezeli, ha a földön van.
      * Nincsen semmilyen hatása a földön.
-     * @param person Az a személy, akivel találkozik
+     * 
+     * @param person Az a személy, akivel találkozik.
      */
     @Override
     public void meet(Person person) { }
 
     /**
-     * Kibukás elleni védelem kérése
+     * Kibukás elleni védelem kérése.
      * A tárgy nem nyújt védelmet támadás ellen.
-     * @param killer az a személy, aki megtámadta a AirFresher objektum tulajdonosát
-     * @return {@code false} minden esetben
+     * 
+     * @param killer Az a személy, aki megtámadta a AirFresher objektum tulajdonosát.
+     * @return {@code false} minden esetben.
      */
     @Override
     public boolean saveFromDeath(Person killer) {
@@ -51,7 +53,8 @@ public class AirFresher extends Item{
     /**
      * Mérgező gáz elleni védelem kérése.
      * A AirFresher nem nyújt védelmet a gáz ellen.
-     * @return {@code false} minden esetben
+     * 
+     * @return {@code false} minden esetben.
      */
     @Override
     public boolean saveFromGas() {
@@ -59,10 +62,11 @@ public class AirFresher extends Item{
     }
 
     /**
-     * Idő telése a tárgyon
+     * Idő telése a tárgyon.
      * Mivel egyszerhasználatos tárgy, így nem történik vele
      * semmi az idő múlásával.
-     * @param time az eltelt idő
+     * 
+     * @param time Az eltelt idő.
      */
     @Override
     public void timeElapsed(int time) { }

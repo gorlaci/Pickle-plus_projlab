@@ -9,8 +9,8 @@ package model;
 public class TVSZ extends Item{
 
     /*
-     * A tárgy ennyiszer véd meg a kibukástól, ha eléri a nullát, megszűnik
-     * Kezdőértéke 3
+     * A tárgy ennyiszer véd meg a kibukástól, ha eléri a nullát, megszűnik.
+     * Kezdőértéke 3.
      */
     private int usesRemaining;
 
@@ -18,8 +18,8 @@ public class TVSZ extends Item{
      * A TVSZ osztály konstruktora.
      * Létrehoz és inicializás egy TVSZ objektumot.
      *
-     * @param location a szoba, amiben a tárgy van
-     * @param holder a személy, akinél a tárgy van
+     * @param location A szoba, amiben a tárgy van.
+     * @param holder A személy, akinél a tárgy van.
      */
     public TVSZ(Room location, Person holder){
         super(location, holder);
@@ -33,9 +33,10 @@ public class TVSZ extends Item{
     public void activate() { }
 
     /**
-     * Találkozás személlyel
+     * Találkozás személlyel.
      * Nem csinál semmit. a földön nem tud megvédeni senkit.
-     * @param person a személy, akivel találkozik a tárgy
+     * 
+     * @param person A személy, akivel találkozik a tárgy.
      */
     @Override
     public void meet(Person person) { }
@@ -45,8 +46,9 @@ public class TVSZ extends Item{
      * A tárgy megvédi a birtokosát és csökkenti a
      * usesRemaining-et 1-gyel. Amennyiben a változó értéke 0 lesz megsemmisül.
      * Logikai igazzal tér vissza.
-     * @param killer a támadó személy
-     * @return {@code true} minden esetben
+     * 
+     * @param killer A támadó személy.
+     * @return {@code true} minden esetben.
      */
     @Override
     public boolean saveFromDeath(Person killer) {
@@ -61,9 +63,10 @@ public class TVSZ extends Item{
     }
 
     /**
-     * Mérgező gáz elleni védelem kérése
+     * Mérgező gáz elleni védelem kérése.
      * A tárgy nem nyújt védelmet a gáz ellen.
-     * @return {@code false} minden esetben
+     * 
+     * @return {@code false} minden esetben.
      */
     @Override
     public boolean saveFromGas() {
@@ -74,20 +77,21 @@ public class TVSZ extends Item{
      * Idő telése a TVSZ-en
      * Mivel egyszerhasználatos tárgy, így nem történik vele
      * semmi az idő múlásával.
-     * @param time az eltelt idő
+     * 
+     * @param time Az eltelt idő.
      */
     @Override
     public void timeElapsed(int time) { }
 
     /*
-     * Hátralevő használati alkalmak lekérdezése
+     * Hátralevő használati alkalmak számának lekérdezése.
      */
     public int getUsesRemaining(){
         return usesRemaining;
     }
 
     /*
-     * Hátralevő használati alkalmak beállítása
+     * Hátralevő használati alkalmak számának beállítása.
      */
     public void setUsesRemaining(int usesRemaining) {
         this.usesRemaining = usesRemaining;

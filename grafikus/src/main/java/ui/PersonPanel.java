@@ -26,6 +26,7 @@ public class PersonPanel extends JComponent {
 
     /** 
      * Konstruktor, beállítja a személyhez tartozó képet.
+     * 
      * @param person A személy, akinek a panel tartozik.
      */
     public PersonPanel(Person person){
@@ -43,8 +44,10 @@ public class PersonPanel extends JComponent {
     }
 
     /** 
-     * Beállítja a panel kijelöltségét.
-     * @param selected A kijelöltség állapota.
+     * Kirajzolja a panelt.
+     * Ha a személy megbénult, kirajzol egy sárga hátteret is.
+     * 
+     * @param g A rajzoló grafika objektum.
      */
     @Override
     protected void paintComponent(Graphics g){

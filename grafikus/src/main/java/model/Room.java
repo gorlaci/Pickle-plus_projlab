@@ -13,47 +13,47 @@ import java.util.List;
 public class Room implements ItemHandler, TimeSensitive {
 
     /**
-     * Szoba kapacitása
+     * A szoba kapacitása.
      */
     private int capacity;
     /**
-     * Gázosság állapota
+     * A gázosság állapota.
      */
     private boolean gas;
     /**
-     * A szoba képes-e elátkozott lenni
+     * A szoba képes-e elátkozott lenni?
      */
     private boolean cursed;
     /**
-     * Az elátkozott szoba jelenleg átkozott-e
+     * Az elátkozott szoba jelenleg átkozott-e?
      */
     private boolean curseActive;
     /**
-     * Az elátkozott szoba mennyi idő múlva vált állapotot
+     * Az elátkozott szoba mennyi idő múlva vált állapotot?
      */
     private int changeCurseIn;
     /**
-     * Az elátkozott Room-ok milyen gyakran vált állapotot
+     * Az elátkozott szobák milyen gyakran váltanak állapotot?
      */
     private static final int CURSESTATEINTERVAL=5;
     /**
-     * Ragacsosság mértéke
+     * A ragacsosság mértéke.
      */
     private int stickiness;
     /**
-     * Ragacsosság határa minden Roomban, ha ezt az értéket eléri, akkor a tárgyak nem vehetők fel
+     * A ragacsosság határa minden szobában, ha ezt az értéket eléri, akkor a tárgyak nem vehetők fel.
      */
     private static final int STICKYLIMIT=5;
     /**
-     * Szobában tartózkodó emberek
+     * A szobában tartózkodó emberek listája.
      */
     private final List<Person> peopleInRoom = new ArrayList<>();
     /**
-     * Szobában levő tárgyak
+     * A szobában levő tárgyak listája.
      */
     private final List<Item> itemsInRoom = new ArrayList<>();
     /**
-     * Szoba szomszédainak listája, csak az odairányt teszi lehetővé
+     * A szoba szomszédainak listája, csak az odairányt tárolja.
      */
     private final List<Room> neighbours =new ArrayList<>();
 
@@ -61,10 +61,10 @@ public class Room implements ItemHandler, TimeSensitive {
      * A Room osztály konstruktora.
      * Létrehoz és inicializál egy Room objektumot.
      *
-     * @param capacity a szoba kapacitása
-     * @param gas a szoba gázos-e
-     * @param cursed a szoba el van-e átkozva
-     * @param stickiness az utolsó takarítás óta a szobába belépő személyek száma
+     * @param capacity A szoba kapacitása.
+     * @param gas A szoba gázos-e?
+     * @param cursed A szoba el van-e átkozva?
+     * @param stickiness Az utolsó takarítás óta a szobába belépő személyek száma.
      */
     public Room(int capacity, boolean gas, boolean cursed, int stickiness){
         this.capacity = capacity;
@@ -77,15 +77,17 @@ public class Room implements ItemHandler, TimeSensitive {
 
     /**
      * A szoba szomszédai közé felvesz egy szobát.
-     * @param room a szomszédok listájába felvenni kívánt szoba
+     * 
+     * @param room A szomszédok listájába felvenni kívánt szoba.
      */
     public void addNeighbour(Room room) {
         neighbours.add(room);
     }
 
     /**
-     * A szobában elhelyez egy személyt amennyiben a szoba nincs tele.
-     * @param person az elhelyezni kívánt személy
+     * A szobában elhelyez egy személyt, amennyiben a szoba nincs tele.
+     * 
+     * @param person Az elhelyezni kívánt személy.
      */
     public void addPerson(Person person) {
         if(peopleInRoom.size()<capacity) peopleInRoom.add(person);
@@ -93,7 +95,8 @@ public class Room implements ItemHandler, TimeSensitive {
 
     /**
      * Egy személy eltávolítása a szobából.
-     * @param person az eltávolítani kívánt személy
+     * 
+     * @param person Az eltávolítani kívánt személy.
      */
     public void removePerson( Person person ){
         peopleInRoom.remove(person);
@@ -101,7 +104,8 @@ public class Room implements ItemHandler, TimeSensitive {
 
     /**
      * A szobában elhelyez egy tárgyat.
-     * @param item az elhelyezni kívánt tárgy
+     * 
+     * @param item Az elhelyezni kívánt tárgy.
      */
     public void initItem(Item item) {
         itemsInRoom.add(item);
@@ -109,7 +113,8 @@ public class Room implements ItemHandler, TimeSensitive {
 
     /**
      * Egy tárgyat elhelyez a szobában és annak tartózkodási helyét is beállítja.
-     * @param item a hozzáadni kívánt tárgy
+     * 
+     * @param item A hozzáadni kívánt tárgy.
      */
     @Override
     public void addItem(Item item) {
@@ -121,10 +126,11 @@ public class Room implements ItemHandler, TimeSensitive {
     /**
      * Egy tárgy felvételének kezdeményezése a szobánál.
      * Amennyiben a ragacsosság még nem érte el a határértékét,
-     * a removeItem()-hez hasonlóan eltávolítja a tárgyat, majd igazzal visszatér.
+     * a {@code removeItem()}-hez hasonlóan eltávolítja a tárgyat, majd igazzal visszatér.
      * Egyébként hamis visszatérési értékkel jelzi a személynek a sikertelen felvételt.
-     * @param item a tárgy amit fel akarnak venni
-     * @return {@code true} ha a tárgy felvehető {@code false} egyébként
+     * 
+     * @param item A tárgy amit fel akarnak venni.
+     * @return {@code true} ha a tárgy felvehető, {@code false} egyébként.
      */
     public boolean pickUpItem(Item item) {
         if(stickiness<STICKYLIMIT) {
@@ -136,7 +142,8 @@ public class Room implements ItemHandler, TimeSensitive {
 
     /**
      * Egy tárgy törlése a szobából.
-     * @param item a törölni kívánt tárgy
+     * 
+     * @param item A törölni kívánt tárgy.
      */
     @Override
     public void removeItem(Item item) {
@@ -149,7 +156,8 @@ public class Room implements ItemHandler, TimeSensitive {
      * Továbbítja az eltelt időt a benne lévő személyeknek és tárgyaknak.
      * A továbbra is szobában tartózkodó tárgyakat összetalálkoztatja minden személlyel és
      * minden személyt kölcsönösen összetalálkoztat egymással.
-     * @param time az eltelt idő
+     * 
+     * @param time Az eltelt idő.
      */
     @Override
     public void timeElapsed(int time) {
@@ -189,8 +197,9 @@ public class Room implements ItemHandler, TimeSensitive {
      * szobában levő tárgyak találkozásáért. Ha a szoba mérgezett, felel a belépő játékos
      * elkábításáért.
      * Felel a ragacsosság növeléséért.
-     * @param person a belépő személy
-     * @return {@code true} ha sikeresen belépett a szobába {@code false} egyébként
+     * 
+     * @param person A belépő személy.
+     * @return {@code true} ha sikeresen belépett a szobába, {@code false} egyébként.
      */
     public boolean acceptPerson( Person person ){
         if(peopleInRoom.size()==capacity) {
@@ -216,13 +225,14 @@ public class Room implements ItemHandler, TimeSensitive {
     }
 
     /**
-     *Ha a szoba jelenleg nincs aktívan elátkozva, a
+     * Ha a szoba jelenleg nincs aktívan elátkozva, a
      * paraméterként kapott személy a paraméterként kapott szobába léptetésének igényét továbbítja. A kapott szoba
      * értesíti ennek sikerességéről és ő is ezzel tér vissza. Ha igazzal tér vissza, akkor
      * eltávolítja a személyt önmagából. Ha a szoba aktívan elátkozott, rögtön hamissal tér vissza.
-     * @param person a személy, aki át akar lépni
-     * @param roomTo a szoba, ahova át szeretne lépni
-     * @return {@code true} ha sikeresen átlépett, {@code false} egyébként
+     * 
+     * @param person A személy, aki át akar lépni.
+     * @param roomTo A szoba, ahova át szeretne lépni.
+     * @return {@code true} ha sikeresen átlépett, {@code false} egyébként.
      */
     public boolean movePerson( Person person, Room roomTo ){
         if(curseActive) return false;
@@ -239,7 +249,7 @@ public class Room implements ItemHandler, TimeSensitive {
      * aki a szobába jövetelkor hívta a függvényt) kivételével
      * összes szobában tartózkodó embert átteszi egy másik szobába, amennyiben teheti.
      * A szomszédok listájában elölről indul, és ameddig tudja tenni az embereket, addig oda teszi
-     * (meghívja az adott emberre az enterRoom(r3) metódust az adott r3 szomszédot átadva),
+     * (meghívja az adott emberre az {@code enterRoom(r3)} metódust az adott r3 szomszédot átadva),
      * ha pedig nem tudja, akkor a következő szomszéddal próbálkozik.
      * Ha az összes szomszédon végig ment és még mindig maradt ember a szobában, akkor ők ott maradhatnak.
      */
@@ -263,7 +273,8 @@ public class Room implements ItemHandler, TimeSensitive {
      * cursed értékeiből, ha mindkettő logikai igaz volt, akkor az erediben a gas hamis lesz,
      * és az újban lesz a gas igaz. Ha a két értékből nem volt mindkettő logikai igaz, akkor az új
      * szoba mindkét értéke hamis lesz. Az új szoba capacity-je és stickiness-e a régiével egyezik meg.
-     * @return az új {@code Room} objektum, ha sikeres volt a szétválás, {@code null} egyébként
+     * 
+     * @return Az új Room objektum ha sikeres volt a szétválás, {@code null} egyébként.
      */
     public Room split(){
 
@@ -304,11 +315,12 @@ public class Room implements ItemHandler, TimeSensitive {
     /**
      * Két szoba egyesítését kezdeményező függvény.
      * Ha nincs benne egy személy sem, akkor az ő részéről rendben van az egyesülés,
-     * továbbítja a kérést a másik félnek a merge(this) metódushívással.
+     * továbbítja a kérést a másik félnek a {@code merge(this)} metódushívással.
      * Ha a másik szoba is beleegyezett, létrehozta az új szobát.
      * Az aktuális szoba átadja az újnak a tárgyait és szomszédait.
-     * @param room2 az a szoba, aminek továbbítani kell az összeolvadási kérést.
-     * @return {@code Room} ha sikeres az összeolvadás, {@code null} egyébként
+     * 
+     * @param room2 Az a szoba, aminek továbbítani kell az összeolvadási kérést.
+     * @return Az összeolvadt szoba ha sikeres az összeolvadás, {@code null} egyébként.
      */
     public Room requestMerge( Room room2 ){
         if(!peopleInRoom.isEmpty()) {
@@ -316,7 +328,6 @@ public class Room implements ItemHandler, TimeSensitive {
         }
         Room newRoom = room2.merge(this);
         if( newRoom != null ) {
-
             for(Item item: itemsInRoom) {
                 newRoom.addItem(item);
             }
@@ -341,10 +352,12 @@ public class Room implements ItemHandler, TimeSensitive {
      * Ha nincs benne egy személy sem, létrehoz egy új szobát.
      * Az új szoba állapota a két szoba állapotai alapján lesznek beállítva.
      * Az új szoba kapacitása és ragacsossága a két szoba értékeiből a nagyobbik lesz.
-     * Az új szoba elátkozottság és mérgező gáz állapota a két szoba értékeinek logikai VAGY kapcsolatából keletkezik.
-     * Az új szoba szomszédjait beállítja a sajátjai alapján és az összes benne lévő tárgyat áthelyezi az új szobába.
-     * @param room1 az a szoba, ami össze akar olvadni
-     * @return {@code Room} ha sikeres az összeolvadás, {@code null} egyébként
+     * Az új szoba elátkozottság és mérgező gáz állapota a két szoba értékeinek logikai VAGY
+     * kapcsolatából keletkezik. Az új szoba szomszédjait beállítja a sajátjai alapján és
+     * az összes benne lévő tárgyat áthelyezi az új szobába.
+     * 
+     * @param room1 Az a szoba, ami össze akar olvadni.
+     * @return Az összeolvadt szoba ha sikeres az összeolvadás, {@code null} egyébként.
      */
     private Room merge( Room room1 ){
 
@@ -379,9 +392,10 @@ public class Room implements ItemHandler, TimeSensitive {
 
     /**
      * A szoba gázosítása vagy annak megszüntetése. Amennyiben a kapott paraméter
-     * igaz,felel a szobában tartózkodó személyek elkábításáért stun() hívásával.
+     * igaz,felel a szobában tartózkodó személyek elkábításáért {@code stun()} hívásával.
      * Felel a gázosság állapotának beállításáért.
-     * @param gas a gas attribútum új értéke
+     * 
+     * @param gas A gas attribútum új értéke.
      */
     public void setGas(boolean gas){
         this.gas=gas;
@@ -393,84 +407,84 @@ public class Room implements ItemHandler, TimeSensitive {
     }
 
     /*
-     * Gázosság lekérdezése
+     * A gázosság lekérdezése.
      */
     public boolean isGas() {
         return gas;
     }
 
     /*
-     * Elátkozottság lekérdezése
+     * Az elátkozottság lekérdezése.
      */
     public boolean isCursed() {
         return cursed;
     }
 
     /*
-     * Elátkozottság beállítása
+     * Az elátkozottság beállítása.
      */
     public void setCursed(boolean cursed) {
         this.cursed = cursed;
     }
 
     /*
-     * Kapacitás lekérdezése
+     * A kapacitás lekérdezése.
      */
     public int getCapacity() {
         return capacity;
     }
 
     /*
-     * Kapacitás beállítása
+     * A kapacitás beállítása.
      */
     public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
 
     /*
-     * Aktív elátkozottság lekérdezése
+     * Az aktív elátkozottság lekérdezése.
      */
     public boolean isCurseActive() {
         return curseActive;
     }
 
     /*
-     * Aktív elátkozottság beállítása
+     * Az aktív elátkozottság beállítása.
      */
     public void setCurseActive(boolean curseActive) {
         this.curseActive = curseActive;
     }
 
     /*
-     * Ragacsosság lekérdezése
+     * A ragacsosság lekérdezése.
      */
     public int getStickiness() {
         return stickiness;
     }
 
     /*
-     * Ragacsosság beállítása
+     * A ragacsosság beállítása.
      */
     public void setStickiness(int stickiness) {
         this.stickiness = stickiness;
     }
 
     /*
-     * Szobában tartózkodó személyek lekérdezése
+     * A szobában tartózkodó személyek listájának lekérdezése.
      */
     public List<Person> getPeopleInRoom() {
         return peopleInRoom;
     }
 
     /*
-     * Szobában levő tárgyak lekérdezése
+     * A szobában levő tárgyak listájának lekérdezése.
      */
     public List<Item> getItemsInRoom() {
         return itemsInRoom;
     }
 
     /*
-     * Szomszéd szobák lekérdezése
+     * A szomszéd szobák listájának lekérdezése.
      */
     public List<Room> getNeighbours() {
         return neighbours;

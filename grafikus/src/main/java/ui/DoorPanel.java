@@ -11,7 +11,8 @@ import java.io.File;
 import java.io.IOException;
 
 /** 
- * Az ajtókat megjelenítő panel. A szobákhoz tartozó szín alapján jeleníti meg az ajtókat. A szoba színét a Controller osztályból kéri le.
+ * Az ajtókat megjelenítő panel. A szobákhoz tartozó szín alapján jeleníti meg az ajtókat.
+ * A szoba színét a Controller osztályból kéri le.
  */
 public class DoorPanel extends JComponent {
 
@@ -27,6 +28,8 @@ public class DoorPanel extends JComponent {
 
     /** 
      * Konstruktor, beállítja a szoba színét és a panel méretét.
+     * A kért méret 50 x 80 px.
+     * 
      * @param room A szoba, amelyhez az ajtó tartozik.
      */
     public DoorPanel(Room room){
@@ -37,6 +40,8 @@ public class DoorPanel extends JComponent {
     
     /** 
      * Beállítja a panel kijelöltségét.
+     * A kijelölést egy új határoló vonallal jelzi.
+     * 
      * @param selected A kijelöltség állapota.
      */
     public void setSelected(boolean selected) {
@@ -49,6 +54,7 @@ public class DoorPanel extends JComponent {
 
     /** 
      * Visszaadja a szobát.
+     * 
      * @return A szoba.
      */
     public Room getRoom() {
@@ -57,6 +63,8 @@ public class DoorPanel extends JComponent {
     
     /** 
      * Kirajzolja a panelt.
+     * A rajzoláshoz betölt egy ajtó képet is.
+     * 
      * @param g A rajzoló objektum.
      */
     @Override

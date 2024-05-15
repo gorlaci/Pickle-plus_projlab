@@ -68,7 +68,7 @@ public class PlayerPanel extends JComponent {
     private final JPanel statusPanel = new JPanel();
 
     /** 
-     * Az ajtóba való belépés gomb.
+     * Az ajtón való belépésre szolgáló gomb.
      */
     private final JButton enterButton = new JButton("Enter");
 
@@ -92,10 +92,11 @@ public class PlayerPanel extends JComponent {
      * Létrehozza a panelen megjelenítendő részeket, és hozzáadja őket a panelhez.
      * Beállítja a gombokhoz tartozó eseménykezelőket.
      * A panel hátterét a játékos szobájának színére állítja. 
+     * 
      * @param student A játékos, akinek a panel tartozik.
      * @param name A játékos neve.
      */
-    public PlayerPanel( Student student, String name){
+    public PlayerPanel(Student student, String name){
         this.student = student;
         this.name = name;
 
@@ -325,6 +326,7 @@ public class PlayerPanel extends JComponent {
 
     /** 
      * Visszaadja a játékost.
+     * 
      * @return A játékos.
      */
     public DoorPanel getDoorSelected(){
@@ -333,6 +335,7 @@ public class PlayerPanel extends JComponent {
 
     /** 
      * Visszaadja a játékos által kiválasztott tárgyat, ami a szobában van.
+     * 
      * @return A tárgy.
      */
     public ItemPanel getItemInRoomSelected(){
@@ -341,6 +344,7 @@ public class PlayerPanel extends JComponent {
 
     /** 
      * Visszaadja a játékos által kiválasztott tárgyat, ami a kezében van.
+     * 
      * @return A tárgy.
      */
     public ItemPanel getItemInHandSelected(){

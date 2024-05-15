@@ -12,27 +12,27 @@ import java.util.Random;
 public abstract class Person implements ItemHandler, TimeSensitive{
 
     /**
-     * Ennyi ideig van még elkábulva a személy. Ha nincs elkábulva, értéke 0
+     * Ennyi ideig van még elkábulva a személy. Ha nincs elkábulva, értéke 0.
      */
     protected int stunRemaining;
     /**
-     * Az elkábulás pillanatától ennyi ideig marad elkábulva a személy
+     * Az elkábulás pillanatától ennyi ideig marad elkábulva a személy.
      */
     protected static final int STUNSTART=3;
     /**
-     * Személy tartózkodási helye
+     * Személy tartózkodási helye.
      */
     protected Room location;
     /**
-     * Személy tárgyai
+     * Személy tárgyai.
      */
     protected final List<Item> itemsInHand = new ArrayList<>();
     /**
-     * Ennyi tárgy lehet legfeljebb minden egyes személynél
+     * Ennyi tárgy lehet legfeljebb minden egyes személynél.
      */
     protected static final int ITEMSINHANDLIMIT=5;
     /**
-     * Söröspohár hatására eldobandó véletlen tárgy indexének generálására használt objektum
+     * Söröspohár hatására eldobandó véletlen tárgy indexének generálására használt objektum.
      */
     protected static Random random=new Random();
 
@@ -40,8 +40,8 @@ public abstract class Person implements ItemHandler, TimeSensitive{
      * A Person osztály konstruktora.
      * Inicializálja egy Person objektum kábultságát és helyzetét.
      *
-     * @param stunRemaining az idő, ameddig a személy le van bénulva
-     * @param location a szoba, ahol a személy vam
+     * @param stunRemaining Az idő, ameddig a személy le van bénulva.
+     * @param location A szoba, ahol a személy van.
      */
     public Person(int stunRemaining, Room location) {
         this.stunRemaining=stunRemaining;
@@ -50,7 +50,8 @@ public abstract class Person implements ItemHandler, TimeSensitive{
 
     /**
      * A személy tartózkodási helyének beállítása.
-     * @param room a tartózkodási hely
+     * 
+     * @param room A tartózkodási hely.
      */
     public void setLocation( Room room ){
         location = room;
@@ -58,15 +59,17 @@ public abstract class Person implements ItemHandler, TimeSensitive{
 
     /**
      * Az inicializálás során a személy kezébe ad egy tárgyat.
-     * @param item a tárgy, amit a kezébe ad
+     * 
+     * @param item A tárgy, amit a kezébe ad.
      */
     public void initItem( Item item ) {
         if(itemsInHand.size()<ITEMSINHANDLIMIT) itemsInHand.add(item);
     }
 
     /**
-     * Egy tárgy felvétele, amennyiben a lehetséges
-     * @param item a felvenni kívánt tárgy
+     * Egy tárgy felvétele, amennyiben a lehetséges.
+     * 
+     * @param item A felvenni kívánt tárgy.
      */
     @Override
     public void addItem(Item item) {
@@ -78,7 +81,8 @@ public abstract class Person implements ItemHandler, TimeSensitive{
 
     /**
      * Egy tárgy törlése a személy kezéből.
-     * @param item a törölni kívánt tárgy
+     * 
+     * @param item A törölni kívánt tárgy.
      */
     @Override
     public void removeItem(Item item) {
@@ -89,7 +93,8 @@ public abstract class Person implements ItemHandler, TimeSensitive{
      * Időtelés szimulálása.
      * A személy továbbítja az eltelt időt (time) a nála lévő tárgyaknak.
      * Amennyiben kábult a személy, csökkenti a hátralévő kábulási időt.
-     * @param time az eltelt idő
+     * 
+     * @param time Az eltelt idő.
      */
     @Override
     public void timeElapsed(int time) {
@@ -108,7 +113,8 @@ public abstract class Person implements ItemHandler, TimeSensitive{
      * Ha a személy nincs elkábulva, továbbítja a jelenlegi szobájának az átlépés igényét.
      * A két szoba felelőssége, hogy a személyt beengedi-e.
      * Amennyiben sikeresen átlép a másik szobába, frissíti a tárgyainak tartózkodási helyét is.
-     * @param roomTo az a szoba, ahova át akar lépni
+     * 
+     * @param roomTo Az a szoba, ahova át akar lépni.
      */
     public void enterRoom( Room roomTo ){
         if(stunRemaining==0) {
@@ -123,7 +129,8 @@ public abstract class Person implements ItemHandler, TimeSensitive{
 
     /**
      * Egy tárgy eldobása. A személy kezéből eltávolítja a tárgyat és hozzáadja a szobához.
-     * @param item az eldobni kívánt tárgy
+     * 
+     * @param item Az eldobni kívánt tárgy.
      */
     public void dropItem( Item item ){
         itemsInHand.remove( item );
@@ -142,7 +149,8 @@ public abstract class Person implements ItemHandler, TimeSensitive{
 
     /**
      * Egy személlyel való találkozást kezeli le.
-     * @param person a személy, akivel találkozik
+     * 
+     * @param person A személy, akivel találkozik.
      */
     public abstract void meet( Person person );
 
@@ -171,8 +179,9 @@ public abstract class Person implements ItemHandler, TimeSensitive{
     }
 
     /**
-     * A személy kibuktatását/halálát hajtja végre
-     * @param killer az a személy, aki ki akarja buktatni
+     * A személy kibuktatását/halálát hajtja végre.
+     * 
+     * @param killer Az a személy, aki ki akarja buktatni.
      */
     public abstract void kill(Person killer);
 
@@ -183,46 +192,48 @@ public abstract class Person implements ItemHandler, TimeSensitive{
 
     /**
      * A személy felvette a Logarlécet.
-     * @param slideRule a logarléc
+     * 
+     * @param slideRule A logarléc.
      */
     public abstract void pickedUpSlideRule( SlideRule slideRule );
 
     /**
      * A személynek köszönt a másik személy.
-     * @param greeter a másik személy
+     * 
+     * @param greeter A másik személy.
      */
     public abstract void greet( Person greeter );
 
     /*
-     * hátralévő kábulási idő lekérdezése
+     * A hátralévő kábulási idő lekérdezése.
      */
     public int getStunRemaining() {
         return stunRemaining;
     }
 
     /*
-     * hátralévő kábulási idő beállítása
+     * A hátralévő kábulási idő beállítása.
      */
     public void setStunRemaining(int stunRemaining) {
         this.stunRemaining = stunRemaining;
     }
 
     /*
-     * tartózkodási szoba lekérdezése
+     * A tartózkodási szoba lekérdezése.
      */
     public Room getLocation(){
         return location;
     }
 
     /*
-     * kézben lévő tárgyak lekérdezése
+     * A kézben lévő tárgyak lekérdezése.
      */
     public List<Item> getItemsInHand() {
         return itemsInHand;
     }
 
     /*
-     * random objektum seedjének beállítása teszteléshez
+     * A random objektum seedjének beállítása teszteléshez.
      */
     public void setSeed(long seed) {
         random.setSeed(seed);

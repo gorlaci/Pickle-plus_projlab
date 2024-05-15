@@ -13,7 +13,9 @@ import java.util.List;
 import java.util.Random;
 
 /** 
- * A játékot irányító osztály. A játék állapotát tárolja, a játékmenetet vezérli, a játék végét kezeli.
+ * A játékot irányító osztály.
+ * A játék kezdeti paramétereit beállítja, a térképet legenerálja.
+ * A játék állapotát tárolja, a játékmenetet vezérli, a játék végét kezeli.
  * A játékban szereplő szereplők és tárgyak listáit tárolja.
  * A játékmenetet vezérlő gombok eseményeit kezeli.
  */
@@ -92,6 +94,7 @@ public class Controller {
     /** 
      * A játék indítása.
      * Beállítja a játék ablakot, és megjeleníti azt.
+     * 
      * @param args A parancssori argumentumok.
      */
     public static void main(String[] args){
@@ -100,6 +103,8 @@ public class Controller {
 
     /** 
      * Véletlenszerű szín adása a megadott szobának.
+     * 
+     * @param A megadott szoba.
      */
     private static void giveRoomRandomColor( Room room ){
         float r = random.nextFloat();
@@ -110,6 +115,7 @@ public class Controller {
 
     /**
      * Visszaadja a megadott szoba színét.
+     * 
      * @param room A kérdéses szoba.
      * @return A megadott szoba színe.
      */
@@ -119,19 +125,23 @@ public class Controller {
 
     /**
      * Visszaadja a hátralévő lépések számát.
+     * 
      * @return A hátralévő lépések száma.
      */
     public static int getActionsRemaining() { return actionsRemaining; }
 
     /**
      * Visszaadja a hátralévő körök számát.
+     * 
      * @return A hátralévő körök száma.
      */
     public static int getTurnsLeft() { return MAX_TURNS-turnCounter; }
 
     /**
-     * Visszaadja a játékoshoz tartozó képet.
-     * @return A játékoshoz tartozó kép.
+     * Visszaad egy keresett személyhez tartozó képet.
+     * A kép lehet tanár, takarító vagy hallgató képe.
+     * 
+     * @return A keresett személyhez tartozó kép.
      */
     public static String getPersonImage(Person person) {
         if(person instanceof Teacher) return RES+ File.separator+"teacher"+PNG;
@@ -146,7 +156,10 @@ public class Controller {
     }
 
     /**
-     * Visszaadja a tárgyhoz tartozó képet.
+     * Visszaadj egy keresett tárgyhoz tartozó képet.
+     * A kép lehet söröspohár, légfrissítő, camembert, maszk,
+     * logarléc, TVSZ vagy egy tranzisztor képe.
+     * 
      * @return A tárgyhoz tartozó kép.
      */
     public static String getItemImage(Item item) {
@@ -168,7 +181,14 @@ public class Controller {
     }
 
     /**
-     * Visszaadja egy tárgy attribútumait.
+     * Visszaadja egy tárgy attribútumait, egy sztring listában.
+     * A lista első eleme a tárgy fajtája.
+     * Maszk esetén a listában a fajtája után szerepel a megmaradt ideje is.
+     * TVSZ esetén a listában a fajtája után szerepel a megmaradt használatok száma is.
+     * Tranzisztor esetén a listában a fajtája után szerepel az, hogy van-e párja, vagy nincs.
+     * IntervalItem esetén a listában a fajtája után szerepel az, hogy aktiválva van-e, vagy sem,
+     * továbbá, hogy mennyi ideig marad még aktív.
+     * 
      * @param item A kérdéses tárgy.
      * @return A tárgy attribútumai.
      */
@@ -209,8 +229,11 @@ public class Controller {
     }
 
     /**
-     * Elindítja a játékot.
+     * Elindít egy új játékot a megadott paraméterek alapján.
      * Beállítja a játék ablakot, és megjeleníti azt.
+     * Ha a mapSize 1, kis térképet készít, ha 2, közepeset, ha 3, nagyot.
+     * Minden más mapSize érték mellett véletlenszerűen generálja a pályát.
+     * 
      * @param mapSize A pálya mérete.
      * @param playerNumber A játékosok száma.
      */
@@ -236,6 +259,8 @@ public class Controller {
 
     /**
      * Inicializálja a játékosokat.
+     * Mindegyik játékos a 0. számú szobában kezd.
+     * 
      * @param playerNumber A játékosok száma.
      */
     private static void initPlayers(int playerNumber) {
@@ -248,6 +273,8 @@ public class Controller {
 
     /**
      * A következő játékos nézetének megjelenítése.
+     * Ha az első játékos jönne (tehát már mindegyik játékosra sor került a körben),
+     * befejezi a kört.
      */
     private static void nextPlayer(){
         actionsRemaining = 4;
@@ -260,7 +287,17 @@ public class Controller {
     }
 
     /**
-     * A játékos körének lezárása, a következő játékos nézetének megjelenítése.
+     * Befejezi az adott kört.
+     * Ha a körszámláló így átlépné a megengedett maximális határt, véget vet a játéknak.
+     * Végigiterál az oktatókon, mindegyikkel felvetet egy véletlenszerű tárgyat,
+     * majd átlépteti egy véletlenszerű szomszédos szobába.
+     * Végigiterál a takarítókon, átlépteti őket egy véletlenszerű szomszédos szobába.
+     * Meghívja a szobákon az időtelés függvényt.
+     * Ha valamelyik játékos a körben meghalt, eltávolítja a játékból.
+     * Ha így már nem maradt játékos, véget vet a játéknak.
+     * Minden negyedik körben meghívja a szobaegyesítési függvényt.
+     * Minden negyedik körben (két körrel elcsúsztatva az egyesítéshez képest)
+     * meghívja a szobafelosztási függvényt.
      */
     private static void endTurn() {
         turnCounter++;
@@ -289,7 +326,9 @@ public class Controller {
     }
 
     /**
-     * Véletlenszerű tárgy felvétele a megadott személy által.
+     * Véletlenszerű tárgy felvétele a megadott személy által, feltéve ha a szobában,
+     * ahol az adott személy tartózkodik, van még tárgy.
+     * 
      * @param person A személy, aki felveszi a tárgyat.
      */
     private static void pickUpRandomItem(Person person) {
@@ -301,7 +340,9 @@ public class Controller {
     }
 
     /**
-     * Véletlenszerű szomszédos szobába való átmozgatás a megadott személy által.
+     * Egy megadott személy véletlenszerű szomszédos szobába való átmozgatása, feltéve,
+     * ha a szobának, ahol az adott személy tartózkodik, vannak szomszédjai.
+     * 
      * @param person A személy, aki átmegy a szomszédos szobába.
      */
     private static void moveToRandomNeighbour( Person person ){
@@ -312,7 +353,8 @@ public class Controller {
     }
 
     /**
-     * A megadott játékos halottságának ellenőrzése.
+     * A megadott játékos halottságának ellenőrzése létezésvizsgálat által.
+     * 
      * @param player A játékos, akinek a halottságát ellenőrizzük.
      */
     private static boolean isPlayerDead( Student player ){
@@ -326,6 +368,9 @@ public class Controller {
 
     /**
      * A játék végének kezelése.
+     * Attól függően, hogy a játékosok nyertek vagy veszítettek, "GG"-t
+     * vagy "BME"-t ír ki egy dialógusablakba.
+     * 
      * @param win A játék végének eredménye.
      */
     public static void gameOver(boolean win){
@@ -338,6 +383,9 @@ public class Controller {
     /**
      * A szobák összevonása.
      * Ha a szobák összevonhatóak, akkor összevonja őket.
+     * Az összevonásra a getMergingRooms jelöli ki a szobákat, az összevonhatóságot
+     * az egyes szobák döntik el.
+     * 20% eséllyel kezdeményezi a szobák szétválasztását.
      */
     private static void mergeRooms() {
         ArrayList<Room> merging = getMergingRooms();
@@ -352,7 +400,13 @@ public class Controller {
 
     /**
      * Visszaadja a szobákat, amelyek összevonhatóak.
+     * Annyiszor próbálkozik, ahány szoba van összesen.
+     * Véletlenszerűen kijelöl egy szobát, és mellé véletlenszerűen kijelöli az egyik szomszédját.
+     * Ha egyik szobában sincs senki, továbbá mindkét szobának több, mint egy szomszédja
+     * van és a második szobának is a szomszédja az első szoba, kijelöli a két szobát
+     * összevonásra.
      * Ha nincs összevonható szoba, akkor üres listát ad vissza.
+     * 
      * @return A szobák, amelyek összevonhatóak.
      */
     private static ArrayList<Room> getMergingRooms() {
@@ -375,8 +429,10 @@ public class Controller {
     }
 
     /**
-     * A szobák szétválasztása.
-     * Ha a szobák szétválaszthatóak, akkor szétválasztja őket.
+     * Egy szoba szétválasztása.
+     * Annyiszor próbálkozik, ahány szoba van összesen.
+     * Véletlenszerűen kijelöl egy szobát, és ha abban nincs senki, szétválasztja azt.
+     * 20% eséllyel kezdeményezi a szobák összevonását.
      */
     private static void splitRooms() {
         int tries = 0;
@@ -423,7 +479,9 @@ public class Controller {
 
     /**
      * A játékos tárgyfelvételének kezelése.
-     * Ha a játékos felvette a tárgyat, akkor a játékablakot újrarajzolja.
+     * Ha a játékos felvette a logarlécet, véget vet a játéknak.
+     * Ha a játékosnak nincs már több lépése, a következő játékosra lép.
+     * Ha a játék még nem ért véget, újrarajzolja a játékablakot.
      */
     public static void pickUpButtonPressed(){
         players.get(playerIdx).addItem( gameWindow.getActPlayerPanel().getItemInRoomSelected().getItem() );
@@ -441,7 +499,8 @@ public class Controller {
 
     /**
      * A játékos tárgyeldobásának kezelése.
-     * Ha a játékos eldobta a tárgyat, akkor a játékablakot újrarajzolja.
+     * Ha a játékosnak nincs már több lépése, a következő játékosra lép.
+     * Újrarajzolja a játékablakot.
      */
     public static void dropButtonPressed(){
         players.get(playerIdx).dropItem(gameWindow.getActPlayerPanel().getItemInHandSelected().getItem());
@@ -479,7 +538,8 @@ public class Controller {
     }
 
     /**
-     * A játékoks körének befejezése.
+     * A kör vége gomb megnyomásának kezelése
+     * A következő játékos jön.
      */
     public static void endButtonPressed() {
         nextPlayer();
@@ -487,6 +547,11 @@ public class Controller {
 
     /**
      * A játék kicsi pályájának inicializálása.
+     * Ez a térkép 5 szobát tartalmaz melyekbe összesen
+     * egy oktatót, egy takarítót, söröspoharat, rongyot,
+     * Camembert-t, maszkot, logarlécet, és két tranzisztort helyez.
+     * A logarléc a 4. számú szobába kerül, az oktató az 1. számú
+     * szobában kezd, a takarító a 3-asban.
      */
     private static void initSmallMap() {
         Room room = new Room(4, false, false, 1);
@@ -536,6 +601,13 @@ public class Controller {
 
     /**
      * A játék közepes pályájának inicializálása.
+     * Ez a pálya 13 véletlenszerű színű szobát tartalmaz, melyekben:
+     *   1 rongy, 2 maszk, 4 tranzisztor, 1 söröspohár, 1 hamis logarléc,
+     *   1 légfrissítő, 1 hamis maszk, 1 Camembert, 1 TVSZ és 1 logarléc
+     * lesz elhelyezve.
+     * A logarléc a 12. számú szobában van.
+     * A pályán két oktató van, a 8. és 9. számú szobákban.
+     * A pályán egy takarító is van, a 6. számú szobában.
      */
     private static void initMediumMap() {
         for(int i = 0; i < 13; i++) {
@@ -618,6 +690,8 @@ public class Controller {
 
     /**
      * A játék nagy pályájának inicializálása.
+     * Ez a pálya magába foglalja a kis- és közepes pályákat, kisebb változtatások mellett.
+     * Emellett egy légfrissítő, egy rongy és egy takarító is hozzáadásra kerül.
      */
     private static void initLargeMap() {
         initSmallMap();
@@ -639,6 +713,7 @@ public class Controller {
 
     /**
      * A játék véletlenszerű pályájának inicializálása.
+     * Ez a pálya 12-25 szobát fog tartalmazni.
      */
     private static void initRandomMap() {
         int roomCnt=random.nextInt(12,25);
@@ -649,7 +724,12 @@ public class Controller {
 
     /**
      * Véletlenszerű szobák inicializálása.
+     * Egy szoba 20% eséllyel elgázosítva, 20% eséllyel elátkozva jön létre.
+     * A szobák mérete 2 és 6 fő között lesz.
+     * A szobák ragacsossága 0 és 4 között lesz.
+     * A szobák színe véletlenszerűen lesz beállítva.
      * Ezeket összekapcsolja véletlenszerűen szomszédos szobákká.
+     * 
      * @param roomCnt A szobák száma.
      */
     private static void makeRandomRooms(int roomCnt) {
@@ -684,7 +764,9 @@ public class Controller {
 
     /**
      * Véletlenszerű NPC-k inicializálása. Tanárok és takarítók.
+     * Mind a tanárokból, mind a takarítókból 2-6 fő lesz.
      * Ezeket véletlenszerűen szobákba helyezi.
+     * 
      * @param roomCnt A szobák száma.
      */
     private static void makeRandomNPCs(int roomCnt) {
@@ -706,8 +788,10 @@ public class Controller {
     }
 
     /**
-     *  Tárgyak inicializálása véletlenszerűen.
+     * Tárgyak inicializálása véletlenszerűen.
+     * A tárgyak fajtáját tekintve egyenlő esélyekkel jöhetnek létre.
      * Ezeket véletlenszerűen szobákba helyezi.
+     * 
      * @param roomCnt A szobák száma.
      */
     private static void makeRandomItems(int roomCnt) {

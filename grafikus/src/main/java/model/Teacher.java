@@ -10,8 +10,8 @@ public class Teacher extends Person{
      * A Teacher osztály konstruktora.
      * Létrehoz és inicializál egy Teacher objektumot
      *
-     * @param stunRemaining az idő, ameddig a személy le van bénulva
-     * @param location a szoba, ahol a személy vam
+     * @param stunRemaining Az idő, ameddig a személy le van bénulva.
+     * @param location A szoba, ahol a személy van.
      */
     public Teacher(int stunRemaining, Room location){
         super(stunRemaining, location);
@@ -20,7 +20,8 @@ public class Teacher extends Person{
     /**
      * A tanár egy személlyel való találkozást kezeli le.
      * A személyt, akivel találkozik, megpróbálja megölni, amennyiben nincs lebénulva.
-     * @param person a személy, akivel találkozik
+     * 
+     * @param person A személy, akivel találkozik.
      */
     @Override
     public void meet(Person person) {
@@ -30,7 +31,8 @@ public class Teacher extends Person{
     /**
      * Tanárt megölik.
      * Nem történik semmi, mert az oktató nem halhat meg.
-     * @param killer az a személy, aki ki akarja buktatni
+     * 
+     * @param killer Az a személy, aki ki akarja buktatni.
      */
     @Override
     public void kill(Person killer) {}
@@ -47,7 +49,8 @@ public class Teacher extends Person{
     /**
      * Logarléc felvétele.
      * Az oktató kidobja a logarlécet.
-     * @param slideRule a logarléc
+     * 
+     * @param slideRule A logarléc.
      */
     @Override
     public void pickedUpSlideRule(SlideRule slideRule) {
@@ -55,9 +58,11 @@ public class Teacher extends Person{
     }
 
     /**
-     * Köszönnek a tanárnak
-     * A köszönést kezeli le. A személyt, aki köszön neki, megpróbálja megölni, amennyiben nincs lebénulva.
-     * @param greeter a másik személy
+     * Köszönnek a tanárnak.
+     * A köszönést kezeli le. 
+     * A személyt, aki köszön neki, megpróbálja megölni, amennyiben nincs lebénulva.
+     * 
+     * @param greeter A másik személy.
      */
     @Override
     public void greet(Person greeter) {

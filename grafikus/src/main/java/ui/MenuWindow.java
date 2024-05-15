@@ -25,8 +25,11 @@ public class MenuWindow extends JFrame {
 
     /** 
      * Konstruktor, inicializálja az ablakot, a menüt, és a beállításokat.
+     * Az ablak címe "Menu" lesz, a mérete 400 x 500 px.
      * Az ablakot a megadott játékosokkal hozza létre.
      * A játékosok számát a plusButton és minusButton gombokkal lehet növelni és csökkenteni.
+     * A térkép méretét egy JComboBox segítségével lehet kiválasztani.
+     * A játékot az ablak alján található gombbal lehet elindítani.
      */
     public MenuWindow() {
 

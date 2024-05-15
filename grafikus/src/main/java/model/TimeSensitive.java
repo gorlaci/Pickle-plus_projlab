@@ -7,7 +7,8 @@ public interface TimeSensitive {
     /**
      * Ezen keresztül értesülnek az interfészt megvalósító
      * objektumok azzal, hogy a játékban time idő eltelt.
-     * @param time az eltelt idő
+     * 
+     * @param time Az eltelt idő.
      */
     public void timeElapsed( int time );
 }

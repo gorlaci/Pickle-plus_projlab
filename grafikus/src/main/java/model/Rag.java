@@ -11,10 +11,10 @@ public class Rag extends IntervalItem{
      * A Rag osztály kontruktora.
      * Létrehoz és inicializál egy Rag objektumot.
      *
-     * @param location a szoba, amiben a tárgy van
-     * @param holder a személy, akinél a tárgy van
-     * @param activated a tárgy aktiválva van-e
-     * @param timeRemaining a hátralévő idő, amíg a tárgy aktív
+     * @param location A szoba, amiben a tárgy van.
+     * @param holder A személy, akinél a tárgy van.
+     * @param activated A tárgy aktiválva van-e?
+     * @param timeRemaining A hátralévő idő, amíg a tárgy aktív.
      */
     public Rag(Room location, Person holder, boolean activated, int timeRemaining){
         super(location, holder, activated, timeRemaining);
@@ -23,7 +23,8 @@ public class Rag extends IntervalItem{
     /**
      * Egy személlyel való találkozást lekezelése.
      * Az aktivált rongy kezdeményezi a személy megbénítását.
-     * @param person a személy, akivel találkozik a tárgy
+     * 
+     * @param person A személy, akivel találkozik a tárgy.
      */
     @Override
     public void meet(Person person) {
@@ -33,12 +34,13 @@ public class Rag extends IntervalItem{
     }
 
     /**
-     * Kibukás elleni védelem kérése
+     * Kibukás elleni védelem kérése.
      * Amennyiben aktiválva van a rongy, logikai igazzal
      * tér vissza, megvédve a birtokosát és a támadó személyre megbénítást kezdeményez.
      * Egyéb esetben logikai hamissal tér vissza.
-     * @param killer a támadó személy
-     * @return {@code true} ha aktiválva van, {@code false} egyébként
+     * 
+     * @param killer A támadó személy.
+     * @return {@code true} ha aktiválva van, {@code false} egyébként.
      */
     @Override
     public boolean saveFromDeath(Person killer) {
@@ -50,9 +52,10 @@ public class Rag extends IntervalItem{
     }
 
     /**
-     * Mérgező gáz elleni védelem kérése
+     * Mérgező gáz elleni védelem kérése.
      *  A tárgy nem nyújt védelmet a gáz ellen.
-     * @return {@code false} minden esetben
+     * 
+     * @return {@code false} minden esetben.
      */
     @Override
     public boolean saveFromGas() {
@@ -60,11 +63,12 @@ public class Rag extends IntervalItem{
     }
 
     /**
-     * Idő telése a tárgyra
+     * Idő telése a tárgyra.
      * Ha aktiválva van a tárgy, akkor a timeRemaining értékét
      * csökkenti time-mal. Ha elérte a 0-t, akkor aktuális birtokosánál kezdeményezi a tárgy
      * megsemmisítését.
-     * @param time az eltelt idő
+     * 
+     * @param time Az eltelt idő.
      */
     @Override
     public void timeElapsed(int time) {

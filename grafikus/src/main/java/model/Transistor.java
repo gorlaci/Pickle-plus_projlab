@@ -12,12 +12,13 @@ import java.util.HashMap;
 public class Transistor extends Item{
 
     /**
-     * A tranzisztor párja. Ha nincs párosítva értéke null
+     * A tranzisztor párja.
+     * Ha nincs párosítva, értéke {@code null}.
      */
     private Transistor pair=null;
 
     /**
-     * A tranzisztorok személyenkénti párosodási kérelmének tárolója
+     * A tranzisztorok személyenkénti párosodási kérelmének tárolója.
      */
     private static final HashMap<Person,Transistor> pairingRequests = new HashMap<>();
 
@@ -25,8 +26,8 @@ public class Transistor extends Item{
      * A Transistor osztály konstruktora.
      * Létrehoz és inicializál egy Transistor objektumot.
      *
-     * @param location a szoba, amiben a tárgy van
-     * @param holder a személy, akinél a tárgy van
+     * @param location A szoba, amiben a tárgy van.
+     * @param holder A személy, akinél a tárgy van.
      */
     public Transistor(Room location, Person holder){
         super(location, holder);
@@ -34,7 +35,8 @@ public class Transistor extends Item{
 
     /**
      * A paraméterben kapott tranzisztorral összepárosítja az objektumot.
-     * @param transistor a párosítani kívánt tranzisztor
+     * 
+     * @param transistor A párosítani kívánt tranzisztor.
      */
     public void setPair(Transistor transistor) {
         this.pair = transistor;
@@ -50,7 +52,7 @@ public class Transistor extends Item{
      * t1 tranzisztorral, akkor a t1-et és a t2-t összekapcsolja, és kiveszi őket a párosítási
      * jegyzékből. Amennyiben egy t1 tranzisztort úgy aktiválunk, hogy a t1.pair értéke nem
      * NULL, akkor t1-et eldobja a játékos az eredeti szobájában és a t1 birtokosát átlépteti
-     * az enterRoom() metódus segítségével, t2 tartózkodási helyébe, amit paraméterként ad
+     * az {@code enterRoom()} metódus segítségével, t2 tartózkodási helyébe, amit paraméterként ad
      * át a személy metódusába.
      */
     @Override
@@ -72,18 +74,18 @@ public class Transistor extends Item{
     }
 
     /**
-     * Találkozás emberrel
+     * Találkozás emberrel.
      * Nem csinál semmit.
-     * @param person a személy, akivel találkozik a tárgy
+     * @param person A személy, akivel találkozik a tárgy.
      */
     @Override
     public void meet(Person person) { }
 
     /**
-     * Kibukás elleni védelem kérése
+     * Kibukás elleni védelem kérése.
      * Nem véd meg a kibukástól.
-     * @param killer a támadó személy
-     * @return {@code false} minden esetben
+     * @param killer A támadó személy.
+     * @return {@code false} minden esetben.
      */
     @Override
     public boolean saveFromDeath(Person killer) {
@@ -91,9 +93,9 @@ public class Transistor extends Item{
     }
 
     /**
-     * Mérgező gáz elleni védelem kérése
+     * Mérgező gáz elleni védelem kérése.
      * Nem véd meg a gáztól.
-     * @return {@code false} minden esetben
+     * @return {@code false} minden esetben.
      */
     @Override
     public boolean saveFromGas() {
@@ -101,16 +103,16 @@ public class Transistor extends Item{
     }
 
     /**
-     * Idő telése a tárgyon
+     * Idő telése a tárgyon.
      * Nem történik vele semmi.
-     * @param time az eltelt idő
+     * @param time Az eltelt idő.
      */
     @Override
     public void timeElapsed(int time) {
     }
 
     /*
-     * Pár lekérdezése
+     * A tranzisztor párjának lekérdezése.
      */
     public Transistor getPair() {
         return pair;
