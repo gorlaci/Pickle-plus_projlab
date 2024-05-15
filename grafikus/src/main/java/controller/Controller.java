@@ -110,7 +110,7 @@ public class Controller {
 
     /**
      * Visszaadja a megadott szoba színét.
-     * @param room
+     * @param room A kérdéses szoba.
      * @return A megadott szoba színe.
      */
     public static Color getRoomColor( Room room ){
@@ -168,7 +168,8 @@ public class Controller {
     }
 
     /**
-     * Visszaadja a tárgy attribútumait.
+     * Visszaadja egy tárgy attribútumait.
+     * @param item A kérdéses tárgy.
      * @return A tárgy attribútumai.
      */
     public static ArrayList<String> getItemAttributes(Item item){

@@ -11,10 +11,14 @@ import java.util.HashMap;
  */
 public class Transistor extends Item{
 
-    //A tranzisztor párja. Ha nincs párosítva értéke null
+    /**
+     * A tranzisztor párja. Ha nincs párosítva értéke null
+     */
     private Transistor pair=null;
 
-    //A tranzisztorok személyenkénti párosodási kérelmének tárolója
+    /**
+     * A tranzisztorok személyenkénti párosodási kérelmének tárolója
+     */
     private static final HashMap<Person,Transistor> pairingRequests = new HashMap<>();
 
     /**

@@ -10,9 +10,13 @@ package model;
  */
 public abstract class Item implements TimeSensitive {
 
-    //A tárgy tartózkodási szobája, melyet akkor is számon tartunk ha egy személy kezében van
+    /**
+     * A tárgy tartózkodási szobája, melyet akkor is számon tartunk ha egy személy kezében van
+     */
     protected Room location;
-    //A tárgy birtokosa. Amennyiben a földön van, értéke null
+    /**
+     * A tárgy birtokosa. Amennyiben a földön van, értéke null
+     */
     protected Person holder;
 
     /**

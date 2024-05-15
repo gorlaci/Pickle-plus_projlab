@@ -11,17 +11,29 @@ import java.util.Random;
  */
 public abstract class Person implements ItemHandler, TimeSensitive{
 
-    //Ennyi ideig van még elkábulva a személy. Ha nincs elkábulva, értéke 0
+    /**
+     * Ennyi ideig van még elkábulva a személy. Ha nincs elkábulva, értéke 0
+     */
     protected int stunRemaining;
-    //Az elkábulás pillanatától ennyi ideig marad elkábulva a személy
+    /**
+     * Az elkábulás pillanatától ennyi ideig marad elkábulva a személy
+     */
     protected static final int STUNSTART=3;
-    //Személy tartózkodási helye
+    /**
+     * Személy tartózkodási helye
+     */
     protected Room location;
-    //Személy tárgyai
+    /**
+     * Személy tárgyai
+     */
     protected final List<Item> itemsInHand = new ArrayList<>();
-    //Ennyi tárgy lehet legfeljebb minden egyes személynél
+    /**
+     * Ennyi tárgy lehet legfeljebb minden egyes személynél
+     */
     protected static final int ITEMSINHANDLIMIT=5;
-    //Söröspohár hatására eldobandó véletlen tárgy indexének generálására használt objektum
+    /**
+     * Söröspohár hatására eldobandó véletlen tárgy indexének generálására használt objektum
+     */
     protected static Random random=new Random();
 
     /**

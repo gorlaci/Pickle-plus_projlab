@@ -34,7 +34,6 @@ public class DoorPanel extends JComponent {
         color = Controller.getRoomColor(room);
         setPreferredSize(new Dimension(50,80));
     }
-
     
     /** 
      * Beállítja a panel kijelöltségét.
@@ -48,7 +47,6 @@ public class DoorPanel extends JComponent {
         }
     }
 
-    
     /** 
      * Visszaadja a szobát.
      * @return A szoba.
@@ -56,7 +54,6 @@ public class DoorPanel extends JComponent {
     public Room getRoom() {
         return room;
     }
-
     
     /** 
      * Kirajzolja a panelt.

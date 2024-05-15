@@ -9,9 +9,13 @@ package model;
  */
 public abstract class IntervalItem extends Item {
 
-    //A tárgy aktiválva van-e vagy sem
+    /**
+     * A tárgy aktiválva van-e vagy sem
+     */
     protected boolean activated;
-    //Mennyi idő múlva változik a tárgy állapota aktiváltról.
+    /**
+     * Mennyi idő múlva változik a tárgy állapota aktiváltról.
+     */
     protected int timeRemaining;
 
     /**
