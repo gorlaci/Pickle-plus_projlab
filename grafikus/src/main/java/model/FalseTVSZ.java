@@ -22,6 +22,7 @@ public class FalseTVSZ extends TVSZ{
      * Kibukás elleni védelem kérése.
      * Meghívja az ősének azonos nevű metódusát az esetleges megszűnés miatt.
      * Nem nyújt védelmet a kibukással szemben.
+     * 
      * @return {@code false} minden esetben.
      */
     @Override
